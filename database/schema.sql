@@ -78,8 +78,9 @@ CREATE TABLE sprints (
     monday_subitem_id BIGINT UNIQUE NOT NULL,
 
     -- Sprint identification
-    name TEXT NOT NULL, -- e.g., "Sprint 1", "Q1 2025"
-    sprint_number INTEGER, -- Auto-calculated based on order
+    name TEXT NOT NULL, -- e.g., "Sprint #1", "Ongoing - Q1" (as stored in Monday.com)
+    sprint_number INTEGER, -- Auto-calculated based on start_date chronological order
+    sprint_label TEXT, -- Monday.com "Sprint" status field value (for display)
 
     -- Sprint timeline
     start_date DATE NOT NULL,
@@ -89,7 +90,10 @@ CREATE TABLE sprints (
     kpi_target INTEGER NOT NULL, -- "Link KPI Per Quarter"
     kpi_achieved INTEGER DEFAULT 0, -- "Links Achieved Per Quarter"
 
-    -- Status
+    -- Financial (from Monday.com subitem "Monthly Rate (AUD)")
+    monthly_rate NUMERIC, -- Per-sprint rate, can differ from client default!
+
+    -- Status (calculated from dates)
     status TEXT DEFAULT 'active', -- 'active', 'completed', 'cancelled'
 
     -- Metadata
@@ -272,16 +276,15 @@ DECLARE
     v_hours_used NUMERIC;
 BEGIN
     SELECT
-        c.monthly_rate,
+        s.monthly_rate,  -- Use sprint-level rate!
         COALESCE(SUM(te.hours), 0)
     INTO
         v_monthly_rate,
         v_hours_used
     FROM sprints s
-    JOIN clients c ON s.client_id = c.id
     LEFT JOIN time_entries te ON te.sprint_id = s.id
     WHERE s.id = p_sprint_id
-    GROUP BY c.monthly_rate;
+    GROUP BY s.monthly_rate;
 
     IF v_hours_used > 0 AND v_monthly_rate IS NOT NULL THEN
         -- Monthly Rate * 3 months / hours used
@@ -365,12 +368,12 @@ SELECT
         ELSE 0
     END AS hours_utilization_percent,
 
-    -- Financial metrics
-    c.monthly_rate,
-    c.monthly_rate * 3 AS sprint_revenue,
+    -- Financial metrics (use sprint-level monthly_rate!)
+    s.monthly_rate,
+    s.monthly_rate * 3 AS sprint_revenue,
     CASE
-        WHEN COALESCE(SUM(te.hours), 0) > 0 THEN
-            ROUND((c.monthly_rate * 3) / COALESCE(SUM(te.hours), 1), 2)
+        WHEN COALESCE(SUM(te.hours), 0) > 0 AND s.monthly_rate IS NOT NULL THEN
+            ROUND((s.monthly_rate * 3) / COALESCE(SUM(te.hours), 1), 2)
         ELSE NULL
     END AS actual_billable_rate,
 
@@ -511,6 +514,83 @@ GROUP BY
     te.sprint_id, s.client_id, c.name, s.name,
     te.user_id, u.name, total_sprint.hours
 ORDER BY te.sprint_id, total_hours DESC;
+
+-- ============================================================================
+-- TASK CATEGORIZATION
+-- ============================================================================
+
+-- Function: Categorize task from description
+CREATE OR REPLACE FUNCTION categorize_task(description TEXT)
+RETURNS TEXT AS $$
+BEGIN
+  IF description IS NULL THEN
+    RETURN 'other';
+  END IF;
+
+  -- Convert to lowercase for matching
+  description := LOWER(description);
+
+  -- Check for keywords (order matters - more specific first)
+  IF description ~* '(email|meeting|call|comms|communication|client contact|check-?in)' THEN
+    RETURN 'comms';
+  ELSIF description ~* '(data|research|analysis|seo audit|keyword research)' THEN
+    RETURN 'data';
+  ELSIF description ~* '(outreach|pitch|journalist|link building|pr|media)' THEN
+    RETURN 'outreach';
+  ELSIF description ~* '(report|reporting|documentation|monthly report)' THEN
+    RETURN 'reporting';
+  ELSIF description ~* '(strategy|planning|campaign plan|brainstorm)' THEN
+    RETURN 'strategy';
+  ELSIF description ~* '(admin|administrative|internal meeting|timesheet)' THEN
+    RETURN 'admin';
+  ELSE
+    RETURN 'other';
+  END IF;
+END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+
+-- Function: Auto-categorize time entry on insert/update
+CREATE OR REPLACE FUNCTION auto_categorize_time_entry()
+RETURNS TRIGGER AS $$
+BEGIN
+  -- Only auto-categorize if not already set
+  IF NEW.task_category IS NULL AND NEW.description IS NOT NULL THEN
+    NEW.task_category := categorize_task(NEW.description);
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- ============================================================================
+-- SPRINT AUTO-NUMBERING
+-- ============================================================================
+
+-- Function: Auto-number sprints based on chronological order
+CREATE OR REPLACE FUNCTION auto_number_sprint()
+RETURNS TRIGGER AS $$
+BEGIN
+  -- Calculate sprint number based on start_date order within client
+  -- Count how many sprints for this client have an earlier start date
+  NEW.sprint_number := (
+    SELECT COALESCE(COUNT(*), 0) + 1
+    FROM sprints
+    WHERE client_id = NEW.client_id
+    AND start_date < NEW.start_date
+    AND id != COALESCE(NEW.id, '00000000-0000-0000-0000-000000000000'::UUID)
+  );
+
+  -- Auto-set status based on dates
+  IF NEW.end_date < CURRENT_DATE THEN
+    NEW.status := 'completed';
+  ELSIF NEW.start_date > CURRENT_DATE THEN
+    NEW.status := 'pending';
+  ELSE
+    NEW.status := 'active';
+  END IF;
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
 
 -- ============================================================================
 -- ROW LEVEL SECURITY (RLS)
@@ -659,6 +739,18 @@ CREATE TRIGGER update_clockify_projects_updated_at BEFORE UPDATE ON clockify_pro
 CREATE TRIGGER update_time_entries_updated_at BEFORE UPDATE ON time_entries
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
+-- Apply sprint auto-numbering trigger
+CREATE TRIGGER trigger_auto_number_sprint
+    BEFORE INSERT OR UPDATE OF start_date ON sprints
+    FOR EACH ROW
+    EXECUTE FUNCTION auto_number_sprint();
+
+-- Apply time entry auto-categorization trigger
+CREATE TRIGGER trigger_auto_categorize_time_entry
+    BEFORE INSERT OR UPDATE ON time_entries
+    FOR EACH ROW
+    EXECUTE FUNCTION auto_categorize_time_entry();
+
 -- ============================================================================
 -- SEED DATA
 -- ============================================================================
@@ -684,8 +776,11 @@ COMMENT ON TABLE clockify_projects IS 'Projects from Clockify workspace';
 COMMENT ON TABLE sync_logs IS 'Data synchronization audit trail';
 
 COMMENT ON FUNCTION calculate_sprint_health IS 'Calculates sprint health: KPI Complete, Ahead, On Track, Behind, At Risk';
-COMMENT ON FUNCTION calculate_billable_rate IS 'Calculates actual billable rate: (Monthly Rate * 3) / Hours Used';
+COMMENT ON FUNCTION calculate_billable_rate IS 'Calculates actual billable rate: (Sprint Monthly Rate * 3) / Hours Used';
 COMMENT ON FUNCTION calculate_hours_utilization IS 'Calculates hours utilization percentage';
+COMMENT ON FUNCTION categorize_task IS 'Auto-categorizes time entries into task types (comms, data, outreach, reporting, strategy, admin, other)';
+COMMENT ON FUNCTION auto_number_sprint IS 'Auto-assigns sprint_number based on chronological order of start_date within each client';
+COMMENT ON FUNCTION auto_categorize_time_entry IS 'Trigger function to auto-categorize time entries on insert/update';
 
 COMMENT ON VIEW sprint_metrics IS 'Comprehensive metrics for each sprint including KPI, time, hours, and health status';
 COMMENT ON VIEW client_contract_metrics IS 'Aggregate metrics across all sprints for each client';
