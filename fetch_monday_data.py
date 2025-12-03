@@ -17,7 +17,7 @@ if not api_key or not board_id:
 # Monday.com API endpoint
 url = 'https://api.monday.com/v2'
 
-# GraphQL query to get board structure
+# GraphQL query to get board structure including subitems (sprints)
 query = """
 {
   boards(ids: [%s]) {
@@ -37,6 +37,18 @@ query = """
             }
             value
             text
+          }
+          subitems {
+            id
+            name
+            column_values {
+              id
+              column {
+                title
+              }
+              value
+              text
+            }
           }
         }
       }
