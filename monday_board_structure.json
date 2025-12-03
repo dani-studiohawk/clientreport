@@ -238,6 +238,558 @@
                       "value": null,
                       "text": null
                     }
+                  ],
+                  "subitems": [
+                    {
+                      "id": "7975299985",
+                      "name": "Becextech #1",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2024-08-05\",\"changed_at\":\"2024-12-03T17:51:13.010Z\"}",
+                          "text": "2024-08-05"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2024-09-05\",\"changed_at\":\"2025-03-17T23:45:05.090Z\"}",
+                          "text": "2024-09-05"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3000\"",
+                          "text": "3000"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":4,\"post_id\":null,\"changed_at\":\"2025-05-26T01:39:32.263Z\"}",
+                          "text": "Sprint #1"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "7975089112",
+                      "name": "Becextech #2",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2024-10-14\",\"changed_at\":\"2024-12-03T17:37:38.926Z\"}",
+                          "text": "2024-10-14"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2024-12-14\",\"changed_at\":\"2025-01-10T00:29:15.185Z\"}",
+                          "text": "2024-12-14"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"11\"",
+                          "text": "11"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"4\"",
+                          "text": "4"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3000\"",
+                          "text": "3000"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":9,\"post_id\":null,\"changed_at\":\"2025-05-26T01:39:56.010Z\"}",
+                          "text": "Sprint #2"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9228920190",
+                      "name": "Becextech #3",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-05-26T01:38:08.142Z\",\"personsAndTeams\":[{\"id\":49331015,\"kind\":\"person\"}]}",
+                          "text": "Janine Tan Pacis"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-01-20\",\"changed_at\":\"2025-05-26T01:38:21.936Z\"}",
+                          "text": "2025-01-20"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-03-20\",\"changed_at\":\"2025-05-26T01:39:02.428Z\"}",
+                          "text": "2025-03-20"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"5\"",
+                          "text": "5"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3000\"",
+                          "text": "3000"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":10,\"post_id\":null,\"changed_at\":\"2025-05-26T01:40:16.118Z\"}",
+                          "text": "Sprint #3"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9785690071",
+                      "name": "Becextech #4",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-08-11T05:16:23.122Z\",\"personsAndTeams\":[{\"id\":49331015,\"kind\":\"person\"}]}",
+                          "text": "Janine Tan Pacis"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-06-10\",\"changed_at\":\"2025-08-11T05:17:33.115Z\"}",
+                          "text": "2025-06-10"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-09-10\",\"changed_at\":\"2025-08-11T05:17:41.058Z\"}",
+                          "text": "2025-09-10"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3200\"",
+                          "text": "3200"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":12,\"post_id\":null,\"changed_at\":\"2025-08-11T05:18:16.486Z\"}",
+                          "text": "Sprint #4"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9978628200",
+                      "name": "Becextech #1 (2)",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-10-07T10:15:17.106Z\",\"personsAndTeams\":[{\"id\":49331015,\"kind\":\"person\"}]}",
+                          "text": "Janine Tan Pacis"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-09-10\",\"changed_at\":\"2025-09-04T23:55:45.439Z\"}",
+                          "text": "2025-09-10"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-12-10\",\"changed_at\":\"2025-09-04T23:55:59.534Z\"}",
+                          "text": "2025-12-10"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"7\"",
+                          "text": "7"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3200\"",
+                          "text": "3200"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":14,\"post_id\":null,\"changed_at\":\"2025-09-04T23:54:22.345Z\"}",
+                          "text": "Sprint #5"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    }
                   ]
                 },
                 {
@@ -467,6 +1019,448 @@
                       },
                       "value": null,
                       "text": null
+                    }
+                  ],
+                  "subitems": [
+                    {
+                      "id": "9065123933",
+                      "name": "Budget Pet Products",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-05-05T00:49:00.165Z\",\"personsAndTeams\":[{\"id\":68445639,\"kind\":\"person\"}]}",
+                          "text": "Paige"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-02-26\",\"changed_at\":\"2025-05-19T05:11:13.115Z\"}",
+                          "text": "2025-02-26"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-05-26\",\"changed_at\":\"2025-07-03T01:34:43.266Z\"}",
+                          "text": "2025-05-26"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"0\"",
+                          "text": "0"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3060\"",
+                          "text": "3060"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":1,\"post_id\":null,\"changed_at\":\"2025-05-05T00:48:37.290Z\"}",
+                          "text": "Ongoing - Q1"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9065124191",
+                      "name": "Budget Pet Products",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-05-05T00:49:00.165Z\",\"personsAndTeams\":[{\"id\":68445639,\"kind\":\"person\"}]}",
+                          "text": "Paige"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-05-26\",\"changed_at\":\"2025-05-19T05:11:38.842Z\"}",
+                          "text": "2025-05-26"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-08-26\",\"changed_at\":\"2025-07-03T01:34:51.947Z\"}",
+                          "text": "2025-08-26"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"11\"",
+                          "text": "11"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3060\"",
+                          "text": "3060"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":2,\"post_id\":null,\"changed_at\":\"2025-05-05T00:48:39.851Z\"}",
+                          "text": "Ongoing - Q2"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9065124258",
+                      "name": "Budget Pet Products",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-05-05T00:49:00.165Z\",\"personsAndTeams\":[{\"id\":68445639,\"kind\":\"person\"}]}",
+                          "text": "Paige"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-08-26\",\"changed_at\":\"2025-05-19T05:11:50.558Z\"}",
+                          "text": "2025-08-26"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-11-26\",\"changed_at\":\"2025-07-03T01:35:01.590Z\"}",
+                          "text": "2025-11-26"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"47\"",
+                          "text": "47"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3060\"",
+                          "text": "3060"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":19,\"post_id\":null,\"changed_at\":\"2025-05-05T00:48:42.661Z\"}",
+                          "text": "Ongoing - Q3"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9065124350",
+                      "name": "Budget Pet Products",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-05-05T00:49:00.165Z\",\"personsAndTeams\":[{\"id\":68445639,\"kind\":\"person\"}]}",
+                          "text": "Paige"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-11-26\",\"changed_at\":\"2025-05-19T05:12:03.699Z\"}",
+                          "text": "2025-11-26"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2026-02-26\",\"changed_at\":\"2025-07-03T01:35:06.916Z\"}",
+                          "text": "2026-02-26"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3060\"",
+                          "text": "3060"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":3,\"post_id\":null,\"changed_at\":\"2025-05-05T00:48:44.468Z\"}",
+                          "text": "Ongoing - Q4"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
                     }
                   ]
                 },
@@ -698,6 +1692,228 @@
                       "value": null,
                       "text": null
                     }
+                  ],
+                  "subitems": [
+                    {
+                      "id": "9958470752",
+                      "name": "Craft Club Co",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-09-10T23:51:50.195Z\",\"personsAndTeams\":[{\"id\":70275558,\"kind\":\"person\"}]}",
+                          "text": "Daisy Sawyer"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-09-15\",\"changed_at\":\"2025-09-03T04:48:48.642Z\"}",
+                          "text": "2025-09-15"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-12-15\",\"changed_at\":\"2025-09-03T04:48:53.725Z\"}",
+                          "text": "2025-12-15"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3600\"",
+                          "text": "3600"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":4,\"post_id\":null,\"changed_at\":\"2025-09-03T04:46:10.520Z\"}",
+                          "text": "Sprint #1"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9958471065",
+                      "name": "Craft Club Co",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-09-10T23:51:50.195Z\",\"personsAndTeams\":[{\"id\":70275558,\"kind\":\"person\"}]}",
+                          "text": "Daisy Sawyer"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3600\"",
+                          "text": "3600"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":9,\"post_id\":null,\"changed_at\":\"2025-09-03T04:46:14.248Z\"}",
+                          "text": "Sprint #2"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    }
                   ]
                 },
                 {
@@ -928,6 +2144,118 @@
                       "value": null,
                       "text": null
                     }
+                  ],
+                  "subitems": [
+                    {
+                      "id": "18361190001",
+                      "name": "Culture Kings",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-11-06T04:47:45.804Z\",\"personsAndTeams\":[{\"id\":55911313,\"kind\":\"person\"}]}",
+                          "text": "Georgia Anderson"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-10-03\",\"changed_at\":\"2025-11-06T04:48:06.471Z\"}",
+                          "text": "2025-10-03"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2026-01-03\",\"changed_at\":\"2025-11-06T04:48:25.712Z\"}",
+                          "text": "2026-01-03"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"4000\"",
+                          "text": "4000"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":4,\"post_id\":null,\"changed_at\":\"2025-11-06T04:48:38.190Z\"}",
+                          "text": "Sprint #1"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    }
                   ]
                 },
                 {
@@ -1157,6 +2485,228 @@
                       },
                       "value": null,
                       "text": null
+                    }
+                  ],
+                  "subitems": [
+                    {
+                      "id": "9510686508",
+                      "name": "Cycology 1",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-07-03T01:55:54.286Z\",\"personsAndTeams\":[{\"id\":49331015,\"kind\":\"person\"}]}",
+                          "text": "Janine Tan Pacis"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-07-14\",\"changed_at\":\"2025-07-03T01:56:05.315Z\"}",
+                          "text": "2025-07-14"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-10-14\",\"changed_at\":\"2025-07-03T01:56:14.577Z\"}",
+                          "text": "2025-10-14"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"3\"",
+                          "text": "3"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3600\"",
+                          "text": "3600"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":1,\"post_id\":null,\"changed_at\":\"2025-07-03T01:56:29.866Z\"}",
+                          "text": "Ongoing - Q1"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9510686748",
+                      "name": "Cycology 2",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-07-03T01:55:54.286Z\",\"personsAndTeams\":[{\"id\":49331015,\"kind\":\"person\"}]}",
+                          "text": "Janine Tan Pacis"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-10-14\",\"changed_at\":\"2025-07-03T01:56:18.253Z\"}",
+                          "text": "2025-10-14"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2026-01-14\",\"changed_at\":\"2025-07-03T01:56:23.913Z\"}",
+                          "text": "2026-01-14"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3600\"",
+                          "text": "3600"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":2,\"post_id\":null,\"changed_at\":\"2025-07-03T01:56:32.066Z\"}",
+                          "text": "Ongoing - Q2"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1396,7 +2946,8 @@
                       "value": null,
                       "text": null
                     }
-                  ]
+                  ],
+                  "subitems": []
                 }
               ]
             }
@@ -1641,6 +3192,448 @@
                       "value": null,
                       "text": null
                     }
+                  ],
+                  "subitems": [
+                    {
+                      "id": "18371888495",
+                      "name": "Bean Bags R Us",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2026-01-10\",\"changed_at\":\"2025-11-10T06:08:23.005Z\"}",
+                          "text": "2026-01-10"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2026-04-10\",\"changed_at\":\"2025-11-10T06:08:35.882Z\"}",
+                          "text": "2026-04-10"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3200\"",
+                          "text": "3200"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":1,\"post_id\":null,\"changed_at\":\"2025-11-10T06:09:52.441Z\"}",
+                          "text": "Ongoing - Q1"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "18371888527",
+                      "name": "Bean Bags R Us",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2026-04-10\",\"changed_at\":\"2025-11-10T06:08:40.508Z\"}",
+                          "text": "2026-04-10"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2026-07-10\",\"changed_at\":\"2025-11-10T06:08:47.417Z\"}",
+                          "text": "2026-07-10"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3200\"",
+                          "text": "3200"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":2,\"post_id\":null,\"changed_at\":\"2025-11-10T06:09:54.339Z\"}",
+                          "text": "Ongoing - Q2"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "18371888538",
+                      "name": "Bean Bags R Us",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2026-07-10\",\"changed_at\":\"2025-11-10T06:09:09.251Z\"}",
+                          "text": "2026-07-10"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2026-10-10\",\"changed_at\":\"2025-11-10T06:09:05.413Z\"}",
+                          "text": "2026-10-10"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3200\"",
+                          "text": "3200"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":19,\"post_id\":null,\"changed_at\":\"2025-11-10T06:09:56.655Z\"}",
+                          "text": "Ongoing - Q3"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "18371888559",
+                      "name": "Bean Bags R Us",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2026-10-10\",\"changed_at\":\"2025-11-10T06:09:24.659Z\"}",
+                          "text": "2026-10-10"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2027-01-10\",\"changed_at\":\"2025-11-10T06:09:42.788Z\"}",
+                          "text": "2027-01-10"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3200\"",
+                          "text": "3200"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":3,\"post_id\":null,\"changed_at\":\"2025-11-10T06:09:58.417Z\"}",
+                          "text": "Ongoing - Q4"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    }
                   ]
                 },
                 {
@@ -1871,7 +3864,8 @@
                       "value": null,
                       "text": null
                     }
-                  ]
+                  ],
+                  "subitems": []
                 }
               ]
             }
@@ -2109,7 +4103,8 @@
                       "value": null,
                       "text": null
                     }
-                  ]
+                  ],
+                  "subitems": []
                 },
                 {
                   "id": "7975285522",
@@ -2339,7 +4334,8 @@
                       "value": null,
                       "text": null
                     }
-                  ]
+                  ],
+                  "subitems": []
                 },
                 {
                   "id": "8295580016",
@@ -2569,7 +4565,8 @@
                       "value": null,
                       "text": null
                     }
-                  ]
+                  ],
+                  "subitems": []
                 },
                 {
                   "id": "8802930164",
@@ -2799,7 +4796,8 @@
                       "value": null,
                       "text": null
                     }
-                  ]
+                  ],
+                  "subitems": []
                 },
                 {
                   "id": "8403583500",
@@ -3028,6 +5026,558 @@
                       },
                       "value": null,
                       "text": null
+                    }
+                  ],
+                  "subitems": [
+                    {
+                      "id": "9925636889",
+                      "name": "El Jannah",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-08-29T00:17:17.303Z\",\"personsAndTeams\":[{\"id\":67178924,\"kind\":\"person\"}]}",
+                          "text": "Clea Kanning"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-05-03\",\"changed_at\":\"2025-08-29T00:18:04.076Z\"}",
+                          "text": "2025-05-03"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-08-03\",\"changed_at\":\"2025-08-29T00:18:08.911Z\"}",
+                          "text": "2025-08-03"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3000\"",
+                          "text": "3000"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":4,\"post_id\":null,\"changed_at\":\"2025-08-29T00:16:12.577Z\"}",
+                          "text": "Sprint #1"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9925641355",
+                      "name": "El Jannah",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-08-29T00:19:31.419Z\",\"personsAndTeams\":[{\"id\":67178924,\"kind\":\"person\"}]}",
+                          "text": "Clea Kanning"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-09-03\",\"changed_at\":\"2025-08-29T00:20:43.050Z\"}",
+                          "text": "2025-09-03"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-12-03\",\"changed_at\":\"2025-08-29T00:21:00.542Z\"}",
+                          "text": "2025-12-03"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3000\"",
+                          "text": "3000"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":1,\"post_id\":null,\"changed_at\":\"2025-08-29T00:19:20.218Z\"}",
+                          "text": "Ongoing - Q1"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9925641534",
+                      "name": "El Jannah",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-08-29T00:19:40.877Z\",\"personsAndTeams\":[{\"id\":67178924,\"kind\":\"person\"}]}",
+                          "text": "Clea Kanning"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-12-03\",\"changed_at\":\"2025-08-29T00:21:18.744Z\"}",
+                          "text": "2025-12-03"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2026-03-03\",\"changed_at\":\"2025-08-29T00:21:51.569Z\"}",
+                          "text": "2026-03-03"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3000\"",
+                          "text": "3000"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":2,\"post_id\":null,\"changed_at\":\"2025-08-29T00:19:04.804Z\"}",
+                          "text": "Ongoing - Q2"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9925641754",
+                      "name": "El Jannah",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-08-29T00:19:47.122Z\",\"personsAndTeams\":[{\"id\":67178924,\"kind\":\"person\"}]}",
+                          "text": "Clea Kanning"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2026-03-03\",\"changed_at\":\"2025-08-29T00:21:57.514Z\"}",
+                          "text": "2026-03-03"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2026-06-03\",\"changed_at\":\"2025-08-29T00:22:05.837Z\"}",
+                          "text": "2026-06-03"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3000\"",
+                          "text": "3000"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":19,\"post_id\":null,\"changed_at\":\"2025-08-29T00:19:16.441Z\"}",
+                          "text": "Ongoing - Q3"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9925642070",
+                      "name": "El Jannah",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-08-29T00:19:53.594Z\",\"personsAndTeams\":[{\"id\":67178924,\"kind\":\"person\"}]}",
+                          "text": "Clea Kanning"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2026-06-03\",\"changed_at\":\"2025-08-29T00:22:12.141Z\"}",
+                          "text": "2026-06-03"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2026-09-03\",\"changed_at\":\"2025-08-29T00:22:21.645Z\"}",
+                          "text": "2026-09-03"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3000\"",
+                          "text": "3000"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":3,\"post_id\":null,\"changed_at\":\"2025-08-29T00:19:12.239Z\"}",
+                          "text": "Ongoing - Q4"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
                     }
                   ]
                 }
@@ -3267,7 +5817,8 @@
                       "value": null,
                       "text": null
                     }
-                  ]
+                  ],
+                  "subitems": []
                 },
                 {
                   "id": "9457609855",
@@ -3496,6 +6047,228 @@
                       },
                       "value": null,
                       "text": null
+                    }
+                  ],
+                  "subitems": [
+                    {
+                      "id": "9510683682",
+                      "name": "Ella Bache 1",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-07-03T01:54:49.385Z\",\"personsAndTeams\":[{\"id\":68445639,\"kind\":\"person\"}]}",
+                          "text": "Paige"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-07-01\",\"changed_at\":\"2025-07-03T01:55:02.878Z\"}",
+                          "text": "2025-07-01"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-10-01\",\"changed_at\":\"2025-07-03T01:55:08.136Z\"}",
+                          "text": "2025-10-01"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"2\"",
+                          "text": "2"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3060\"",
+                          "text": "3060"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":1,\"post_id\":null,\"changed_at\":\"2025-07-03T01:56:37.283Z\"}",
+                          "text": "Ongoing - Q1"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9510683783",
+                      "name": "Ella Bache 2",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-07-03T01:54:49.385Z\",\"personsAndTeams\":[{\"id\":68445639,\"kind\":\"person\"}]}",
+                          "text": "Paige"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-10-01\",\"changed_at\":\"2025-07-03T01:55:11.825Z\"}",
+                          "text": "2025-10-01"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2026-01-01\",\"changed_at\":\"2025-07-03T01:55:19.511Z\"}",
+                          "text": "2026-01-01"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3060\"",
+                          "text": "3060"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":2,\"post_id\":null,\"changed_at\":\"2025-07-03T01:56:41.484Z\"}",
+                          "text": "Ongoing - Q2"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
                     }
                   ]
                 },
@@ -3727,6 +6500,228 @@
                       "value": null,
                       "text": null
                     }
+                  ],
+                  "subitems": [
+                    {
+                      "id": "9500926611",
+                      "name": "Howards Storage World",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-07-02T05:28:33.871Z\",\"personsAndTeams\":[{\"id\":70275558,\"kind\":\"person\"}]}",
+                          "text": "Daisy Sawyer"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-02-17\",\"changed_at\":\"2025-07-02T05:28:56.012Z\"}",
+                          "text": "2025-02-17"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-05-17\",\"changed_at\":\"2025-07-03T01:46:08.393Z\"}",
+                          "text": "2025-05-17"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":1,\"post_id\":null,\"changed_at\":\"2025-07-03T01:58:16.879Z\"}",
+                          "text": "Ongoing - Q1"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9500926807",
+                      "name": "Howards Storage World",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-07-02T05:28:38.879Z\",\"personsAndTeams\":[{\"id\":70275558,\"kind\":\"person\"}]}",
+                          "text": "Daisy Sawyer"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-05-17\",\"changed_at\":\"2025-07-02T05:29:50.442Z\"}",
+                          "text": "2025-05-17"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-08-17\",\"changed_at\":\"2025-07-03T01:46:16.610Z\"}",
+                          "text": "2025-08-17"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":2,\"post_id\":null,\"changed_at\":\"2025-07-03T01:58:18.744Z\"}",
+                          "text": "Ongoing - Q2"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    }
                   ]
                 },
                 {
@@ -3957,7 +6952,8 @@
                       "value": null,
                       "text": null
                     }
-                  ]
+                  ],
+                  "subitems": []
                 },
                 {
                   "id": "8231547680",
@@ -4187,7 +7183,8 @@
                       "value": null,
                       "text": null
                     }
-                  ]
+                  ],
+                  "subitems": []
                 }
               ]
             }
@@ -4425,7 +7422,8 @@
                       "value": null,
                       "text": null
                     }
-                  ]
+                  ],
+                  "subitems": []
                 },
                 {
                   "id": "8612474133",
@@ -4654,6 +7652,228 @@
                       },
                       "value": null,
                       "text": null
+                    }
+                  ],
+                  "subitems": [
+                    {
+                      "id": "9510661690",
+                      "name": "NextMinute 1",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-07-03T01:46:47.330Z\",\"personsAndTeams\":[{\"id\":70275558,\"kind\":\"person\"}]}",
+                          "text": "Daisy Sawyer"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-03-10\",\"changed_at\":\"2025-07-03T01:53:46.906Z\"}",
+                          "text": "2025-03-10"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-06-10\",\"changed_at\":\"2025-07-03T01:53:58.963Z\"}",
+                          "text": "2025-06-10"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"2\"",
+                          "text": "2"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3060\"",
+                          "text": "3060"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":1,\"post_id\":null,\"changed_at\":\"2025-07-03T01:58:23.696Z\"}",
+                          "text": "Ongoing - Q1"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9510661847",
+                      "name": "NextMinute 2",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-07-03T01:46:47.330Z\",\"personsAndTeams\":[{\"id\":70275558,\"kind\":\"person\"}]}",
+                          "text": "Daisy Sawyer"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-06-10\",\"changed_at\":\"2025-07-03T01:54:05.510Z\"}",
+                          "text": "2025-06-10"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-09-10\",\"changed_at\":\"2025-07-03T01:54:13.979Z\"}",
+                          "text": "2025-09-10"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3060\"",
+                          "text": "3060"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":2,\"post_id\":null,\"changed_at\":\"2025-07-03T01:58:25.314Z\"}",
+                          "text": "Ongoing - Q2"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
                     }
                   ]
                 },
@@ -4885,6 +8105,228 @@
                       "value": null,
                       "text": null
                     }
+                  ],
+                  "subitems": [
+                    {
+                      "id": "9065131158",
+                      "name": "Selfie Leslie",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-05-05T00:53:08.254Z\",\"personsAndTeams\":[{\"id\":67178924,\"kind\":\"person\"}]}",
+                          "text": "Clea Kanning"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-04-01\",\"changed_at\":\"2025-05-19T05:24:16.878Z\"}",
+                          "text": "2025-04-01"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-07-01\",\"changed_at\":\"2025-07-03T01:39:12.534Z\"}",
+                          "text": "2025-07-01"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"1\"",
+                          "text": "1"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3060\"",
+                          "text": "3060"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":1,\"post_id\":null,\"changed_at\":\"2025-05-05T00:53:15.720Z\"}",
+                          "text": "Ongoing - Q1"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9065131444",
+                      "name": "Selfie Leslie",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-05-05T00:53:08.254Z\",\"personsAndTeams\":[{\"id\":67178924,\"kind\":\"person\"}]}",
+                          "text": "Clea Kanning"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2025-07-01\",\"changed_at\":\"2025-05-19T05:24:28.301Z\"}",
+                          "text": "2025-07-01"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2025-10-01\",\"changed_at\":\"2025-07-03T01:39:16.806Z\"}",
+                          "text": "2025-10-01"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"5\"",
+                          "text": "5"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3060\"",
+                          "text": "3060"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":2,\"post_id\":null,\"changed_at\":\"2025-05-05T00:53:17.917Z\"}",
+                          "text": "Ongoing - Q2"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    }
                   ]
                 },
                 {
@@ -5115,7 +8557,8 @@
                       "value": null,
                       "text": null
                     }
-                  ]
+                  ],
+                  "subitems": []
                 },
                 {
                   "id": "7975295082",
@@ -5345,6 +8788,228 @@
                       "value": null,
                       "text": null
                     }
+                  ],
+                  "subitems": [
+                    {
+                      "id": "8208024354",
+                      "name": "Upmove #1",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-08-15T00:01:38.571Z\",\"personsAndTeams\":[{\"id\":49331015,\"kind\":\"person\"}]}",
+                          "text": "Janine Tan Pacis"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2023-12-12\",\"changed_at\":\"2025-11-05T04:14:47.734Z\"}",
+                          "text": "2023-12-12"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2024-02-12\",\"changed_at\":\"2025-11-05T04:15:35.815Z\"}",
+                          "text": "2024-02-12"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"4\"",
+                          "text": "4"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"3000\"",
+                          "text": "3000"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":4,\"post_id\":null,\"changed_at\":\"2025-04-09T05:11:32.780Z\"}",
+                          "text": "Sprint #1"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "id": "9823775269",
+                      "name": "Wise Move",
+                      "column_values": [
+                        {
+                          "id": "person",
+                          "column": {
+                            "title": "DPR Lead"
+                          },
+                          "value": "{\"changed_at\":\"2025-08-15T00:01:38.571Z\",\"personsAndTeams\":[{\"id\":49331015,\"kind\":\"person\"}]}",
+                          "text": "Janine Tan Pacis"
+                        },
+                        {
+                          "id": "status",
+                          "column": {
+                            "title": "Support"
+                          },
+                          "value": null,
+                          "text": null
+                        },
+                        {
+                          "id": "date0",
+                          "column": {
+                            "title": "Start Date"
+                          },
+                          "value": "{\"date\":\"2024-03-07\",\"changed_at\":\"2025-11-05T04:15:47.613Z\"}",
+                          "text": "2024-03-07"
+                        },
+                        {
+                          "id": "date_mkkzg40c",
+                          "column": {
+                            "title": "End Date"
+                          },
+                          "value": "{\"date\":\"2024-06-07\",\"changed_at\":\"2025-11-05T04:16:06.827Z\"}",
+                          "text": "2024-06-07"
+                        },
+                        {
+                          "id": "numbers6__1",
+                          "column": {
+                            "title": "Links Achieved Per Quarter"
+                          },
+                          "value": "\"9\"",
+                          "text": "9"
+                        },
+                        {
+                          "id": "numbers__1",
+                          "column": {
+                            "title": "Link KPI Per Quarter"
+                          },
+                          "value": "\"8\"",
+                          "text": "8"
+                        },
+                        {
+                          "id": "numeric_mkq022hv",
+                          "column": {
+                            "title": "Monthly Rate (AUD)"
+                          },
+                          "value": "\"2666\"",
+                          "text": "2666"
+                        },
+                        {
+                          "id": "status_1__1",
+                          "column": {
+                            "title": "Sprint"
+                          },
+                          "value": "{\"index\":9,\"post_id\":null,\"changed_at\":\"2025-08-15T00:01:54.028Z\"}",
+                          "text": "Sprint #2"
+                        },
+                        {
+                          "id": "numeric_mkq0c577",
+                          "column": {
+                            "title": "Period (Month)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0gns8",
+                          "column": {
+                            "title": "Total Contract Revenue"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "numeric_mkq0wtfh",
+                          "column": {
+                            "title": "FY:24-25"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq0151d",
+                          "column": {
+                            "title": "FY:24-25 ($)"
+                          },
+                          "value": null,
+                          "text": ""
+                        },
+                        {
+                          "id": "formula_mkq066dy",
+                          "column": {
+                            "title": "Monthly Revenue 25-26"
+                          },
+                          "value": null,
+                          "text": ""
+                        }
+                      ]
+                    }
                   ]
                 }
               ]
@@ -5531,6 +9196,6 @@
     ]
   },
   "extensions": {
-    "request_id": "19577081-fb31-9a63-bb54-94072277dff4"
+    "request_id": "8b06c232-9ff1-9354-8948-bffa7208cab4"
   }
 }
