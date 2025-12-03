@@ -549,6 +549,15 @@ ALTER TABLE clockify_projects ENABLE ROW LEVEL SECURITY;
 ALTER TABLE time_entries ENABLE ROW LEVEL SECURITY;
 ALTER TABLE sync_logs ENABLE ROW LEVEL SECURITY;
 
+-- Helper function: Check if user is admin (bypasses RLS to avoid recursion)
+CREATE OR REPLACE FUNCTION is_admin(user_id UUID)
+RETURNS BOOLEAN
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT is_admin FROM users WHERE id = user_id;
+$$ LANGUAGE SQL STABLE;
+
 -- Policy: Users can always see their own record
 CREATE POLICY users_select_own ON users
     FOR SELECT
@@ -557,24 +566,12 @@ CREATE POLICY users_select_own ON users
 -- Policy: Admins can see all users
 CREATE POLICY users_select_admin ON users
     FOR SELECT
-    USING (
-        EXISTS (
-            SELECT 1 FROM users
-            WHERE id::TEXT = auth.uid()::TEXT
-            AND is_admin = TRUE
-        )
-    );
+    USING (is_admin(auth.uid()));
 
 -- Policy: Admins can see all clients
 CREATE POLICY clients_select_admin ON clients
     FOR SELECT
-    USING (
-        EXISTS (
-            SELECT 1 FROM users
-            WHERE id::TEXT = auth.uid()::TEXT
-            AND is_admin = TRUE
-        )
-    );
+    USING (is_admin(auth.uid()));
 
 -- Policy: Non-admin users can see only their assigned clients
 CREATE POLICY clients_select_assigned ON clients
@@ -586,13 +583,7 @@ CREATE POLICY clients_select_assigned ON clients
 -- Policy: Admins can see all sprints
 CREATE POLICY sprints_select_admin ON sprints
     FOR SELECT
-    USING (
-        EXISTS (
-            SELECT 1 FROM users
-            WHERE id::TEXT = auth.uid()::TEXT
-            AND is_admin = TRUE
-        )
-    );
+    USING (is_admin(auth.uid()));
 
 -- Policy: Non-admin users can see sprints for their assigned clients
 CREATE POLICY sprints_select_assigned ON sprints
@@ -608,13 +599,7 @@ CREATE POLICY sprints_select_assigned ON sprints
 -- Policy: Admins can see all time entries
 CREATE POLICY time_entries_select_admin ON time_entries
     FOR SELECT
-    USING (
-        EXISTS (
-            SELECT 1 FROM users
-            WHERE id::TEXT = auth.uid()::TEXT
-            AND is_admin = TRUE
-        )
-    );
+    USING (is_admin(auth.uid()));
 
 -- Policy: Non-admin users can see time entries for their assigned clients
 CREATE POLICY time_entries_select_assigned ON time_entries
@@ -636,24 +621,12 @@ CREATE POLICY time_entries_select_own ON time_entries
 -- Policy: Admins can see all clockify projects
 CREATE POLICY clockify_projects_select_admin ON clockify_projects
     FOR SELECT
-    USING (
-        EXISTS (
-            SELECT 1 FROM users
-            WHERE id::TEXT = auth.uid()::TEXT
-            AND is_admin = TRUE
-        )
-    );
+    USING (is_admin(auth.uid()));
 
 -- Policy: Admins can see sync logs
 CREATE POLICY sync_logs_select_admin ON sync_logs
     FOR SELECT
-    USING (
-        EXISTS (
-            SELECT 1 FROM users
-            WHERE id::TEXT = auth.uid()::TEXT
-            AND is_admin = TRUE
-        )
-    );
+    USING (is_admin(auth.uid()));
 
 -- ============================================================================
 -- TRIGGERS
