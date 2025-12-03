@@ -36,8 +36,9 @@ CREATE TABLE clients (
     monday_item_id BIGINT UNIQUE NOT NULL,
     name TEXT NOT NULL,
 
-    -- Team assignments
+    -- Team assignments (client-level DPR Lead overrides any sprint-level assignments)
     dpr_lead_id UUID REFERENCES users(id),
+    dpr_support_ids UUID[], -- Array of support team member IDs
     seo_lead_name TEXT,
 
     -- Contract details
@@ -52,7 +53,7 @@ CREATE TABLE clients (
 
     -- Monthly allocations
     monthly_rate NUMERIC,
-    monthly_hours NUMERIC,
+    monthly_hours NUMERIC, -- Calculated as monthly_rate / 190 (standard billable rate)
 
     -- Status
     is_active BOOLEAN DEFAULT TRUE,
@@ -79,7 +80,7 @@ CREATE TABLE sprints (
 
     -- Sprint identification
     name TEXT NOT NULL, -- e.g., "Sprint #1", "Ongoing - Q1" (as stored in Monday.com)
-    sprint_number INTEGER, -- Auto-calculated based on start_date chronological order
+    sprint_number INTEGER, -- Sprint number from Monday.com (1, 2, 3, etc.)
     sprint_label TEXT, -- Monday.com "Sprint" status field value (for display)
 
     -- Sprint timeline
@@ -144,7 +145,7 @@ CREATE TABLE time_entries (
     description TEXT,
 
     -- Categorization
-    task_category TEXT, -- 'comms', 'data', 'outreach', 'reporting', etc.
+    task_category TEXT, -- Task name from Clockify dropdown (exact task name as selected by user)
     project_name TEXT, -- Store original project name for reference
 
     -- Metadata
@@ -516,69 +517,13 @@ GROUP BY
 ORDER BY te.sprint_id, total_hours DESC;
 
 -- ============================================================================
--- TASK CATEGORIZATION
+-- STATUS AUTO-CALCULATION
 -- ============================================================================
 
--- Function: Categorize task from description
-CREATE OR REPLACE FUNCTION categorize_task(description TEXT)
-RETURNS TEXT AS $$
-BEGIN
-  IF description IS NULL THEN
-    RETURN 'other';
-  END IF;
-
-  -- Convert to lowercase for matching
-  description := LOWER(description);
-
-  -- Check for keywords (order matters - more specific first)
-  IF description ~* '(email|meeting|call|comms|communication|client contact|check-?in)' THEN
-    RETURN 'comms';
-  ELSIF description ~* '(data|research|analysis|seo audit|keyword research)' THEN
-    RETURN 'data';
-  ELSIF description ~* '(outreach|pitch|journalist|link building|pr|media)' THEN
-    RETURN 'outreach';
-  ELSIF description ~* '(report|reporting|documentation|monthly report)' THEN
-    RETURN 'reporting';
-  ELSIF description ~* '(strategy|planning|campaign plan|brainstorm)' THEN
-    RETURN 'strategy';
-  ELSIF description ~* '(admin|administrative|internal meeting|timesheet)' THEN
-    RETURN 'admin';
-  ELSE
-    RETURN 'other';
-  END IF;
-END;
-$$ LANGUAGE plpgsql IMMUTABLE;
-
--- Function: Auto-categorize time entry on insert/update
-CREATE OR REPLACE FUNCTION auto_categorize_time_entry()
+-- Function: Auto-set sprint status based on dates
+CREATE OR REPLACE FUNCTION auto_set_sprint_status()
 RETURNS TRIGGER AS $$
 BEGIN
-  -- Only auto-categorize if not already set
-  IF NEW.task_category IS NULL AND NEW.description IS NOT NULL THEN
-    NEW.task_category := categorize_task(NEW.description);
-  END IF;
-  RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
--- ============================================================================
--- SPRINT AUTO-NUMBERING
--- ============================================================================
-
--- Function: Auto-number sprints based on chronological order
-CREATE OR REPLACE FUNCTION auto_number_sprint()
-RETURNS TRIGGER AS $$
-BEGIN
-  -- Calculate sprint number based on start_date order within client
-  -- Count how many sprints for this client have an earlier start date
-  NEW.sprint_number := (
-    SELECT COALESCE(COUNT(*), 0) + 1
-    FROM sprints
-    WHERE client_id = NEW.client_id
-    AND start_date < NEW.start_date
-    AND id != COALESCE(NEW.id, '00000000-0000-0000-0000-000000000000'::UUID)
-  );
-
   -- Auto-set status based on dates
   IF NEW.end_date < CURRENT_DATE THEN
     NEW.status := 'completed';
@@ -739,17 +684,11 @@ CREATE TRIGGER update_clockify_projects_updated_at BEFORE UPDATE ON clockify_pro
 CREATE TRIGGER update_time_entries_updated_at BEFORE UPDATE ON time_entries
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
--- Apply sprint auto-numbering trigger
-CREATE TRIGGER trigger_auto_number_sprint
-    BEFORE INSERT OR UPDATE OF start_date ON sprints
+-- Apply sprint status auto-calculation trigger
+CREATE TRIGGER trigger_auto_set_sprint_status
+    BEFORE INSERT OR UPDATE OF start_date, end_date ON sprints
     FOR EACH ROW
-    EXECUTE FUNCTION auto_number_sprint();
-
--- Apply time entry auto-categorization trigger
-CREATE TRIGGER trigger_auto_categorize_time_entry
-    BEFORE INSERT OR UPDATE ON time_entries
-    FOR EACH ROW
-    EXECUTE FUNCTION auto_categorize_time_entry();
+    EXECUTE FUNCTION auto_set_sprint_status();
 
 -- ============================================================================
 -- SEED DATA
@@ -778,9 +717,7 @@ COMMENT ON TABLE sync_logs IS 'Data synchronization audit trail';
 COMMENT ON FUNCTION calculate_sprint_health IS 'Calculates sprint health: KPI Complete, Ahead, On Track, Behind, At Risk';
 COMMENT ON FUNCTION calculate_billable_rate IS 'Calculates actual billable rate: (Sprint Monthly Rate * 3) / Hours Used';
 COMMENT ON FUNCTION calculate_hours_utilization IS 'Calculates hours utilization percentage';
-COMMENT ON FUNCTION categorize_task IS 'Auto-categorizes time entries into task types (comms, data, outreach, reporting, strategy, admin, other)';
-COMMENT ON FUNCTION auto_number_sprint IS 'Auto-assigns sprint_number based on chronological order of start_date within each client';
-COMMENT ON FUNCTION auto_categorize_time_entry IS 'Trigger function to auto-categorize time entries on insert/update';
+COMMENT ON FUNCTION auto_set_sprint_status IS 'Auto-sets sprint status (pending/active/completed) based on start_date and end_date';
 
 COMMENT ON VIEW sprint_metrics IS 'Comprehensive metrics for each sprint including KPI, time, hours, and health status';
 COMMENT ON VIEW client_contract_metrics IS 'Aggregate metrics across all sprints for each client';

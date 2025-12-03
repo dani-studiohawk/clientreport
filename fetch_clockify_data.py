@@ -34,13 +34,27 @@ if workspace_response.status_code != 200:
 
 workspace_data = workspace_response.json()
 
-# Fetch projects
+# Fetch projects with tasks
 projects_url = f'{base_url}/workspaces/{workspace_id}/projects'
 projects_response = requests.get(projects_url, headers=headers)
 
 projects_data = []
+all_tasks = []
 if projects_response.status_code == 200:
     projects_data = projects_response.json()
+
+    # Fetch tasks for each project
+    for project in projects_data[:10]:  # Limit to first 10 projects for structure
+        project_id = project['id']
+        tasks_url = f'{base_url}/workspaces/{workspace_id}/projects/{project_id}/tasks'
+        tasks_response = requests.get(tasks_url, headers=headers)
+
+        if tasks_response.status_code == 200:
+            project_tasks = tasks_response.json()
+            project['tasks'] = project_tasks
+            all_tasks.extend(project_tasks)
+        else:
+            project['tasks'] = []
 else:
     print(f"Error fetching projects: {projects_response.status_code}")
     print(projects_response.text)
@@ -78,10 +92,14 @@ else:
     print(f"Error fetching clients: {clients_response.status_code}")
     print(clients_response.text)
 
+# Get unique task names across all projects
+unique_tasks = list({task['name'] for task in all_tasks if 'name' in task})
+
 # Combine data
 data = {
     'workspace': workspace_data,
     'projects': projects_data,
+    'all_task_names': sorted(unique_tasks),  # Sorted list of all unique task names
     'time_entries': time_entries_data,
     'users': users_data,
     'clients': clients_data
