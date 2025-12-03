@@ -1,0 +1,3635 @@
+{
+  "workspace": {
+    "id": "6790272808eca85dd0ee63f3",
+    "name": "StudioHawk Workspace",
+    "hourlyRate": {
+      "amount": 0,
+      "currency": "USD"
+    },
+    "costRate": {
+      "amount": 0,
+      "currency": "USD"
+    },
+    "memberships": [
+      {
+        "userId": "62cdfac86e562b4917da37ae",
+        "hourlyRate": {
+          "amount": 18000,
+          "currency": "USD"
+        },
+        "costRate": null,
+        "targetId": "6790272808eca85dd0ee63f3",
+        "membershipType": "WORKSPACE",
+        "membershipStatus": "INACTIVE"
+      },
+      {
+        "userId": "67902e295b201b090217ba58",
+        "hourlyRate": {
+          "amount": 19000,
+          "currency": "USD"
+        },
+        "costRate": null,
+        "targetId": "6790272808eca85dd0ee63f3",
+        "membershipType": "WORKSPACE",
+        "membershipStatus": "ACTIVE"
+      },
+      {
+        "userId": "67903511653a1071e62fcaba",
+        "hourlyRate": {
+          "amount": 19000,
+          "currency": "USD"
+        },
+        "costRate": null,
+        "targetId": "6790272808eca85dd0ee63f3",
+        "membershipType": "WORKSPACE",
+        "membershipStatus": "ACTIVE"
+      },
+      {
+        "userId": "679c0e559b5954747a4001b5",
+        "hourlyRate": {
+          "amount": 19000,
+          "currency": "USD"
+        },
+        "costRate": null,
+        "targetId": "6790272808eca85dd0ee63f3",
+        "membershipType": "WORKSPACE",
+        "membershipStatus": "ACTIVE"
+      },
+      {
+        "userId": "679c0e559b5954747a4001b6",
+        "hourlyRate": {
+          "amount": 19000,
+          "currency": "USD"
+        },
+        "costRate": null,
+        "targetId": "6790272808eca85dd0ee63f3",
+        "membershipType": "WORKSPACE",
+        "membershipStatus": "ACTIVE"
+      },
+      {
+        "userId": "679c0e559b5954747a4001b3",
+        "hourlyRate": {
+          "amount": 19000,
+          "currency": "USD"
+        },
+        "costRate": null,
+        "targetId": "6790272808eca85dd0ee63f3",
+        "membershipType": "WORKSPACE",
+        "membershipStatus": "ACTIVE"
+      },
+      {
+        "userId": "679c0e559b5954747a4001b4",
+        "hourlyRate": {
+          "amount": 19000,
+          "currency": "USD"
+        },
+        "costRate": null,
+        "targetId": "6790272808eca85dd0ee63f3",
+        "membershipType": "WORKSPACE",
+        "membershipStatus": "ACTIVE"
+      },
+      {
+        "userId": "6568bb784b2c0b17cdccdfe0",
+        "hourlyRate": {
+          "amount": 19000,
+          "currency": "USD"
+        },
+        "costRate": null,
+        "targetId": "6790272808eca85dd0ee63f3",
+        "membershipType": "WORKSPACE",
+        "membershipStatus": "ACTIVE"
+      },
+      {
+        "userId": "682d5807f01c6c02e4155932",
+        "hourlyRate": {
+          "amount": 19000,
+          "currency": "USD"
+        },
+        "costRate": null,
+        "targetId": "6790272808eca85dd0ee63f3",
+        "membershipType": "WORKSPACE",
+        "membershipStatus": "ACTIVE"
+      },
+      {
+        "userId": "62cdf873b22a7c5b79e9ad43",
+        "hourlyRate": null,
+        "costRate": null,
+        "targetId": "6790272808eca85dd0ee63f3",
+        "membershipType": "WORKSPACE",
+        "membershipStatus": "ACTIVE"
+      },
+      {
+        "userId": "62cdf873b22a7c5b79e9ad45",
+        "hourlyRate": {
+          "amount": 19000,
+          "currency": "USD"
+        },
+        "costRate": null,
+        "targetId": "6790272808eca85dd0ee63f3",
+        "membershipType": "WORKSPACE",
+        "membershipStatus": "ACTIVE"
+      },
+      {
+        "userId": "68e4613fcb6c3d1db58ec5ca",
+        "hourlyRate": null,
+        "costRate": null,
+        "targetId": "6790272808eca85dd0ee63f3",
+        "membershipType": "WORKSPACE",
+        "membershipStatus": "ACTIVE"
+      },
+      {
+        "userId": "68e59bc0e3264138709ee1cb",
+        "hourlyRate": {
+          "amount": 19000,
+          "currency": "USD"
+        },
+        "costRate": null,
+        "targetId": "6790272808eca85dd0ee63f3",
+        "membershipType": "WORKSPACE",
+        "membershipStatus": "ACTIVE"
+      },
+      {
+        "userId": "6916ae08276e744c473b44a1",
+        "hourlyRate": null,
+        "costRate": null,
+        "targetId": "6790272808eca85dd0ee63f3",
+        "membershipType": "WORKSPACE",
+        "membershipStatus": "ACTIVE"
+      },
+      {
+        "userId": "62d073808064dd3bf71b9d06",
+        "hourlyRate": null,
+        "costRate": null,
+        "targetId": "6790272808eca85dd0ee63f3",
+        "membershipType": "WORKSPACE",
+        "membershipStatus": "ACTIVE"
+      }
+    ],
+    "workspaceSettings": {
+      "timeRoundingInReports": false,
+      "onlyAdminsSeeBillableRates": true,
+      "activeBillableHours": true,
+      "onlyAdminsCanChangeBillableStatus": false,
+      "onlyAdminsCreateProject": true,
+      "onlyAdminsSeeDashboard": false,
+      "defaultBillableProjects": true,
+      "lockTimeEntries": null,
+      "lockTimeZone": null,
+      "round": {
+        "round": "Round to nearest",
+        "minutes": "15"
+      },
+      "projectFavorites": true,
+      "canSeeTimeSheet": true,
+      "canSeeTracker": true,
+      "projectPickerSpecialFilter": false,
+      "forceProjects": true,
+      "forceTasks": false,
+      "forceTags": false,
+      "forceDescription": false,
+      "onlyAdminsSeeAllTimeEntries": false,
+      "onlyAdminsSeePublicProjectsEntries": false,
+      "trackTimeDownToSecond": true,
+      "projectGroupingLabel": "CLIENT",
+      "adminOnlyPages": [],
+      "automaticLock": null,
+      "onlyAdminsCreateTag": false,
+      "onlyAdminsCreateTask": false,
+      "timeTrackingMode": "DEFAULT",
+      "multiFactorEnabled": false,
+      "numberFormat": "PERIOD_COMMA",
+      "currencyFormat": "VALUE_SPACE_CURRENCY",
+      "durationFormat": "FULL",
+      "entityCreationPermissions": {
+        "whoCanCreateTasks": "EVERYONE",
+        "whoCanCreateProjectsAndClients": "ADMINS",
+        "whoCanCreateTags": "EVERYONE"
+      },
+      "projectLabel": "project",
+      "taskLabel": "task",
+      "workingDays": [
+        "MONDAY",
+        "FRIDAY",
+        "WEDNESDAY",
+        "TUESDAY",
+        "THURSDAY"
+      ],
+      "isProjectPublicByDefault": true
+    },
+    "imageUrl": "",
+    "featureSubscriptionType": "FREE",
+    "features": [
+      "KIOSK",
+      "TIME_TRACKING"
+    ],
+    "currencies": [
+      {
+        "id": "6790272808eca85dd0ee63f4",
+        "code": "USD",
+        "isDefault": true
+      }
+    ],
+    "subdomain": {
+      "name": null,
+      "enabled": false
+    },
+    "cakeOrganizationId": "67b747020bc7ba23f598bcea"
+  },
+  "projects": [
+    {
+      "id": "691183fec14bbe3829d7d9fe",
+      "name": "Bean Bags R Us",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "691183fcbe7bbb475bef02ee",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "691183fec14bbe3829d7d9fe",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#AB47BC",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT0S",
+      "clientName": "Bean Bags R Us",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "6791a01b4c9f46103e25cb1c",
+      "name": "Becextech",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "6790279c08eca85dd0ee6c3d",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "6791a01b4c9f46103e25cb1c",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#AB47BC",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT164H3M16S",
+      "clientName": "Becextech",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "679f856e5d710856f3465a7c",
+      "name": "Birdsnest",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "679027aa2c08dd1b58a09053",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "679f856e5d710856f3465a7c",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#689F38",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT82H3M18S",
+      "clientName": "Birdsnest",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67bd1f8cdf2f1660fdaa1ec9",
+      "name": "Budget Pet Products",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "67bd1f8b1b48840299e37ce3",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67bd1f8cdf2f1660fdaa1ec9",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#E91E63",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT267H14M59S",
+      "clientName": "Budget Pet Products",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "68b7c9573a58446e828ba76f",
+      "name": "Craft Club Co",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "68b7c955af4bc51e5a74be13",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "68b7c9573a58446e828ba76f",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#8D6E63",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT27H53M39S",
+      "clientName": "Craft Club Co",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "68df32905f445835b95b00f5",
+      "name": "Culture Kings",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "68df328fa159d11d2bc3af33",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "68df32905f445835b95b00f5",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#689F38",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT53H36M33S",
+      "clientName": "Culture Kings",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67a021518ba3fb365b390694",
+      "name": "Cycl Health",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "67a0214ea725b42cff635401",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67a021518ba3fb365b390694",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#1976D2",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT61H49M13S",
+      "clientName": "Cycl Health",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "68647b2369e85752e28ba595",
+      "name": "Cycology",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "68647b197d0d3121104f7cb2",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "68647b2369e85752e28ba595",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#FF5722",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT145H24M28S",
+      "clientName": "Cycology",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67e607cd1b872e1336309194",
+      "name": "Dynamic Web Training",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "67e607cbeff9dc4ec3e2a078",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67e607cd1b872e1336309194",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#1976D2",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT54H43M3S",
+      "clientName": "Dynamic Web Training",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "6822a6b6b505c259c807d325",
+      "name": "El Jannah",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "6822a6b49ee5b440ea72f13d",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "6822a6b6b505c259c807d325",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#FF5722",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT76H39M46S",
+      "clientName": "El Jannah",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "6864bf6a3aa1ec7de1c85db0",
+      "name": "Ella Bache",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "6864bf683bf3720f6ef6a803",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "6864bf6a3aa1ec7de1c85db0",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#AB47BC",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT75H55M10S",
+      "clientName": "Ella Bache",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "6791a2faab01877081fc3260",
+      "name": "Fat Burners Only",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "679027a55b201b0902175b07",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "6791a2faab01877081fc3260",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#E91E63",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT140H19M59S",
+      "clientName": "Fat Burners Health",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67f37a287511ce5c6f19d1d8",
+      "name": "FrameShop",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "67f37a2130556a37a10a6297",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67f37a287511ce5c6f19d1d8",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#689F38",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT188H34M58S",
+      "clientName": "FrameShop",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67bd1ea7644c2d72aa768e64",
+      "name": "Gingham and Heels",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "67bd1ea49d5aad44312de3c6",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67bd1ea7644c2d72aa768e64",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#8D6E63",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT128H42M3S",
+      "clientName": "Gingham and Heels",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "687edf42bd45eb79a863aad2",
+      "name": "Global Fitness & Leisure",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "687edf3dbcbd2240e4356487",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "687edf42bd45eb79a863aad2",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#AB47BC",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT0S",
+      "clientName": "Global Fitness & Leisure",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "689961386d47067f688428dd",
+      "name": "Grace Love Lace",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "689961363f9a2d20ea67cbff",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "689961386d47067f688428dd",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#8D6E63",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT116H52M5S",
+      "clientName": "Grace Loves Lace",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "679f8c698800be069d1fef01",
+      "name": "GroupTogether",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "679f8c675d710856f3468e7c",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "679f8c698800be069d1fef01",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#8D6E63",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT59H19M8S",
+      "clientName": "GroupTogether",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "6902f2f7f249396a23b459ee",
+      "name": "Honcho",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "6902f2f5ad82264b8e4ab570",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "6902f2f7f249396a23b459ee",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#FF5722",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT15H1M25S",
+      "clientName": "Honcho",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67a01e3b59a3c36bc525426c",
+      "name": "Howards Storage World",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "679027d96f3e2e2ffcfd34f6",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67a01e3b59a3c36bc525426c",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#E91E63",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT118H42M26S",
+      "clientName": "Howards Storage World",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "68647c2d46e5ca7f9391e46b",
+      "name": "Hunter & Barrel AU",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "68647c2a3aa1ec7de1c567bb",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "68647c2d46e5ca7f9391e46b",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#039BE5",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT84H47M51S",
+      "clientName": "Hunter & Barrel AU",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67a0228b9b5954747a76d658",
+      "name": "Ice Cargo",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "67a022899b5954747a76d64f",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67a0228b9b5954747a76d658",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#039BE5",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT17H35M7S",
+      "clientName": "Ice Cargo",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67a1a0a39a004c2298482fed",
+      "name": "IconByDesign",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "679027e0397678323298cb6a",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67a1a0a39a004c2298482fed",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#5C6BC0",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT155H37M56S",
+      "clientName": "Icon By Design",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "68d9d91925d8ad471c919081",
+      "name": "Inspiring Vacations",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "68d9d916c4a5261693703ddb",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "68d9d91925d8ad471c919081",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#E91E63",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT24H47M14S",
+      "clientName": "Inspiring Vacations",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "679f89bd444b0e7725dfda28",
+      "name": "Insure & Go",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "679027c24c779331e84b36db",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "679f89bd444b0e7725dfda28",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#039BE5",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT41H4M30S",
+      "clientName": "Insure & Go",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67a0257e444b0e7725e67939",
+      "name": "Italian Street Kitchen",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "679027dd653a1071e62ec943",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67a0257e444b0e7725e67939",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#1976D2",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT132H34M58S",
+      "clientName": "Italian Street KItchen",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "679f88518ba3fb365b331093",
+      "name": "Job Adder",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "679027b54c9f46103e084adf",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "679f88518ba3fb365b331093",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#AB47BC",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT88H16M50S",
+      "clientName": "JobAdder",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "679f8d6f8ba3fb365b333714",
+      "name": "Kadi",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "679f8d6d2bfa6337d6883009",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "679f8d6f8ba3fb365b333714",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#689F38",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT192H55M39S",
+      "clientName": "Kadi",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67a0246b2bfa6337d68fe7ef",
+      "name": "KOGAN",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "67a0246a8ba3fb365b39248f",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67a0246b2bfa6337d68fe7ef",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#5C6BC0",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT6H10M",
+      "clientName": "KOGAN",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "68999c486d47067f68885ec8",
+      "name": "LHD Lawyers",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "68999c46104f3951c0e727d1",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "68999c486d47067f68885ec8",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#FF5722",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT122H57M45S",
+      "clientName": "LHD Lawyers",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67919c894c779331e868579e",
+      "name": "Lifespan Fitness",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "67902790ab01877081de9105",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67919c894c779331e868579e",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#689F38",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT90H29M31S",
+      "clientName": "Lifespan Fitness",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "6881b5169ec6664a8d615886",
+      "name": "Lifespan Fitness (2)",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "6881b50e7e91e51416064cfb",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "6881b5169ec6664a8d615886",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#FF5722",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT60H57M36S",
+      "clientName": "Lifespan Fitness (2)",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67ec89f6007aaf14dd117d61",
+      "name": "Lo & Co",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "67ec89f4007aaf14dd117d4f",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67ec89f6007aaf14dd117d61",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#689F38",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT90H38M42S",
+      "clientName": "Lo & Co",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "6840f4f6f0c88d5227c58f15",
+      "name": "Love to Dream",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "6840f4f2bfe455328cb487d7",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "6840f4f6f0c88d5227c58f15",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#009688",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT112H12M19S",
+      "clientName": "Love to Dream",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "6822a3d71c4a824d6a550b52",
+      "name": "LuxoLiving",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "6822a3d450899316acc53278",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "6822a3d71c4a824d6a550b52",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#5C6BC0",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT92H58M40S",
+      "clientName": "Luxo Living",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "68cb4f4400b4544173cec52b",
+      "name": "LVLY",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "68cb4f3fce48fc260a83b5a3",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "68cb4f4400b4544173cec52b",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#E91E63",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT87H38M50S",
+      "clientName": "LVLY",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "679f87c2a725b42cff5c3869",
+      "name": "MoneyMe",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "679027b15b201b0902175bca",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "679f87c2a725b42cff5c3869",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#E91E63",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT138H45M54S",
+      "clientName": "MoneyMe",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "68f6db2d2a70af1ebef34dc1",
+      "name": "MONEYME II",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "68f6db2b56d38b0787289e5c",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "68f6db2d2a70af1ebef34dc1",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#8D6E63",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT24H30M45S",
+      "clientName": "MONEYME II",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "6837eb987214f862ea350b71",
+      "name": "Moon Pig",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "6837eb95a1f8d424d3e831d1",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "6837eb987214f862ea350b71",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#689F38",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT0S",
+      "clientName": "Moon Pig",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "6840f73b0300f917a0f1127a",
+      "name": "Moonpig",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "6840f738dd232e7dea83316a",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "6840f73b0300f917a0f1127a",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#FF5722",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT98H49M31S",
+      "clientName": "Moonpig",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "689aa24d7aa16c3ee7544d62",
+      "name": "National Accounts",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "689aa24be699e83b77731de6",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "689aa24d7aa16c3ee7544d62",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#8D6E63",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT61H3M3S",
+      "clientName": "National Accounts",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67919f262c08dd1b58bebaad",
+      "name": "NaturoBest",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "67902797653a1071e62ec49e",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67919f262c08dd1b58bebaad",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#039BE5",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT72H6M29S",
+      "clientName": "NaturoBest",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67c6629d0385fa0d4bbca453",
+      "name": "NextMinute",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "67c6629b6bde8e65209fcac8",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67c6629d0385fa0d4bbca453",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#8D6E63",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT141H13M9S",
+      "clientName": "NextMinute",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "679f87192bfa6337d6880020",
+      "name": "Noggin",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "679027ae5b201b0902175b9b",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "679f87192bfa6337d6880020",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#E91E63",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT183H30M8S",
+      "clientName": "Noggin",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67a01fe098cf3d716dba17b7",
+      "name": "Non-Client",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "67a01fdd2bfa6337d68fbd14",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67a01fe098cf3d716dba17b7",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#AB47BC",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT2003H55M20S",
+      "clientName": "Non-Client",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67902abd4c779331e84b629a",
+      "name": "Nutrition Warehouse",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "679027be397678323298c8cd",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "62cdfac86e562b4917da37ae",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67902abd4c779331e84b629a",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#009688",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT0S",
+      "clientName": "Nutrition Warehouse",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67a03e86a725b42cff648692",
+      "name": "NutritionWarehouse",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "679027be397678323298c8cd",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67a03e86a725b42cff648692",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#5C6BC0",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT15H52M",
+      "clientName": "Nutrition Warehouse",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67be645017ed6a4496e40d60",
+      "name": "OSHC Australia Pty Ltd",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "67be644e7c0d422f1ad03731",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67be645017ed6a4496e40d60",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#E91E63",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT62H48M43S",
+      "clientName": "OSHC Australia Pty Ltd",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67902c952c08dd1b58a0d5b4",
+      "name": "Pack & Send",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "679027872c08dd1b58a08e13",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "62cdfac86e562b4917da37ae",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67902c952c08dd1b58a0d5b4",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#AB47BC",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT89H6M45S",
+      "clientName": "Pack & Send",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "67b691a7680b5f43bc6e8041",
+      "name": "PEXA",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "67b691a11d04be342df97dc8",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "67b691a7680b5f43bc6e8041",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#009688",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": true,
+      "duration": "PT38H53M17S",
+      "clientName": "PEXA",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    },
+    {
+      "id": "6879a1b7205ed75f0126596f",
+      "name": "Pillow Talk",
+      "hourlyRate": {
+        "amount": 0,
+        "currency": "USD"
+      },
+      "clientId": "6879a1b2a3de4d55114802e3",
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "billable": true,
+      "memberships": [
+        {
+          "userId": "67903511653a1071e62fcaba",
+          "hourlyRate": null,
+          "costRate": null,
+          "targetId": "6879a1b7205ed75f0126596f",
+          "membershipType": "PROJECT",
+          "membershipStatus": "ACTIVE"
+        }
+      ],
+      "color": "#FF5722",
+      "estimate": {
+        "estimate": "PT0S",
+        "type": "AUTO"
+      },
+      "archived": false,
+      "duration": "PT92H12M27S",
+      "clientName": "Pillow Talk",
+      "note": "",
+      "costRate": null,
+      "timeEstimate": {
+        "estimate": "PT0S",
+        "type": "AUTO",
+        "resetOption": null,
+        "active": false,
+        "includeNonBillable": true
+      },
+      "budgetEstimate": null,
+      "estimateReset": null,
+      "public": true,
+      "template": false
+    }
+  ],
+  "time_entries": [],
+  "users": [
+    {
+      "id": "68e4613fcb6c3d1db58ec5ca",
+      "email": "alejandro@studiohawk.com.au",
+      "name": "Alejandro",
+      "memberships": [],
+      "profilePicture": "",
+      "activeWorkspace": "6790272808eca85dd0ee63f3",
+      "defaultWorkspace": "6790272808eca85dd0ee63f3",
+      "settings": {
+        "weekStart": "MONDAY",
+        "timeZone": "Australia/Melbourne",
+        "timeFormat": "HOUR24",
+        "dateFormat": "DD/MM/YYYY",
+        "sendNewsletter": false,
+        "weeklyUpdates": false,
+        "longRunning": false,
+        "scheduledReports": true,
+        "approval": true,
+        "pto": true,
+        "alerts": true,
+        "reminders": true,
+        "timeTrackingManual": false,
+        "summaryReportSettings": {
+          "group": "Project",
+          "subgroup": "Time Entry"
+        },
+        "isCompactViewOn": false,
+        "dashboardSelection": "ME",
+        "dashboardViewType": "PROJECT",
+        "dashboardPinToTop": false,
+        "projectListCollapse": 50,
+        "collapseAllProjectLists": false,
+        "groupSimilarEntriesDisabled": false,
+        "myStartOfDay": "09:00",
+        "projectPickerTaskFilter": false,
+        "lang": "EN",
+        "multiFactorEnabled": false,
+        "theme": "DEFAULT",
+        "scheduling": true,
+        "onboarding": true,
+        "invoiceReminders": false,
+        "showOnlyWorkingDays": false
+      },
+      "status": "ACTIVE",
+      "customFields": []
+    },
+    {
+      "id": "62d073808064dd3bf71b9d06",
+      "email": "charbel@studiohawk.com.au",
+      "name": "Charbel Raffoul",
+      "memberships": [],
+      "profilePicture": "",
+      "activeWorkspace": "6790272808eca85dd0ee63f3",
+      "defaultWorkspace": "6790272808eca85dd0ee63f3",
+      "settings": {
+        "weekStart": "MONDAY",
+        "timeZone": "Australia/Melbourne",
+        "timeFormat": "HOUR24",
+        "dateFormat": "DD/MM/YYYY",
+        "sendNewsletter": false,
+        "weeklyUpdates": false,
+        "longRunning": false,
+        "scheduledReports": true,
+        "approval": true,
+        "pto": true,
+        "alerts": true,
+        "reminders": true,
+        "timeTrackingManual": false,
+        "summaryReportSettings": {
+          "group": "Project",
+          "subgroup": "Time Entry"
+        },
+        "isCompactViewOn": false,
+        "dashboardSelection": "ME",
+        "dashboardViewType": "PROJECT",
+        "dashboardPinToTop": false,
+        "projectListCollapse": 50,
+        "collapseAllProjectLists": false,
+        "groupSimilarEntriesDisabled": false,
+        "myStartOfDay": "09:00",
+        "projectPickerTaskFilter": false,
+        "lang": "EN",
+        "multiFactorEnabled": false,
+        "theme": "DEFAULT",
+        "scheduling": true,
+        "onboarding": true,
+        "invoiceReminders": false,
+        "showOnlyWorkingDays": false
+      },
+      "status": "ACTIVE",
+      "customFields": []
+    },
+    {
+      "id": "679c0e559b5954747a4001b6",
+      "email": "clea@studiohawk.com.au",
+      "name": "clea",
+      "memberships": [],
+      "profilePicture": "",
+      "activeWorkspace": "6790272808eca85dd0ee63f3",
+      "defaultWorkspace": "6790272808eca85dd0ee63f3",
+      "settings": {
+        "weekStart": "MONDAY",
+        "timeZone": "Australia/Sydney",
+        "timeFormat": "HOUR24",
+        "dateFormat": "DD/MM/YYYY",
+        "sendNewsletter": false,
+        "weeklyUpdates": false,
+        "longRunning": false,
+        "scheduledReports": true,
+        "approval": true,
+        "pto": true,
+        "alerts": true,
+        "reminders": true,
+        "timeTrackingManual": false,
+        "summaryReportSettings": {
+          "group": "Project",
+          "subgroup": "Time Entry"
+        },
+        "isCompactViewOn": false,
+        "dashboardSelection": "ME",
+        "dashboardViewType": "PROJECT",
+        "dashboardPinToTop": false,
+        "projectListCollapse": 50,
+        "collapseAllProjectLists": false,
+        "groupSimilarEntriesDisabled": false,
+        "myStartOfDay": "09:00",
+        "projectPickerTaskFilter": false,
+        "lang": "EN",
+        "multiFactorEnabled": false,
+        "theme": "DEFAULT",
+        "scheduling": true,
+        "onboarding": true,
+        "invoiceReminders": false,
+        "showOnlyWorkingDays": false
+      },
+      "status": "ACTIVE",
+      "customFields": []
+    },
+    {
+      "id": "679c0e559b5954747a4001b4",
+      "email": "daisy@studiohawk.com.au",
+      "name": "Daisy Sawyer",
+      "memberships": [],
+      "profilePicture": "",
+      "activeWorkspace": "6790272808eca85dd0ee63f3",
+      "defaultWorkspace": "6790272808eca85dd0ee63f3",
+      "settings": {
+        "weekStart": "MONDAY",
+        "timeZone": "Europe/London",
+        "timeFormat": "HOUR24",
+        "dateFormat": "DD/MM/YYYY",
+        "sendNewsletter": false,
+        "weeklyUpdates": false,
+        "longRunning": false,
+        "scheduledReports": true,
+        "approval": true,
+        "pto": true,
+        "alerts": true,
+        "reminders": true,
+        "timeTrackingManual": false,
+        "summaryReportSettings": {
+          "group": "Project",
+          "subgroup": "Time Entry"
+        },
+        "isCompactViewOn": false,
+        "dashboardSelection": "TEAM",
+        "dashboardViewType": "PROJECT",
+        "dashboardPinToTop": false,
+        "projectListCollapse": 50,
+        "collapseAllProjectLists": false,
+        "groupSimilarEntriesDisabled": false,
+        "myStartOfDay": "09:00",
+        "projectPickerTaskFilter": false,
+        "lang": "EN",
+        "multiFactorEnabled": false,
+        "theme": "DEFAULT",
+        "scheduling": true,
+        "onboarding": true,
+        "invoiceReminders": false,
+        "showOnlyWorkingDays": false
+      },
+      "status": "ACTIVE",
+      "customFields": []
+    },
+    {
+      "id": "679c0e559b5954747a4001b5",
+      "email": "dani@studiohawk.com.au",
+      "name": "Dani",
+      "memberships": [],
+      "profilePicture": "",
+      "activeWorkspace": "6790272808eca85dd0ee63f3",
+      "defaultWorkspace": "6790272808eca85dd0ee63f3",
+      "settings": {
+        "weekStart": "MONDAY",
+        "timeZone": "Europe/London",
+        "timeFormat": "HOUR24",
+        "dateFormat": "DD/MM/YYYY",
+        "sendNewsletter": false,
+        "weeklyUpdates": false,
+        "longRunning": false,
+        "scheduledReports": true,
+        "approval": true,
+        "pto": true,
+        "alerts": true,
+        "reminders": true,
+        "timeTrackingManual": false,
+        "summaryReportSettings": {
+          "group": "Project",
+          "subgroup": "Time Entry"
+        },
+        "isCompactViewOn": false,
+        "dashboardSelection": "TEAM",
+        "dashboardViewType": "PROJECT",
+        "dashboardPinToTop": false,
+        "projectListCollapse": 50,
+        "collapseAllProjectLists": false,
+        "groupSimilarEntriesDisabled": false,
+        "myStartOfDay": "09:00",
+        "projectPickerTaskFilter": true,
+        "lang": "EN",
+        "multiFactorEnabled": false,
+        "theme": "DEFAULT",
+        "scheduling": true,
+        "onboarding": true,
+        "invoiceReminders": false,
+        "showOnlyWorkingDays": false
+      },
+      "status": "ACTIVE",
+      "customFields": []
+    },
+    {
+      "id": "62cdf873b22a7c5b79e9ad43",
+      "email": "fearghas@studiohawk.com.au",
+      "name": "Fearghas Flahvin ",
+      "memberships": [],
+      "profilePicture": "",
+      "activeWorkspace": "6790272808eca85dd0ee63f3",
+      "defaultWorkspace": "6790272808eca85dd0ee63f3",
+      "settings": {
+        "weekStart": "MONDAY",
+        "timeZone": "Australia/Melbourne",
+        "timeFormat": "HOUR24",
+        "dateFormat": "DD/MM/YYYY",
+        "sendNewsletter": false,
+        "weeklyUpdates": true,
+        "longRunning": true,
+        "scheduledReports": true,
+        "approval": true,
+        "pto": true,
+        "alerts": true,
+        "reminders": true,
+        "timeTrackingManual": false,
+        "summaryReportSettings": {
+          "group": "Project",
+          "subgroup": "Time Entry"
+        },
+        "isCompactViewOn": false,
+        "dashboardSelection": "ME",
+        "dashboardViewType": "PROJECT",
+        "dashboardPinToTop": false,
+        "projectListCollapse": 50,
+        "collapseAllProjectLists": false,
+        "groupSimilarEntriesDisabled": false,
+        "myStartOfDay": "09:00",
+        "projectPickerTaskFilter": false,
+        "lang": "EN",
+        "multiFactorEnabled": false,
+        "theme": "DEFAULT",
+        "scheduling": true,
+        "onboarding": true,
+        "invoiceReminders": false,
+        "showOnlyWorkingDays": false
+      },
+      "status": "ACTIVE",
+      "customFields": []
+    },
+    {
+      "id": "67902e295b201b090217ba58",
+      "email": "georgia.anderson@studiohawk.com.au",
+      "name": "Georgia Anderson",
+      "memberships": [],
+      "profilePicture": "",
+      "activeWorkspace": "6790272808eca85dd0ee63f3",
+      "defaultWorkspace": "6790272808eca85dd0ee63f3",
+      "settings": {
+        "weekStart": "MONDAY",
+        "timeZone": "Australia/Sydney",
+        "timeFormat": "HOUR24",
+        "dateFormat": "DD/MM/YYYY",
+        "sendNewsletter": false,
+        "weeklyUpdates": false,
+        "longRunning": false,
+        "scheduledReports": true,
+        "approval": true,
+        "pto": true,
+        "alerts": true,
+        "reminders": true,
+        "timeTrackingManual": false,
+        "summaryReportSettings": {
+          "group": "Project",
+          "subgroup": "Time Entry"
+        },
+        "isCompactViewOn": false,
+        "dashboardSelection": "TEAM",
+        "dashboardViewType": "PROJECT",
+        "dashboardPinToTop": false,
+        "projectListCollapse": 50,
+        "collapseAllProjectLists": false,
+        "groupSimilarEntriesDisabled": false,
+        "myStartOfDay": "09:00",
+        "projectPickerTaskFilter": false,
+        "lang": "EN",
+        "multiFactorEnabled": false,
+        "theme": "DEFAULT",
+        "scheduling": true,
+        "onboarding": true,
+        "invoiceReminders": false,
+        "showOnlyWorkingDays": false
+      },
+      "status": "ACTIVE",
+      "customFields": []
+    },
+    {
+      "id": "67903511653a1071e62fcaba",
+      "email": "jack@studiohawk.com.au",
+      "name": "jack",
+      "memberships": [],
+      "profilePicture": "",
+      "activeWorkspace": "6790272808eca85dd0ee63f3",
+      "defaultWorkspace": "6790272808eca85dd0ee63f3",
+      "settings": {
+        "weekStart": "MONDAY",
+        "timeZone": "Asia/Manila",
+        "timeFormat": "HOUR24",
+        "dateFormat": "DD/MM/YYYY",
+        "sendNewsletter": false,
+        "weeklyUpdates": false,
+        "longRunning": false,
+        "scheduledReports": true,
+        "approval": true,
+        "pto": true,
+        "alerts": true,
+        "reminders": true,
+        "timeTrackingManual": false,
+        "summaryReportSettings": {
+          "group": "Project",
+          "subgroup": "Time Entry"
+        },
+        "isCompactViewOn": false,
+        "dashboardSelection": "ME",
+        "dashboardViewType": "PROJECT",
+        "dashboardPinToTop": false,
+        "projectListCollapse": 50,
+        "collapseAllProjectLists": false,
+        "groupSimilarEntriesDisabled": false,
+        "myStartOfDay": "09:00",
+        "projectPickerTaskFilter": false,
+        "lang": "EN",
+        "multiFactorEnabled": false,
+        "theme": "DEFAULT",
+        "scheduling": true,
+        "onboarding": true,
+        "invoiceReminders": false,
+        "showOnlyWorkingDays": false
+      },
+      "status": "ACTIVE",
+      "customFields": []
+    },
+    {
+      "id": "6568bb784b2c0b17cdccdfe0",
+      "email": "janinetan@studiohawk.com.au",
+      "name": "Janine Tan Pacis",
+      "memberships": [],
+      "profilePicture": "",
+      "activeWorkspace": "6790272808eca85dd0ee63f3",
+      "defaultWorkspace": "6790272808eca85dd0ee63f3",
+      "settings": {
+        "weekStart": "MONDAY",
+        "timeZone": "Europe/London",
+        "timeFormat": "HOUR24",
+        "dateFormat": "DD/MM/YYYY",
+        "sendNewsletter": false,
+        "weeklyUpdates": true,
+        "longRunning": true,
+        "scheduledReports": true,
+        "approval": true,
+        "pto": true,
+        "alerts": true,
+        "reminders": true,
+        "timeTrackingManual": false,
+        "summaryReportSettings": {
+          "group": "Project",
+          "subgroup": "Time Entry"
+        },
+        "isCompactViewOn": false,
+        "dashboardSelection": "ME",
+        "dashboardViewType": "PROJECT",
+        "dashboardPinToTop": false,
+        "projectListCollapse": 50,
+        "collapseAllProjectLists": false,
+        "groupSimilarEntriesDisabled": false,
+        "myStartOfDay": "09:00",
+        "projectPickerTaskFilter": false,
+        "lang": "EN",
+        "multiFactorEnabled": false,
+        "theme": "DEFAULT",
+        "scheduling": true,
+        "onboarding": true,
+        "invoiceReminders": false,
+        "showOnlyWorkingDays": false
+      },
+      "status": "ACTIVE",
+      "customFields": []
+    },
+    {
+      "id": "62cdf873b22a7c5b79e9ad45",
+      "email": "jin@studiohawk.com.au",
+      "name": "Jinoo Nam",
+      "memberships": [],
+      "profilePicture": "",
+      "activeWorkspace": "6790272808eca85dd0ee63f3",
+      "defaultWorkspace": "6790272808eca85dd0ee63f3",
+      "settings": {
+        "weekStart": "MONDAY",
+        "timeZone": "Australia/Sydney",
+        "timeFormat": "HOUR24",
+        "dateFormat": "DD/MM/YYYY",
+        "sendNewsletter": false,
+        "weeklyUpdates": true,
+        "longRunning": true,
+        "scheduledReports": true,
+        "approval": true,
+        "pto": true,
+        "alerts": true,
+        "reminders": true,
+        "timeTrackingManual": false,
+        "summaryReportSettings": {
+          "group": "Project",
+          "subgroup": "Time Entry"
+        },
+        "isCompactViewOn": false,
+        "dashboardSelection": "ME",
+        "dashboardViewType": "PROJECT",
+        "dashboardPinToTop": false,
+        "projectListCollapse": 50,
+        "collapseAllProjectLists": false,
+        "groupSimilarEntriesDisabled": false,
+        "myStartOfDay": "09:00",
+        "projectPickerTaskFilter": false,
+        "lang": "EN",
+        "multiFactorEnabled": false,
+        "theme": "DEFAULT",
+        "scheduling": true,
+        "onboarding": true,
+        "invoiceReminders": false,
+        "showOnlyWorkingDays": false
+      },
+      "status": "ACTIVE",
+      "customFields": []
+    },
+    {
+      "id": "62cdfac86e562b4917da37ae",
+      "email": "karl@studiohawk.com.au",
+      "name": "Karl Zaharopoulos",
+      "memberships": [],
+      "profilePicture": "",
+      "activeWorkspace": "6790272808eca85dd0ee63f3",
+      "defaultWorkspace": "6790272808eca85dd0ee63f3",
+      "settings": {
+        "weekStart": "MONDAY",
+        "timeZone": "Australia/Melbourne",
+        "timeFormat": "HOUR24",
+        "dateFormat": "DD/MM/YYYY",
+        "sendNewsletter": false,
+        "weeklyUpdates": true,
+        "longRunning": true,
+        "scheduledReports": true,
+        "approval": true,
+        "pto": true,
+        "alerts": true,
+        "reminders": true,
+        "timeTrackingManual": true,
+        "summaryReportSettings": {
+          "group": "Project",
+          "subgroup": "Time Entry"
+        },
+        "isCompactViewOn": false,
+        "dashboardSelection": "TEAM",
+        "dashboardViewType": "PROJECT",
+        "dashboardPinToTop": false,
+        "projectListCollapse": 50,
+        "collapseAllProjectLists": false,
+        "groupSimilarEntriesDisabled": false,
+        "myStartOfDay": "09:00",
+        "projectPickerTaskFilter": false,
+        "lang": "EN",
+        "multiFactorEnabled": false,
+        "theme": "DEFAULT",
+        "scheduling": true,
+        "onboarding": false,
+        "invoiceReminders": false,
+        "showOnlyWorkingDays": false
+      },
+      "status": "ACTIVE",
+      "customFields": []
+    },
+    {
+      "id": "68e59bc0e3264138709ee1cb",
+      "email": "kiran.sreekumar@studiohawk.com.au",
+      "name": "kiran.sreekumar",
+      "memberships": [],
+      "profilePicture": "",
+      "activeWorkspace": "6790272808eca85dd0ee63f3",
+      "defaultWorkspace": "6790272808eca85dd0ee63f3",
+      "settings": {
+        "weekStart": "MONDAY",
+        "timeZone": "Australia/Melbourne",
+        "timeFormat": "HOUR24",
+        "dateFormat": "DD/MM/YYYY",
+        "sendNewsletter": false,
+        "weeklyUpdates": false,
+        "longRunning": false,
+        "scheduledReports": true,
+        "approval": true,
+        "pto": true,
+        "alerts": true,
+        "reminders": true,
+        "timeTrackingManual": false,
+        "summaryReportSettings": {
+          "group": "Project",
+          "subgroup": "Time Entry"
+        },
+        "isCompactViewOn": false,
+        "dashboardSelection": "ME",
+        "dashboardViewType": "PROJECT",
+        "dashboardPinToTop": false,
+        "projectListCollapse": 50,
+        "collapseAllProjectLists": false,
+        "groupSimilarEntriesDisabled": false,
+        "myStartOfDay": "09:00",
+        "projectPickerTaskFilter": false,
+        "lang": "EN",
+        "multiFactorEnabled": false,
+        "theme": "DEFAULT",
+        "scheduling": true,
+        "onboarding": true,
+        "invoiceReminders": false,
+        "showOnlyWorkingDays": false
+      },
+      "status": "ACTIVE",
+      "customFields": []
+    },
+    {
+      "id": "682d5807f01c6c02e4155932",
+      "email": "nova@studiohawk.com.au",
+      "name": "Nova",
+      "memberships": [],
+      "profilePicture": "",
+      "activeWorkspace": "6790272808eca85dd0ee63f3",
+      "defaultWorkspace": "6790272808eca85dd0ee63f3",
+      "settings": {
+        "weekStart": "MONDAY",
+        "timeZone": "Asia/Manila",
+        "timeFormat": "HOUR24",
+        "dateFormat": "DD/MM/YYYY",
+        "sendNewsletter": false,
+        "weeklyUpdates": false,
+        "longRunning": false,
+        "scheduledReports": true,
+        "approval": true,
+        "pto": true,
+        "alerts": true,
+        "reminders": true,
+        "timeTrackingManual": false,
+        "summaryReportSettings": {
+          "group": "Project",
+          "subgroup": "Time Entry"
+        },
+        "isCompactViewOn": false,
+        "dashboardSelection": "ME",
+        "dashboardViewType": "PROJECT",
+        "dashboardPinToTop": false,
+        "projectListCollapse": 50,
+        "collapseAllProjectLists": false,
+        "groupSimilarEntriesDisabled": false,
+        "myStartOfDay": "09:00",
+        "projectPickerTaskFilter": false,
+        "lang": "EN",
+        "multiFactorEnabled": false,
+        "theme": "DEFAULT",
+        "scheduling": true,
+        "onboarding": true,
+        "invoiceReminders": false,
+        "showOnlyWorkingDays": false
+      },
+      "status": "ACTIVE",
+      "customFields": []
+    },
+    {
+      "id": "679c0e559b5954747a4001b3",
+      "email": "paige@studiohawk.com.au",
+      "name": "Paige Claydon",
+      "memberships": [],
+      "profilePicture": "",
+      "activeWorkspace": "6790272808eca85dd0ee63f3",
+      "defaultWorkspace": "6790272808eca85dd0ee63f3",
+      "settings": {
+        "weekStart": "MONDAY",
+        "timeZone": "Europe/London",
+        "timeFormat": "HOUR24",
+        "dateFormat": "DD/MM/YYYY",
+        "sendNewsletter": false,
+        "weeklyUpdates": false,
+        "longRunning": false,
+        "scheduledReports": true,
+        "approval": true,
+        "pto": true,
+        "alerts": true,
+        "reminders": true,
+        "timeTrackingManual": false,
+        "summaryReportSettings": {
+          "group": "Project",
+          "subgroup": "Time Entry"
+        },
+        "isCompactViewOn": false,
+        "dashboardSelection": "ME",
+        "dashboardViewType": "PROJECT",
+        "dashboardPinToTop": false,
+        "projectListCollapse": 50,
+        "collapseAllProjectLists": false,
+        "groupSimilarEntriesDisabled": false,
+        "myStartOfDay": "09:00",
+        "projectPickerTaskFilter": false,
+        "lang": "EN",
+        "multiFactorEnabled": false,
+        "theme": "DEFAULT",
+        "scheduling": true,
+        "onboarding": true,
+        "invoiceReminders": false,
+        "showOnlyWorkingDays": false
+      },
+      "status": "ACTIVE",
+      "customFields": []
+    },
+    {
+      "id": "6916ae08276e744c473b44a1",
+      "email": "rob.ramirez@studiohawk.com.au",
+      "name": "rob.ramirez",
+      "memberships": [],
+      "profilePicture": "",
+      "activeWorkspace": "6790272808eca85dd0ee63f3",
+      "defaultWorkspace": "6790272808eca85dd0ee63f3",
+      "settings": {
+        "weekStart": "MONDAY",
+        "timeZone": "Australia/Melbourne",
+        "timeFormat": "HOUR12",
+        "dateFormat": "DD/MM/YYYY",
+        "sendNewsletter": false,
+        "weeklyUpdates": false,
+        "longRunning": false,
+        "scheduledReports": true,
+        "approval": true,
+        "pto": true,
+        "alerts": true,
+        "reminders": true,
+        "timeTrackingManual": false,
+        "summaryReportSettings": {
+          "group": "Project",
+          "subgroup": "Time Entry"
+        },
+        "isCompactViewOn": false,
+        "dashboardSelection": "ME",
+        "dashboardViewType": "PROJECT",
+        "dashboardPinToTop": false,
+        "projectListCollapse": 50,
+        "collapseAllProjectLists": false,
+        "groupSimilarEntriesDisabled": false,
+        "myStartOfDay": "09:00",
+        "projectPickerTaskFilter": false,
+        "lang": "EN",
+        "multiFactorEnabled": false,
+        "theme": "DEFAULT",
+        "scheduling": true,
+        "onboarding": true,
+        "invoiceReminders": false,
+        "showOnlyWorkingDays": false
+      },
+      "status": "ACTIVE",
+      "customFields": []
+    }
+  ],
+  "clients": [
+    {
+      "id": "691183fcbe7bbb475bef02ee",
+      "name": "Bean Bags R Us",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "6790279c08eca85dd0ee6c3d",
+      "name": "Becextech",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "679027aa2c08dd1b58a09053",
+      "name": "Birdsnest",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "67bd1f8b1b48840299e37ce3",
+      "name": "Budget Pet Products",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "68b7c955af4bc51e5a74be13",
+      "name": "Craft Club Co",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "68df328fa159d11d2bc3af33",
+      "name": "Culture Kings",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "67a0214ea725b42cff635401",
+      "name": "Cycl Health",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "68647b197d0d3121104f7cb2",
+      "name": "Cycology",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "67e607cbeff9dc4ec3e2a078",
+      "name": "Dynamic Web Training",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "6822a6b49ee5b440ea72f13d",
+      "name": "El Jannah",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "6864bf683bf3720f6ef6a803",
+      "name": "Ella Bache",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "679027a55b201b0902175b07",
+      "name": "Fat Burners Health",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "67f37a2130556a37a10a6297",
+      "name": "FrameShop",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "67bd1ea49d5aad44312de3c6",
+      "name": "Gingham and Heels",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "687edf3dbcbd2240e4356487",
+      "name": "Global Fitness & Leisure",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "689961363f9a2d20ea67cbff",
+      "name": "Grace Loves Lace",
+      "email": null,
+      "ccEmails": [],
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "679f8c675d710856f3468e7c",
+      "name": "GroupTogether",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "6902f2f5ad82264b8e4ab570",
+      "name": "Honcho",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "679027d96f3e2e2ffcfd34f6",
+      "name": "Howards Storage World",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "68647c2a3aa1ec7de1c567bb",
+      "name": "Hunter & Barrel AU",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "67a022899b5954747a76d64f",
+      "name": "Ice Cargo",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "679027e0397678323298cb6a",
+      "name": "Icon By Design",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "68d9d916c4a5261693703ddb",
+      "name": "Inspiring Vacations",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "679027c24c779331e84b36db",
+      "name": "Insure & Go",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "679027dd653a1071e62ec943",
+      "name": "Italian Street KItchen",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "679f8849a725b42cff5c3c62",
+      "name": "Job Adder",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "679027b54c9f46103e084adf",
+      "name": "JobAdder",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "679f8d6d2bfa6337d6883009",
+      "name": "Kadi",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "67a0246a8ba3fb365b39248f",
+      "name": "KOGAN",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "68999c46104f3951c0e727d1",
+      "name": "LHD Lawyers",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "67902790ab01877081de9105",
+      "name": "Lifespan Fitness",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "6881b50e7e91e51416064cfb",
+      "name": "Lifespan Fitness (2)",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "67ec89f4007aaf14dd117d4f",
+      "name": "Lo & Co",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "6840f4f2bfe455328cb487d7",
+      "name": "Love to Dream",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "6822a3d450899316acc53278",
+      "name": "Luxo Living",
+      "email": null,
+      "ccEmails": [],
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "68cb4f3fce48fc260a83b5a3",
+      "name": "LVLY",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "679027b15b201b0902175bca",
+      "name": "MoneyMe",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "68f6db2b56d38b0787289e5c",
+      "name": "MONEYME II",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "6837eb95a1f8d424d3e831d1",
+      "name": "Moon Pig",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "6840f738dd232e7dea83316a",
+      "name": "Moonpig",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "689aa24be699e83b77731de6",
+      "name": "National Accounts",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "67902797653a1071e62ec49e",
+      "name": "NaturoBest",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "67c6629b6bde8e65209fcac8",
+      "name": "NextMinute",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "679027ae5b201b0902175b9b",
+      "name": "Noggin",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "67a01fdd2bfa6337d68fbd14",
+      "name": "Non-Client",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "679027be397678323298c8cd",
+      "name": "Nutrition Warehouse",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "67be644e7c0d422f1ad03731",
+      "name": "OSHC Australia Pty Ltd",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "679027872c08dd1b58a08e13",
+      "name": "Pack & Send",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "67b691a11d04be342df97dc8",
+      "name": "PEXA",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": true,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    },
+    {
+      "id": "6879a1b2a3de4d55114802e3",
+      "name": "Pillow Talk",
+      "email": null,
+      "ccEmails": null,
+      "workspaceId": "6790272808eca85dd0ee63f3",
+      "archived": false,
+      "address": null,
+      "note": null,
+      "currencyId": "6790272808eca85dd0ee63f4",
+      "currencyCode": "USD"
+    }
+  ]
+}
