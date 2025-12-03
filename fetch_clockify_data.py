@@ -44,7 +44,7 @@ if projects_response.status_code == 200:
     projects_data = projects_response.json()
 
     # Fetch tasks for each project
-    for project in projects_data[:10]:  # Limit to first 10 projects for structure
+    for project in projects_data:  # Get all projects
         project_id = project['id']
         tasks_url = f'{base_url}/workspaces/{workspace_id}/projects/{project_id}/tasks'
         tasks_response = requests.get(tasks_url, headers=headers)
@@ -59,16 +59,18 @@ else:
     print(f"Error fetching projects: {projects_response.status_code}")
     print(projects_response.text)
 
-# Fetch time entries (limit to 10 for structure)
-time_entries_url = f'{base_url}/workspaces/{workspace_id}/time-entries?page-size=10'
-time_entries_response = requests.get(time_entries_url, headers=headers)
+# Fetch current user
+user_url = f'{base_url}/user'
+user_response = requests.get(user_url, headers=headers)
 
-time_entries_data = []
-if time_entries_response.status_code == 200:
-    time_entries_data = time_entries_response.json()
+user_id = None
+if user_response.status_code == 200:
+    user_data = user_response.json()
+    user_id = user_data['id']
 else:
-    print(f"Error fetching time entries: {time_entries_response.status_code}")
-    print(time_entries_response.text)
+    print(f"Error fetching user: {user_response.status_code}")
+    print(user_response.text)
+    exit(1)
 
 # Fetch users
 users_url = f'{base_url}/workspaces/{workspace_id}/users'
@@ -80,6 +82,30 @@ if users_response.status_code == 200:
 else:
     print(f"Error fetching users: {users_response.status_code}")
     print(users_response.text)
+
+# Fetch time entries (all from all users, with pagination)
+time_entries_data = []
+if users_data:
+    for user in users_data:  # All users
+        user_id = user['id']
+        page = 1
+        page_size = 5000  # High page size to minimize requests
+        while True:
+            time_entries_url = f'{base_url}/workspaces/{workspace_id}/user/{user_id}/time-entries?page={page}&page-size={page_size}'
+            time_entries_response = requests.get(time_entries_url, headers=headers)
+            
+            if time_entries_response.status_code == 200:
+                user_time_entries = time_entries_response.json()
+                if not user_time_entries:
+                    break  # No more entries
+                time_entries_data.extend(user_time_entries)
+                page += 1
+            else:
+                print(f"Error fetching time entries for user {user_id} page {page}: {time_entries_response.status_code}")
+                print(time_entries_response.text)
+                break  # Stop on error
+else:
+    print("No users found, skipping time entries fetch")
 
 # Fetch clients
 clients_url = f'{base_url}/workspaces/{workspace_id}/clients'
@@ -95,11 +121,15 @@ else:
 # Get unique task names across all projects
 unique_tasks = list({task['name'] for task in all_tasks if 'name' in task})
 
+# Get unique user names
+unique_users = list({user.get('name', user['id']) for user in users_data if user})
+
 # Combine data
 data = {
     'workspace': workspace_data,
     'projects': projects_data,
     'all_task_names': sorted(unique_tasks),  # Sorted list of all unique task names
+    'all_user_names': sorted(unique_users),  # Sorted list of all unique user names
     'time_entries': time_entries_data,
     'users': users_data,
     'clients': clients_data
