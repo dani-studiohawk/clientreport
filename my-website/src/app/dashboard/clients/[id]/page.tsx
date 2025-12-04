@@ -8,6 +8,7 @@ import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { SprintPerformanceChart } from '@/components/clients/sprint-performance-chart'
+import { AllSprintsOverview } from '@/components/clients/all-sprints-overview'
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -105,6 +106,21 @@ export default async function ClientDetailPage({ params }: PageProps) {
     kpiAchieved: s.kpi_achieved || 0,
   })) || []
 
+  // Prepare sprint data for All Sprints overview
+  const sprintCardsData = sprints?.map(s => ({
+    id: s.id,
+    name: s.name,
+    sprint_number: s.sprint_number,
+    start_date: s.start_date,
+    end_date: s.end_date,
+    status: s.status,
+    kpi_target: s.kpi_target || 0,
+    kpi_achieved: s.kpi_achieved || 0,
+    hours_used: hoursPerSprint[s.id] || 0,
+    budget_hours: monthlyHours * 3, // 3 months per sprint
+    monthly_rate: client.monthly_rate,
+  })) || []
+
   return (
     <div className="space-y-6">
       {/* Header Card */}
@@ -135,6 +151,11 @@ export default async function ClientDetailPage({ params }: PageProps) {
                 <span className="text-gray-600 dark:text-gray-400">
                   DPR Lead: {client.dpr_lead?.name || 'Not assigned'}
                 </span>
+                {client.campaign_type && (
+                  <Badge variant="outline" className="text-gray-600">
+                    {client.campaign_type}
+                  </Badge>
+                )}
                 {hasPartialTracking && (
                   <Badge className="bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400">
                     Partial tracking
@@ -325,6 +346,13 @@ export default async function ClientDetailPage({ params }: PageProps) {
             Sprint Performance Overview
           </h3>
           <SprintPerformanceChart data={sprintChartData} />
+        </CardContent>
+      </Card>
+
+      {/* All Sprints Overview */}
+      <Card>
+        <CardContent className="pt-6">
+          <AllSprintsOverview sprints={sprintCardsData} />
         </CardContent>
       </Card>
     </div>
