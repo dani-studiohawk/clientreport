@@ -36,8 +36,8 @@ def log_sync(source, status, records_synced=0, error_message=None):
     try:
         supabase.table('sync_logs').insert({
             'source': source,
-            'sync_start': datetime.utcnow().isoformat(),
-            'sync_end': datetime.utcnow().isoformat(),
+            'sync_start': datetime.now(datetime.UTC).isoformat(),
+            'sync_end': datetime.now(datetime.UTC).isoformat(),
             'status': status,
             'records_synced': records_synced,
             'error_message': error_message
@@ -286,7 +286,7 @@ def sync_time_entries(days_back=90):
                 print(f"   ❌ Could not map project '{project['name']}' to any client")
 
         # Set date range
-        end_date = datetime.utcnow()
+        end_date = datetime.now(datetime.UTC)
         start_date = end_date - timedelta(days=days_back)
 
         entries_synced = 0
@@ -318,6 +318,10 @@ def sync_time_entries(days_back=90):
 
             print(f"   Found {len(time_entries)} time entries")
 
+            # Track entries for this user
+            user_entries_synced = 0
+            user_entries_skipped = 0
+
             # Process each entry
             for entry in time_entries:
                 try:
@@ -341,6 +345,7 @@ def sync_time_entries(days_back=90):
 
                     if hours == 0:
                         entries_skipped += 1
+                        user_entries_skipped += 1
                         continue
 
                     # Map to client
@@ -348,6 +353,7 @@ def sync_time_entries(days_back=90):
 
                     if not client_id:
                         entries_skipped += 1
+                        user_entries_skipped += 1
                         continue
 
                     # Find sprint
@@ -355,6 +361,7 @@ def sync_time_entries(days_back=90):
 
                     if not sprint_id:
                         entries_skipped += 1
+                        user_entries_skipped += 1
                         continue
 
                     # Get task name
@@ -377,7 +384,7 @@ def sync_time_entries(days_back=90):
                         'description': description,
                         'task_category': task_category,
                         'project_name': project_name,
-                        'updated_at': datetime.utcnow().isoformat()
+                        'updated_at': datetime.now(datetime.UTC).isoformat()
                     }
 
                     # Upsert to database
@@ -387,12 +394,14 @@ def sync_time_entries(days_back=90):
                     ).execute()
 
                     entries_synced += 1
+                    user_entries_synced += 1
 
                 except Exception as e:
                     print(f"   ⚠️ Error processing time entry: {e}")
                     entries_skipped += 1
+                    user_entries_skipped += 1
 
-            print(f"   ✅ Synced {entries_synced} entries")
+            print(f"   ✅ Synced {user_entries_synced} entries (skipped {user_entries_skipped})")
 
         # Log success
         log_sync('clockify', 'success', entries_synced)
