@@ -135,7 +135,8 @@ CREATE TABLE time_entries (
     clockify_id TEXT UNIQUE NOT NULL,
 
     -- Relationships
-    sprint_id UUID REFERENCES sprints(id) ON DELETE SET NULL, -- NULL for non-client work (internal, training, etc.)
+    sprint_id UUID REFERENCES sprints(id) ON DELETE SET NULL, -- NULL for non-client work (internal, training, etc.) or post-sprint work
+    client_id UUID REFERENCES clients(id) ON DELETE SET NULL, -- Direct client reference for easier querying, especially for post-sprint work
     user_id UUID NOT NULL REFERENCES users(id),
     project_id UUID REFERENCES clockify_projects(id),
 
@@ -147,6 +148,7 @@ CREATE TABLE time_entries (
     -- Categorization
     task_category TEXT, -- Task name from Clockify dropdown (exact task name as selected by user)
     project_name TEXT, -- Store original project name for reference
+    tags TEXT[] DEFAULT '{}', -- Tags for special cases like 'post_sprint_work'
 
     -- Metadata
     created_at TIMESTAMPTZ DEFAULT NOW(),
@@ -159,7 +161,9 @@ CREATE TABLE time_entries (
 -- Indexes for time_entries
 CREATE INDEX idx_time_entries_clockify_id ON time_entries(clockify_id);
 CREATE INDEX idx_time_entries_sprint ON time_entries(sprint_id);
+CREATE INDEX idx_time_entries_client ON time_entries(client_id);
 CREATE INDEX idx_time_entries_user ON time_entries(user_id);
+CREATE INDEX idx_time_entries_tags ON time_entries USING GIN(tags);
 CREATE INDEX idx_time_entries_date ON time_entries(entry_date);
 CREATE INDEX idx_time_entries_project ON time_entries(project_id);
 

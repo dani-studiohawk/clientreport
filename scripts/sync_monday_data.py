@@ -16,6 +16,7 @@ from datetime import datetime, timezone
 from supabase import create_client, Client
 from dotenv import load_dotenv
 
+
 # Load environment variables
 load_dotenv()
 
@@ -138,51 +139,27 @@ def parse_numeric(value_json):
         return None
 
 def fetch_monday_board_data(board_id):
-    """Fetch complete board data from Monday.com including subitems"""
-    query = """
-    {
-      boards(ids: [%s]) {
-        name
-        groups {
-          id
-          title
-          items_page {
-            items {
-              id
-              name
-              column_values {
-                id
-                column {
-                  title
-                }
-                value
-                text
-              }
-              subitems {
-                id
-                name
-                column_values {
-                  id
-                  column {
-                    title
-                  }
-                  value
-                  text
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    """ % board_id
+    """Fetch complete board data from Monday.com including subitems with pagination"""
 
     headers = {
         'Authorization': f'Bearer {MONDAY_API_KEY}',
         'Content-Type': 'application/json'
     }
 
-    response = requests.post(MONDAY_API_URL, headers=headers, json={'query': query})
+    # First, get the board structure with groups
+    initial_query = """
+    {
+      boards(ids: [%s]) {
+        name
+        groups {
+          id
+          title
+        }
+      }
+    }
+    """ % board_id
+
+    response = requests.post(MONDAY_API_URL, headers=headers, json={'query': initial_query})
 
     if response.status_code != 200:
         raise Exception(f"Monday.com API error: {response.status_code} - {response.text}")
@@ -192,11 +169,83 @@ def fetch_monday_board_data(board_id):
     if 'errors' in data:
         raise Exception(f"Monday.com GraphQL errors: {data['errors']}")
 
-    return data['data']['boards'][0]
+    board = data['data']['boards'][0]
+
+    # Now fetch items for each group with pagination
+    for group in board['groups']:
+        group['items_page'] = {'items': []}
+        cursor = None
+
+        while True:
+            # Build query with pagination
+            cursor_param = f', cursor: "{cursor}"' if cursor else ''
+
+            items_query = """
+            {
+              boards(ids: [%s]) {
+                groups(ids: ["%s"]) {
+                  items_page(limit: 100%s) {
+                    cursor
+                    items {
+                      id
+                      name
+                      column_values {
+                        id
+                        column {
+                          title
+                        }
+                        value
+                        text
+                      }
+                      subitems {
+                        id
+                        name
+                        column_values {
+                          id
+                          column {
+                            title
+                          }
+                          value
+                          text
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            """ % (board_id, group['id'], cursor_param)
+
+            response = requests.post(MONDAY_API_URL, headers=headers, json={'query': items_query})
+
+            if response.status_code != 200:
+                print(f"Warning: Failed to fetch items for group {group['title']}: {response.status_code}")
+                break
+
+            page_data = response.json()
+
+            if 'errors' in page_data:
+                print(f"Warning: GraphQL errors for group {group['title']}: {page_data['errors']}")
+                break
+
+            items_page = page_data['data']['boards'][0]['groups'][0]['items_page']
+            items = items_page.get('items', [])
+
+            if not items:
+                break
+
+            group['items_page']['items'].extend(items)
+
+            # Check if there are more pages
+            cursor = items_page.get('cursor')
+            if not cursor:
+                break
+
+    return board
 
 def sync_clients_and_sprints():
     """Main sync function"""
-    print("🔄 Starting Monday.com sync...")
+    print(">> Starting Monday.com sync...")
 
     total_clients_synced = 0
     total_sprints_synced = 0
@@ -205,10 +254,10 @@ def sync_clients_and_sprints():
         # Sync each board (AU, US, UK)
         for region, board_id in MONDAY_BOARD_IDS.items():
             if not board_id:
-                print(f"⚠️ Skipping {region} board - no board ID configured")
+                print(f"!! Skipping {region} board - no board ID configured")
                 continue
 
-            print(f"\n🌍 Syncing {region} board (ID: {board_id})...")
+            print(f"\n== Syncing {region} board (ID: {board_id})...")
 
             try:
                 # Fetch data from Monday.com
@@ -217,18 +266,19 @@ def sync_clients_and_sprints():
                 clients_synced = 0
                 sprints_synced = 0
 
+                print(f"   Found {len(board_data['groups'])} groups")
+
                 # Process each group
                 for group in board_data['groups']:
                     group_title = group['title']
-                    print(f"\n📂 Processing group: {group_title}")
+                    items = group['items_page']['items']
+                    print(f"\n>> Processing group: {group_title} ({len(items)} items)")
 
                     # Process each item (client)
-                    items = group['items_page']['items']
-
                     for item in items:
                         try:
-                            # Parse client data
-                            client_data = parse_client_item(item)
+                            # Parse client data (pass group_title and region to determine active status)
+                            client_data = parse_client_item(item, group_title, region)
 
                             # Upsert client
                             client_result = supabase.table('clients').upsert(
@@ -238,7 +288,10 @@ def sync_clients_and_sprints():
 
                             client_id = client_result.data[0]['id']
                             clients_synced += 1
-                            print(f"  ✅ Client: {client_data['name']}")
+
+                            # Show status indicator
+                            status_indicator = "[ACTIVE]" if client_data.get('is_active', True) else "[INACTIVE]"
+                            print(f"  {status_indicator} Client: {client_data['name']}")
 
                             # Process subitems (sprints)
                             if 'subitems' in item and item['subitems']:
@@ -253,26 +306,26 @@ def sync_clients_and_sprints():
                                             ).execute()
 
                                             sprints_synced += 1
-                                            print(f"    ↳ Sprint: {sprint_data['name']} (#{sprint_data.get('sprint_number', '?')})")
+                                            print(f"    -> Sprint: {sprint_data['name']} (#{sprint_data.get('sprint_number', '?')})")
 
                                     except Exception as e:
-                                        print(f"    ⚠️ Error syncing sprint {subitem['name']}: {e}")
+                                        print(f"    !! Error syncing sprint {subitem['name']}: {e}")
 
                         except Exception as e:
-                            print(f"  ⚠️ Error syncing client {item['name']}: {e}")
+                            print(f"  !! Error syncing client {item['name']}: {e}")
 
-                print(f"\n📊 {region} board complete: {clients_synced} clients, {sprints_synced} sprints")
+                print(f"\n== {region} board complete: {clients_synced} clients, {sprints_synced} sprints")
                 total_clients_synced += clients_synced
                 total_sprints_synced += sprints_synced
 
             except Exception as e:
-                print(f"❌ Error syncing {region} board: {e}")
+                print(f"!! Error syncing {region} board: {e}")
                 continue
 
         # Log success
         log_sync('monday', 'success', total_clients_synced + total_sprints_synced)
 
-        print(f"\n✅ Sync complete!")
+        print(f"\n>> Sync complete!")
         print(f"   Total clients synced: {total_clients_synced}")
         print(f"   Total sprints synced: {total_sprints_synced}")
 
@@ -280,11 +333,11 @@ def sync_clients_and_sprints():
 
     except Exception as e:
         error_msg = str(e)
-        print(f"\n❌ Sync failed: {error_msg}")
+        print(f"\n!! Sync failed: {error_msg}")
         log_sync('monday', 'error', 0, error_msg)
         return False
 
-def parse_client_item(item):
+def parse_client_item(item, group_title=None, region=None):
     """Parse Monday.com board item into client data"""
     columns = {col['column']['title']: col for col in item['column_values']}
 
@@ -301,9 +354,18 @@ def parse_client_item(item):
     monthly_rate = parse_numeric(columns.get('Monthly Rate', {}).get('text'))
     monthly_hours = monthly_rate / 190.0 if monthly_rate else None
 
+    # Determine active status based on group title
+    # Consider clients active if they're in groups that don't indicate completion/cancellation
+    is_active = True
+    if group_title:
+        inactive_keywords = ['finished', 'refunded', 'cancelled', 'canceled', 'completed', 'archived', 'inactive', 'paused']
+        group_lower = group_title.lower()
+        is_active = not any(keyword in group_lower for keyword in inactive_keywords)
+
     client_data = {
         'monday_item_id': int(item['id']),
         'name': item['name'],
+        'region': region,  # Store region (AU, US, UK)
         'dpr_lead_id': dpr_lead_id,
         'dpr_support_ids': dpr_support_ids if dpr_support_ids else None,
         'seo_lead_name': columns.get('SEO Lead', {}).get('text'),
@@ -316,7 +378,8 @@ def parse_client_item(item):
         'report_status': columns.get('Report Status', {}).get('text'),
         'last_report_date': parse_date(columns.get('Last Report Date', {}).get('value')),
         'last_invoice_date': parse_date(columns.get('Last Invoice Date', {}).get('value')),
-        'is_active': True,  # Assume active if in board
+        'is_active': is_active,
+        'group_name': group_title,  # Store group name for reference
         'updated_at': datetime.now(timezone.utc).isoformat()
     }
 
@@ -332,7 +395,7 @@ def parse_sprint_subitem(subitem, client_id):
     end_date = parse_date(columns.get('End Date', {}).get('value'))
 
     if not start_date or not end_date:
-        print(f"      ⚠️ Skipping sprint {subitem['name']} - missing dates")
+        print(f"      !! Skipping sprint {subitem['name']} - missing dates")
         return None
 
     # Extract sprint number from Sprint label
@@ -367,7 +430,7 @@ if __name__ == '__main__':
     # Check environment variables
     board_ids_available = [bid for bid in MONDAY_BOARD_IDS.values() if bid]
     if not all([MONDAY_API_KEY, board_ids_available, SUPABASE_URL, SUPABASE_SERVICE_KEY]):
-        print("❌ Error: Missing required environment variables")
+        print("!! Error: Missing required environment variables")
         print("Required: MONDAY_API_KEY, at least one MONDAY_*_BOARD_ID, SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY")
         exit(1)
 

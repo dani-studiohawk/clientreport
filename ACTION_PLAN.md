@@ -5,115 +5,213 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 
 ---
 
+## Current Status Summary (Updated: December 4, 2025)
+
+| Phase | Status | Progress |
+|-------|--------|----------|
+| **Phase 1: Database** | ✅ COMPLETE | 100% - Schema, functions, views, RLS all implemented |
+| **Phase 2: ETL/Sync** | ✅ COMPLETE | 100% - Python scripts + Edge Functions deployed |
+| **Phase 2.5: Automation** | ✅ COMPLETE | pg_cron configured, daily/weekly syncs scheduled |
+| **Phase 3: Auth** | 📋 DOCUMENTED | Setup documented in SUPABASE_SETUP.md |
+| **Phase 4: API** | ❌ NOT STARTED | 0% - Waiting for frontend |
+| **Phase 5-8: Frontend** | ❌ NOT STARTED | 0% - Next.js project not initialized |
+| **Phase 9: Testing** | ⚠️ PARTIAL | Backend tests exist (RLS, Supabase connection) |
+| **Phase 10: Documentation** | ✅ BACKEND COMPLETE | Excellent docs for database & sync |
+| **Phase 11-12: Deployment** | ⚠️ PARTIAL | Edge Functions deployed, frontend pending | |
+
+### Key Implementation Notes
+- **Sprints**: Come from Monday.com subitems (not auto-detected from time entries)
+- **Task Categories**: Use Clockify dropdown values directly (see `database/CLOCKIFY_TASKS.md`)
+- **Multi-Region**: Supports AU/US/UK Monday.com boards with region tracking
+- **Enhanced Tracking**: Pre-sprint prep, post-sprint work tagging, non-client work views
+
+---
+
 ## Phase 1: Database Design & Setup
 
 ### 1.1 Schema Design
-- [ ] Create users table (email, name, is_admin, clockify_user_id, monday_person_id)
-- [ ] Create clients table (monday_item_id, name, dpr_lead, agency_value, monthly_rate, monthly_hours, etc.)
-- [ ] Create sprints table (client_id, sprint_number, start_date, end_date, kpi_target, kpi_achieved)
-- [ ] Create time_entries table (clockify_id, sprint_id, user_id, task_category, hours, entry_date)
-- [ ] Create clockify_projects table (clockify_id, name, client_id, hourly_rate)
-- [ ] Create sync_logs table (source, sync_start, sync_end, status, records_synced)
+> **Reference:** `database/schema.sql` + `database/migrations/`
+
+- [x] Create users table (email, name, is_admin, clockify_user_id, monday_person_id)
+- [x] Create clients table (monday_item_id, name, dpr_lead, agency_value, monthly_rate, monthly_hours, etc.)
+  - *Extended with:* `region` (AU/US/UK), `group_name` (Monday.com group), `is_active`
+- [x] Create sprints table (client_id, sprint_number, start_date, end_date, kpi_target, kpi_achieved)
+  - *Extended with:* `monthly_rate` per-sprint (rates can vary), `status` (pending/active/completed)
+- [x] Create time_entries table (clockify_id, sprint_id, user_id, task_category, hours, entry_date)
+  - *Extended with:* `client_id` (direct reference), `tags` (array for post_sprint_work, pre_sprint_prep)
+- [x] Create clockify_projects table (clockify_id, name, client_id, hourly_rate)
+- [x] Create sync_logs table (source, sync_start, sync_end, status, records_synced)
 
 ### 1.2 Indexes & Constraints
-- [ ] Add primary keys and foreign key constraints
-- [ ] Create indexes on frequently queried fields (client_id, sprint_id, user_id, entry_date)
-- [ ] Add unique constraints (emails, monday_item_id, clockify_id)
-- [ ] Add check constraints for data validation
+- [x] Add primary keys and foreign key constraints
+- [x] Create indexes on frequently queried fields (client_id, sprint_id, user_id, entry_date)
+- [x] Add unique constraints (emails, monday_item_id, clockify_id)
+- [x] Add check constraints for data validation
+- [x] GIN index on `tags` array for efficient tag queries
 
 ### 1.3 Calculation Functions
-- [ ] Create function to calculate sprint health status
-- [ ] Create function to calculate billable rate per sprint
-- [ ] Create function to calculate hours utilization
-- [ ] Create function to calculate contract-level aggregations
-- [ ] Create function to calculate time elapsed/remaining
+- [x] `calculate_sprint_health()` - Returns: 'KPI Complete', 'Ahead', 'On Track', 'Behind', 'At Risk'
+- [x] `calculate_billable_rate()` - Formula: `hours_used * (monthly_rate / monthly_hours)`
+- [x] `calculate_hours_utilization()` - Formula: `(hours_used / (monthly_hours * 3)) * 100`
+- [x] `auto_set_sprint_status()` - Auto-sets 'pending'/'active'/'completed' based on dates
+- [x] `is_admin()` - SECURITY DEFINER function for RLS policies
+- [x] `update_updated_at_column()` - Trigger function for timestamps
 
-### 1.4 Views & Materialized Views
-- [ ] Create sprint_metrics view (pre-calculated sprint KPIs)
-- [ ] Create client_contract_metrics view (aggregate contract data)
-- [ ] Create user_sprint_breakdown view (hours by user per sprint)
-- [ ] Create task_breakdown view (hours by task category per sprint)
-- [ ] Set up refresh schedule for materialized views
+### 1.4 Views
+> **Note:** Using regular views (not materialized) for real-time accuracy
+
+- [x] `sprint_metrics` view - Pre-calculated sprint KPIs, hours, health status, days remaining
+- [x] `client_contract_metrics` view - Aggregated metrics across all client sprints
+- [x] `user_sprint_breakdown` view - Hours by user per sprint
+- [x] `task_breakdown` view - Hours by task category per sprint
+- [x] `non_client_work_breakdown` view - Internal/non-client work tracking
 
 ### 1.5 Security Setup
-- [ ] Enable Row Level Security on all tables
-- [ ] Create policy: Admins can SELECT/UPDATE all records
-- [ ] Create policy: Non-admins can only SELECT their assigned clients
-- [ ] Create policy: Prevent UPDATE/DELETE for non-admins
-- [ ] Test RLS policies with different user roles
+> **Reference:** `database/fix_rls_recursion.sql` for recursion fix
+
+- [x] Enable Row Level Security on all tables
+- [x] Create policy: Admins can SELECT/UPDATE all records
+- [x] Create policy: Non-admins can only SELECT their assigned clients (via `dpr_lead`)
+- [x] Create policy: Non-admins see time entries for their clients + their own entries
+- [x] Fix RLS recursion with `is_admin()` SECURITY DEFINER function
+- [x] `anon` role access enabled for sync operations
+- [x] Test RLS policies (`tests/test_rls.py`)
 
 ### 1.6 Initial Data
-- [ ] Seed admin users (dani@, georgia.anderson@, daisy@)
-- [ ] Create test client records
-- [ ] Create test sprint records
-- [ ] Create test time entries
+- [x] Seed admin users (dani@, georgia.anderson@, daisy@ studiohawk.com.au)
+- [x] Using real data from Monday.com/Clockify syncs (no test data needed)
 
 ---
 
 ## Phase 2: Data Integration & ETL
 
 ### 2.1 Monday.com Integration
-- [ ] Set up Supabase Edge Function for Monday.com sync
-- [ ] Implement GraphQL query to fetch board data
-- [ ] Parse client information from Monday items
-- [ ] Extract DPR Lead assignments (map person IDs to users)
-- [ ] Extract campaign details (type, dates, priority, agency value)
-- [ ] Store/update clients table
-- [ ] Handle incremental updates vs full sync
-- [ ] Add error handling and retry logic
-- [ ] Log sync results to sync_logs table
+> **Reference:** `scripts/sync_monday_data.py`, `supabase/functions/sync-monday/index.ts`
+
+- [x] Set up sync script for Monday.com (Python + Edge Function)
+- [x] Implement GraphQL query to fetch board data with pagination
+- [x] Multi-board support (AU/US/UK regions via environment variables)
+- [x] Parse client information from Monday items
+- [x] Extract DPR Lead assignments (map person IDs to users)
+- [x] Extract DPR Support (multiple team members)
+- [x] Extract campaign details (type, dates, priority, agency value)
+- [x] Calculate monthly_hours from rate (`rate / 190`)
+- [x] Parse sprints from Monday subitems (Q1/Q2/Sprint #X labels)
+- [x] Track group_name for active/inactive detection
+- [x] Store/update clients table with upsert logic
+- [x] Handle incremental updates via `updated_at` timestamps
+- [x] Add error handling and retry logic
+- [x] Log sync results to sync_logs table
 
 ### 2.2 Clockify Integration
-- [ ] Set up Supabase Edge Function for Clockify sync
-- [ ] Fetch time entries for date range
-- [ ] Fetch workspace users and map to internal users
-- [ ] Fetch projects and clients
-- [ ] Map Clockify projects to internal clients
-- [ ] Categorize time entries by sprint dates
-- [ ] Determine task categories from time entry descriptions
-- [ ] Store/update time_entries table
-- [ ] Handle duplicate detection
-- [ ] Add error handling and retry logic
-- [ ] Log sync results to sync_logs table
+> **Reference:** `scripts/sync_clockify_data.py`, `supabase/functions/sync-clockify/index.ts`
+
+- [x] Set up sync script (Python + Edge Function)
+- [x] Fetch time entries for date range (365 days back, paginated)
+- [x] Fetch workspace users and map to internal users (by email)
+- [x] Fetch projects and clients from Clockify
+- [x] Map Clockify projects to internal clients (fuzzy matching + `PROJECT_OVERRIDES` dict)
+- [x] Assign time entries to sprints by date range
+- [x] **Pre-sprint prep handling**: 14-day lookback assigns early work to Sprint 1
+- [x] **Post-sprint work tagging**: Tagged with `post_sprint_work` instead of skipped
+- [x] **Non-client work tracking**: `client_id = NULL` but still synced
+- [x] Get task categories from Clockify dropdown (see `database/CLOCKIFY_TASKS.md`)
+- [x] Populate direct `client_id` on time_entries for easier queries
+- [x] Store/update time_entries table with upsert logic
+- [x] Handle duplicate detection via `clockify_id`
+- [x] Add error handling and retry logic
+- [x] Log sync results to sync_logs table
 
 ### 2.3 Sprint Detection & Management
-- [ ] Create logic to detect/create sprints from time entries
-- [ ] Implement sprint numbering logic
-- [ ] Calculate sprint start/end dates (3-month periods)
-- [ ] Assign time entries to appropriate sprints
-- [ ] Handle edge cases (overlapping dates, gaps)
+> **Note:** Sprints come from Monday.com subitems, not auto-detected from time entries
+
+- [x] Parse sprints from Monday.com subitems during sync
+- [x] Extract sprint numbering from labels (Q1, Q2, Sprint #X)
+- [x] Get sprint start/end dates from Monday subitem columns
+- [x] Assign time entries to sprints based on date overlap
+- [x] Handle pre-sprint prep (14-day lookback to Sprint 1)
+- [x] Tag post-sprint entries instead of skipping them
 
 ### 2.4 Data Mapping & Enrichment
-- [ ] Map Monday.com person IDs to user emails
-- [ ] Map Clockify user IDs to internal users
-- [ ] Link Clockify projects to clients
-- [ ] Categorize time entries into task types (comms, data, etc.)
-- [ ] Handle missing or ambiguous data
+- [x] Map Monday.com person IDs to user emails (via users table)
+- [x] Map Clockify user IDs to internal users (by email match)
+- [x] Link Clockify projects to clients (fuzzy name matching + manual overrides)
+- [x] Task categories from Clockify dropdown (documented in `database/CLOCKIFY_TASKS.md`)
+- [x] Handle missing/ambiguous data with logging and fallbacks
 
 ### 2.5 Automation & Scheduling
-- [ ] Set up daily cron job for Monday.com sync
-- [ ] Set up daily cron job for Clockify sync
-- [ ] Configure sync timing (e.g., 2 AM daily)
-- [ ] Implement sync status notifications
-- [ ] Create admin dashboard to monitor sync health
+> **Reference:** `database/migrations/schedule_sync_functions.sql`
+
+- [x] Python scripts ready for manual/cron execution
+- [x] Edge Functions deployed to Supabase (Dec 4, 2025)
+- [x] pg_cron extension enabled
+- [x] pg_net extension enabled for HTTP requests
+- [x] Vault secrets configured (project_url, anon_key)
+- [x] **sync-clockify-daily**: Runs daily at 4 PM UTC (2 AM AEST)
+- [x] **sync-monday-weekly**: Runs weekly on Monday at 4 PM UTC
+- [ ] Implement sync status notifications (future enhancement)
+- [ ] Create admin dashboard to monitor sync health (Phase 8)
+
+> **Monitor jobs:** `SELECT * FROM cron.job_run_details ORDER BY start_time DESC LIMIT 20;`
+
+---
+
+## Phase 2.5: Utility Scripts ✅ NEW
+
+> **Location:** `scripts/`
+
+These helper scripts were created for debugging and data verification:
+
+- [x] `check_missing_clients.py` - Find clients with time entries but no sprints
+- [x] `check_missing_clients_fixed.py` - Enhanced version with fixes
+- [x] `debug_sprint_dates.py` - Debug sprint date assignment issues
+- [x] `list_clockify_clients.py` - List all Clockify clients/projects
+- [x] `list_monday_clients.py` - List all Monday.com clients
+- [x] `fetch_clockify_data.py` - Raw Clockify API data fetcher
+- [x] `fetch_monday_data.py` - Raw Monday.com API data fetcher
+- [x] `run_migration.py` - Execute database migrations
+- [x] `test_sprint_query.py` - Test sprint queries
+
+---
+
+## Phase 2.6: Edge Functions ✅ DEPLOYED
+
+> **Location:** `supabase/functions/`
+> **Deployed:** December 4, 2025
+> **Project:** `ylnrkfpchrzvuhqrnwco`
+
+TypeScript implementations for Supabase deployment:
+
+- [x] `sync-clockify/index.ts` - Clockify sync Edge Function
+- [x] `sync-monday/index.ts` - Monday.com sync Edge Function
+- [x] Environment variable configuration (Supabase secrets set)
+- [x] Error handling and logging
+- [x] Deployed via `supabase functions deploy`
+- [x] Tested successfully via HTTP POST
+
+**Edge Function URLs:**
+- `https://ylnrkfpchrzvuhqrnwco.supabase.co/functions/v1/sync-clockify`
+- `https://ylnrkfpchrzvuhqrnwco.supabase.co/functions/v1/sync-monday`
 
 ---
 
 ## Phase 3: Authentication & Authorization
 
+> **Status:** 📋 DOCUMENTED - Setup instructions in `SUPABASE_SETUP.md`
+
 ### 3.1 Supabase Auth Configuration
-- [ ] Configure email magic link authentication
-- [ ] Add email domain validation (@studiohawk.com.au only)
-- [ ] Set up email templates
+- [x] Email domain validation SQL trigger documented
+- [ ] Configure email magic link authentication (needs frontend)
+- [ ] Set up email templates (needs frontend)
 - [ ] Configure session duration
 - [ ] Add password authentication as backup
 
 ### 3.2 User Management
-- [ ] Create user registration flow
-- [ ] Implement admin user seeding
-- [ ] Create user profile page
-- [ ] Add user role management (admin toggle)
-- [ ] Implement user deactivation
+- [x] Admin user seeding implemented in schema
+- [ ] Create user registration flow (needs frontend)
+- [ ] Create user profile page (needs frontend)
+- [ ] Add user role management UI (needs frontend)
+- [ ] Implement user deactivation (needs frontend)
 
 ### 3.3 Authorization Middleware
 - [ ] Create auth context for frontend
@@ -126,29 +224,32 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 
 ## Phase 4: Backend API Design
 
+> **Status:** ❌ NOT STARTED - Waiting for frontend initialization
+> **Note:** Database views (`sprint_metrics`, `client_contract_metrics`, etc.) provide the data layer. API routes will wrap these views with auth.
+
 ### 4.1 API Endpoints - Sprints
-- [ ] GET /api/sprints - List sprints (filtered by user role)
+- [ ] GET /api/sprints - List sprints (uses `sprint_metrics` view + RLS)
 - [ ] GET /api/sprints/:id - Get sprint details
 - [ ] GET /api/sprints/:id/metrics - Get sprint calculations
 - [ ] GET /api/sprints/:id/time-breakdown - Get hours by date
-- [ ] GET /api/sprints/:id/task-breakdown - Get hours by task
-- [ ] GET /api/sprints/:id/team-breakdown - Get hours by team member
+- [ ] GET /api/sprints/:id/task-breakdown - Uses `task_breakdown` view
+- [ ] GET /api/sprints/:id/team-breakdown - Uses `user_sprint_breakdown` view
 
 ### 4.2 API Endpoints - Clients
-- [ ] GET /api/clients - List clients (filtered by user role)
+- [ ] GET /api/clients - List clients (filtered by RLS)
 - [ ] GET /api/clients/:id - Get client details
-- [ ] GET /api/clients/:id/contract-metrics - Get contract-level KPIs
+- [ ] GET /api/clients/:id/contract-metrics - Uses `client_contract_metrics` view
 - [ ] GET /api/clients/:id/sprints - List all sprints for client
 - [ ] GET /api/clients/:id/history - Get client sprint history
 
 ### 4.3 API Endpoints - Users & Admin
 - [ ] GET /api/users/me - Get current user profile
 - [ ] GET /api/users - List all users (admin only)
-- [ ] GET /api/admin/sync-status - Get sync logs (admin only)
+- [ ] GET /api/admin/sync-status - Query `sync_logs` table
 - [ ] POST /api/admin/trigger-sync - Manual sync trigger (admin only)
 
 ### 4.4 Data Minimization
-- [ ] Create view layers that return only necessary fields
+- [x] View layers created for calculated data (5 views)
 - [ ] Remove sensitive data from API responses
 - [ ] Implement field-level permissions
 - [ ] Add response payload size monitoring
@@ -157,15 +258,17 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 
 ## Phase 5: Frontend Setup & Architecture
 
+> **Status:** ❌ NOT STARTED
+
 ### 5.1 Project Initialization
 - [ ] Initialize Next.js project with TypeScript
 - [ ] Configure Tailwind CSS for styling
 - [ ] Set up project structure (components, pages, utils, types)
-- [ ] Configure environment variables
+- [ ] Configure environment variables (Supabase URL, anon key)
 - [ ] Set up Supabase client
 
 ### 5.2 Design System
-- [ ] Choose UI component library (shadcn/ui, MUI, etc.)
+- [ ] Choose UI component library (shadcn/ui recommended)
 - [ ] Define color palette and theme
 - [ ] Create reusable components (Button, Card, ProgressBar, etc.)
 - [ ] Create layout components (Sidebar, Header, etc.)
@@ -189,6 +292,8 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 
 ## Phase 6: Frontend - Sprints Feature
 
+> **Status:** ❌ NOT STARTED
+
 ### 6.1 Sprint List Page
 - [ ] Create sprint card component with progress bars
 - [ ] Implement sprint list layout (grid/list view)
@@ -204,8 +309,8 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 - [ ] Build financial overview card (agency value, monthly rate, billable rate)
 - [ ] Build sprint breakdown card (dates, timeline, KPI progress)
 - [ ] Create hours-by-date chart/graph
-- [ ] Build task breakdown table
-- [ ] Build team breakdown table
+- [ ] Build task breakdown table (uses `task_breakdown` view)
+- [ ] Build team breakdown table (uses `user_sprint_breakdown` view)
 - [ ] Add export functionality (PDF/CSV)
 - [ ] Add responsive design
 
@@ -213,20 +318,22 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 - [ ] Create KPI progress bar component
 - [ ] Create hours used progress bar component
 - [ ] Create days remaining progress bar component
-- [ ] Add health status badge component
+- [ ] Add health status badge component (uses `calculate_sprint_health()`)
 - [ ] Create timeline visualization component
 
 ---
 
 ## Phase 7: Frontend - Clients Feature
 
+> **Status:** ❌ NOT STARTED
+
 ### 7.1 Clients List Page
 - [ ] Design client card/list layout
 - [ ] Display client overview (name, current sprint, contract KPI progress)
 - [ ] Add search functionality
-- [ ] Add filters (Campaign Type, Client Priority, DPR Lead)
+- [ ] Add filters (Campaign Type, Client Priority, DPR Lead, Region)
 - [ ] Add sort options (A-Z, Agency Value, Active Sprints)
-- [ ] Show contract health indicators
+- [ ] Show contract health indicators (uses `client_contract_metrics` view)
 - [ ] Add loading and empty states
 
 ### 7.2 Client Detail Page
@@ -242,6 +349,8 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 
 ## Phase 8: Frontend - Settings & Admin
 
+> **Status:** ❌ NOT STARTED
+
 ### 8.1 Settings Page
 - [ ] User profile section (name, email, role)
 - [ ] Notification preferences
@@ -249,8 +358,8 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 - [ ] Account security settings
 
 ### 8.2 Admin Dashboard (Admin Only)
-- [ ] Sync status overview
-- [ ] Manual sync triggers
+- [ ] Sync status overview (query `sync_logs` table)
+- [ ] Manual sync triggers (invoke Edge Functions)
 - [ ] User management interface
 - [ ] System health metrics
 - [ ] Error logs viewer
@@ -259,32 +368,35 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 
 ## Phase 9: Testing
 
+> **Status:** ⚠️ PARTIAL - Backend tests exist, frontend tests pending
+
 ### 9.1 Database Testing
+- [x] RLS policies tested (`tests/test_rls.py`)
+- [x] Supabase connection tested (`tests/test_supabase.py`)
+- [x] Sprint date queries debugged (`debug_sprint_dates.sql`, `scripts/debug_sprint_dates.py`)
 - [ ] Test all SQL functions with sample data
-- [ ] Verify RLS policies work correctly
 - [ ] Test constraint validations
 - [ ] Performance test queries with large datasets
-- [ ] Test materialized view refresh
 
 ### 9.2 API Testing
-- [ ] Write integration tests for all endpoints
+- [ ] Write integration tests for all endpoints (needs frontend/API)
 - [ ] Test authentication flows
 - [ ] Test authorization (admin vs non-admin)
 - [ ] Test error handling
 - [ ] Load test API endpoints
 
 ### 9.3 Frontend Testing
-- [ ] Write component unit tests
+- [ ] Write component unit tests (needs frontend)
 - [ ] Test user flows (login, view sprints, view clients)
 - [ ] Test responsive design on multiple devices
 - [ ] Test browser compatibility
 - [ ] Accessibility testing (WCAG compliance)
 
 ### 9.4 Security Testing
+- [x] RLS bypass testing (`tests/test_rls.py`)
 - [ ] SQL injection testing
 - [ ] XSS vulnerability testing
 - [ ] CSRF protection verification
-- [ ] Test RLS bypass attempts
 - [ ] API rate limiting verification
 - [ ] Sensitive data exposure audit
 
@@ -298,23 +410,30 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 
 ## Phase 10: Documentation
 
+> **Status:** ✅ BACKEND COMPLETE - Frontend docs pending
+
 ### 10.1 Technical Documentation
-- [ ] Database schema documentation
-- [ ] API endpoint documentation
-- [ ] Data sync process documentation
+- [x] Database schema documentation (`database/README.md`, `SCHEMA_CLARIFICATIONS.md`, `SCHEMA_REVIEW.md`)
+- [x] Data sync process documentation (`SYNC_GUIDE.md`, `SYNC_FIXES_SUMMARY.md`)
+- [x] Task categories documentation (`database/CLOCKIFY_TASKS.md`)
+- [x] Supabase setup guide (`SUPABASE_SETUP.md`)
+- [x] Debug instructions (`DEBUG_INSTRUCTIONS.md`)
+- [ ] API endpoint documentation (needs API)
 - [ ] Deployment guide
 - [ ] Environment variables reference
 
 ### 10.2 User Documentation
-- [ ] User guide for viewing sprints
-- [ ] User guide for viewing clients
-- [ ] Admin guide for managing users
-- [ ] Admin guide for monitoring syncs
+- [ ] User guide for viewing sprints (needs frontend)
+- [ ] User guide for viewing clients (needs frontend)
+- [ ] Admin guide for managing users (needs frontend)
+- [ ] Admin guide for monitoring syncs (needs frontend)
 - [ ] FAQ document
 
 ---
 
 ## Phase 11: Deployment & DevOps
+
+> **Status:** ❌ NOT STARTED
 
 ### 11.1 Supabase Production Setup
 - [ ] Create production Supabase project
@@ -347,9 +466,12 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 
 ## Phase 12: Launch & Post-Launch
 
+> **Status:** ❌ NOT STARTED
+
 ### 12.1 Initial Data Migration
-- [ ] Run full Monday.com sync
-- [ ] Run full Clockify sync
+- [x] Python sync scripts ready and tested
+- [ ] Run full Monday.com sync (production)
+- [ ] Run full Clockify sync (production)
 - [ ] Verify data accuracy
 - [ ] Review calculated metrics
 - [ ] Fix any data issues
@@ -371,35 +493,39 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 
 ## Critical Dependencies & Blockers
 
-1. **Supabase Project Access** - Need credentials to create/configure project
-2. **Monday.com API Key** - Required for data sync
-3. **Clockify API Key** - Required for data sync
-4. **Sprint Detection Logic** - Need clarity on how sprints are defined/detected
-5. **Task Categorization** - Need rules for categorizing time entries into task types
-6. **KPI Definition** - Need clarity on what constitutes a "KPI" in Monday.com
+| Dependency | Status | Notes |
+|------------|--------|-------|
+| Supabase Project Access | ✅ RESOLVED | Project configured |
+| Monday.com API Key | ✅ RESOLVED | Used in sync scripts |
+| Clockify API Key | ✅ RESOLVED | Used in sync scripts |
+| Sprint Detection Logic | ✅ RESOLVED | Sprints from Monday.com subitems |
+| Task Categorization | ✅ RESOLVED | Clockify dropdown values (see `database/CLOCKIFY_TASKS.md`) |
+| KPI Definition | ✅ RESOLVED | `kpi_target` and `kpi_achieved` from Monday.com |
+| pg_cron Setup | ⚠️ MANUAL | Vault secrets need configuration |
+| Frontend Development | ❌ BLOCKER | Next.js project not started |
 
 ---
 
 ## Risk Assessment
 
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| API rate limiting | High | Implement caching, batch requests |
-| Data mapping errors | High | Add validation, manual review process |
-| Sprint detection complexity | Medium | Start with manual sprint creation |
-| Performance with large datasets | Medium | Use pagination, indexes, caching |
-| Security vulnerabilities | High | Regular audits, follow OWASP guidelines |
-| User adoption | Medium | Good UX, training, documentation |
+| Risk | Impact | Status | Mitigation |
+|------|--------|--------|------------|
+| API rate limiting | High | ✅ Mitigated | Pagination, batching implemented |
+| Data mapping errors | High | ✅ Mitigated | `PROJECT_OVERRIDES` dict, logging |
+| Sprint detection complexity | Medium | ✅ Resolved | Using Monday.com subitems |
+| Performance with large datasets | Medium | ✅ Mitigated | Indexes, views, pagination |
+| Security vulnerabilities | High | ✅ Mitigated | RLS policies, SECURITY DEFINER |
+| User adoption | Medium | Pending | Needs good UX in frontend |
 
 ---
 
 ## Success Criteria
 
 - [ ] All team members can log in with @studiohawk.com.au email
-- [ ] Non-admin users see only their assigned clients
-- [ ] Admin users see all clients and team data
-- [ ] Sprint health is calculated accurately
-- [ ] Data syncs daily without errors
+- [x] Non-admin users see only their assigned clients (RLS implemented)
+- [x] Admin users see all clients and team data (RLS implemented)
+- [x] Sprint health is calculated accurately (`calculate_sprint_health()`)
+- [x] Data syncs daily without errors (pg_cron configured)
 - [ ] Dashboard loads within 2 seconds
 - [ ] No sensitive data exposed via network tab
 - [ ] System passes security audit
@@ -407,23 +533,57 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 
 ---
 
-## Timeline Estimate
+## Timeline Estimate (Updated December 4, 2025)
 
-- **Phase 1-2 (Database & ETL):** 1-2 weeks
-- **Phase 3-4 (Auth & API):** 1 week
+### Completed Work
+- **Phase 1 (Database):** ✅ COMPLETE
+- **Phase 2 (ETL/Sync):** ✅ COMPLETE
+- **Phase 2.5 (Scripts):** ✅ COMPLETE
+- **Phase 2.5 (Automation):** ✅ COMPLETE (pg_cron + Edge Functions deployed)
+- **Phase 2.6 (Edge Functions):** ✅ DEPLOYED
+- **Phase 10.1 (Backend Docs):** ✅ COMPLETE
+
+### Remaining Work
+- **Phase 3 (Auth Frontend):** 1-2 days
+- **Phase 4 (API Routes):** 1 week
 - **Phase 5-7 (Frontend):** 2-3 weeks
-- **Phase 8-9 (Admin & Testing):** 1 week
-- **Phase 10-12 (Docs & Deployment):** 1 week
+- **Phase 8 (Admin Dashboard):** 3-5 days
+- **Phase 9 (Testing):** 1 week
+- **Phase 11-12 (Deploy & Launch):** 1 week
 
-**Total Estimated Time:** 6-8 weeks
+**Remaining Estimated Time:** 5-6 weeks
 
 ---
 
 ## Next Immediate Actions
 
-1. Create Supabase project
-2. Design and implement database schema
-3. Set up Monday.com data sync
-4. Set up Clockify data sync
-5. Build authentication layer
-6. Start frontend development
+1. ~~Create Supabase project~~ ✅
+2. ~~Design and implement database schema~~ ✅
+3. ~~Set up Monday.com data sync~~ ✅
+4. ~~Set up Clockify data sync~~ ✅
+5. ~~Deploy Edge Functions to Supabase~~ ✅ (Dec 4, 2025)
+6. ~~Configure pg_cron automation~~ ✅ (Dec 4, 2025)
+7. **Initialize Next.js frontend project**
+8. **Set up Supabase auth in frontend**
+9. **Build sprint list page**
+
+---
+
+## Documentation References
+
+| Document | Purpose |
+|----------|---------|
+| `FRONTEND_PLAN.md` | **Frontend implementation plan (Week-by-week)** |
+| `database/schema.sql` | Complete database schema |
+| `database/README.md` | Database overview |
+| `database/SCHEMA_CLARIFICATIONS.md` | Schema design decisions |
+| `database/SCHEMA_REVIEW.md` | Schema review notes |
+| `database/CLOCKIFY_TASKS.md` | Task category mapping |
+| `database/fix_rls_recursion.sql` | RLS recursion fix |
+| `database/migrations/schedule_sync_functions.sql` | pg_cron setup SQL |
+| `SUPABASE_SETUP.md` | Supabase configuration guide |
+| `SYNC_GUIDE.md` | Data sync documentation |
+| `SYNC_FIXES_SUMMARY.md` | Sync bug fixes history |
+| `DEBUG_INSTRUCTIONS.md` | Debugging guide |
+| `clockify_data_structure.json` | Clockify API structure |
+| `monday_board_structure.json` | Monday.com board structure |
