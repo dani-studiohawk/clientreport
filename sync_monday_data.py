@@ -12,7 +12,7 @@ import os
 import re
 import json
 import requests
-from datetime import datetime
+from datetime import datetime, timezone
 from supabase import create_client, Client
 from dotenv import load_dotenv
 
@@ -40,8 +40,8 @@ def log_sync(source, status, records_synced=0, error_message=None):
     try:
         supabase.table('sync_logs').insert({
             'source': source,
-            'sync_start': datetime.now(datetime.UTC).isoformat(),
-            'sync_end': datetime.now(datetime.UTC).isoformat(),
+            'sync_start': datetime.now(timezone.utc).isoformat(),
+            'sync_end': datetime.now(timezone.utc).isoformat(),
             'status': status,
             'records_synced': records_synced,
             'error_message': error_message
@@ -317,7 +317,7 @@ def parse_client_item(item):
         'last_report_date': parse_date(columns.get('Last Report Date', {}).get('value')),
         'last_invoice_date': parse_date(columns.get('Last Invoice Date', {}).get('value')),
         'is_active': True,  # Assume active if in board
-        'updated_at': datetime.now(datetime.UTC).isoformat()
+        'updated_at': datetime.now(timezone.utc).isoformat()
     }
 
     # Remove None values
@@ -357,7 +357,7 @@ def parse_sprint_subitem(subitem, client_id):
         'kpi_target': int(kpi_target) if kpi_target else 0,
         'kpi_achieved': int(kpi_achieved) if kpi_achieved else 0,
         'monthly_rate': monthly_rate,
-        'updated_at': datetime.now(datetime.UTC).isoformat()
+        'updated_at': datetime.now(timezone.utc).isoformat()
     }
 
     # Remove None values
