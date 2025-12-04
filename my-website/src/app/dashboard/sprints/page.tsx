@@ -31,7 +31,7 @@ export default async function SprintsPage({
   // Default activeOnly to true if not specified
   const activeOnly = params.activeOnly !== 'false'
   
-  // Get sprints with client info including report_status to filter paused
+  // Get sprints with client info including is_active to filter paused
   let query = supabase
     .from('sprints')
     .select(`
@@ -41,6 +41,7 @@ export default async function SprintsPage({
         name,
         monthly_hours,
         report_status,
+        is_active,
         dpr_lead_id,
         dpr_lead:users!clients_dpr_lead_id_fkey (
           id,
@@ -80,12 +81,11 @@ export default async function SprintsPage({
     }
   }
 
-  // Add hours to sprints and filter out paused campaigns
+  // Add hours to sprints and filter out inactive clients (paused, refunded, completed campaigns)
   let sprintsWithHours: SprintWithCalculations[] = (sprints || [])
     .filter(sprint => {
-      // Filter out paused campaigns (Campaign Pause in report_status)
-      const reportStatus = sprint.clients?.report_status
-      if (reportStatus === 'Campaign Pause') return false
+      // Filter out sprints from inactive clients (paused, refunded, completed campaigns)
+      if (sprint.clients?.is_active === false) return false
       return true
     })
     .map(sprint => ({

@@ -126,7 +126,8 @@ def fetch_clockify_time_entries(user_id, start_date=None, end_date=None):
             'start': start_str,
             'end': end_str,
             'page': page,
-            'page-size': page_size
+            'page-size': page_size,
+            'hydrated': 'true'  # Include full task/project details
         }
 
         response = requests.get(url, headers=headers, params=params)

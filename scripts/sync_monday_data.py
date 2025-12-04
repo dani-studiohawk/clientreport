@@ -117,6 +117,34 @@ def extract_sprint_number(sprint_label):
 
     return None
 
+def determine_sprint_status(group_title, start_date, end_date):
+    """
+    Determine sprint status based on dates only.
+    Client-level status (paused, cancelled) is handled via client.is_active
+    
+    Status values:
+    - 'active': Currently running sprint (today is between start and end)
+    - 'completed': Sprint end date has passed
+    - 'upcoming': Sprint hasn't started yet
+    """
+    from datetime import date
+    
+    today = date.today()
+    
+    # Parse dates if they're strings
+    if isinstance(start_date, str):
+        start_date = date.fromisoformat(start_date)
+    if isinstance(end_date, str):
+        end_date = date.fromisoformat(end_date)
+    
+    # Date-based status only
+    if end_date < today:
+        return 'completed'
+    elif start_date > today:
+        return 'upcoming'
+    else:
+        return 'active'
+
 def parse_date(date_json):
     """Extract date from Monday.com date field JSON"""
     if not date_json:
@@ -327,7 +355,7 @@ def sync_clients_and_sprints():
                             if 'subitems' in item and item['subitems']:
                                 for subitem in item['subitems']:
                                     try:
-                                        sprint_data = parse_sprint_subitem(subitem, client_id)
+                                        sprint_data = parse_sprint_subitem(subitem, client_id, group_title)
 
                                         if sprint_data:
                                             supabase.table('sprints').upsert(
@@ -416,7 +444,7 @@ def parse_client_item(item, group_title=None, region=None):
     # Remove None values
     return {k: v for k, v in client_data.items() if v is not None}
 
-def parse_sprint_subitem(subitem, client_id):
+def parse_sprint_subitem(subitem, client_id, group_title=None):
     """Parse Monday.com subitem into sprint data"""
     columns = {col['column']['title']: col for col in subitem['column_values']}
 
@@ -439,6 +467,9 @@ def parse_sprint_subitem(subitem, client_id):
     # Parse monthly rate (sprint-level)
     monthly_rate = parse_numeric(columns.get('Monthly Rate (AUD)', {}).get('text'))
 
+    # Determine sprint status based on group and dates
+    status = determine_sprint_status(group_title, start_date, end_date)
+
     sprint_data = {
         'monday_subitem_id': int(subitem['id']),
         'client_id': client_id,
@@ -450,6 +481,7 @@ def parse_sprint_subitem(subitem, client_id):
         'kpi_target': int(kpi_target) if kpi_target else 0,
         'kpi_achieved': int(kpi_achieved) if kpi_achieved else 0,
         'monthly_rate': monthly_rate,
+        'status': status,
         'updated_at': datetime.now(timezone.utc).isoformat()
     }
 
