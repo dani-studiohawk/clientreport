@@ -65,16 +65,42 @@ def fetch_clockify_users():
     return response.json()
 
 def fetch_clockify_projects():
-    """Fetch all projects from Clockify workspace"""
+    """Fetch all projects from Clockify workspace with pagination"""
     headers = {'X-Api-Key': CLOCKIFY_API_KEY}
     url = f'{CLOCKIFY_API_URL}/workspaces/{CLOCKIFY_WORKSPACE_ID}/projects'
 
-    response = requests.get(url, headers=headers)
+    all_projects = []
+    page = 1
+    page_size = 500  # Max page size for projects
+    
+    while True:
+        params = {
+            'page': page,
+            'page-size': page_size,
+            'archived': 'false'  # Only active projects
+        }
+        response = requests.get(url, headers=headers, params=params)
 
-    if response.status_code != 200:
-        raise Exception(f"Clockify API error fetching projects: {response.status_code} - {response.text}")
+        if response.status_code != 200:
+            raise Exception(f"Clockify API error fetching projects: {response.status_code} - {response.text}")
 
-    return response.json()
+        projects = response.json()
+        if not projects:
+            break
+            
+        all_projects.extend(projects)
+        
+        if len(projects) < page_size:
+            break
+            
+        page += 1
+        
+        # Safety limit
+        if page > 20:
+            print("Warning: Reached page limit for projects")
+            break
+
+    return all_projects
 
 def fetch_clockify_time_entries(user_id, start_date=None, end_date=None):
     """Fetch time entries for a specific user"""

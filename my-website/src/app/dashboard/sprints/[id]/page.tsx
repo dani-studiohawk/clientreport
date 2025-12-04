@@ -120,7 +120,7 @@ export default async function SprintDetailPage({ params }: PageProps) {
       entry_date,
       hours,
       description,
-      clockify_task_name,
+      task_category,
       users:user_id (
         id,
         name
@@ -136,7 +136,7 @@ export default async function SprintDetailPage({ params }: PageProps) {
   // Group by task
   const taskBreakdown: Record<string, number> = {}
   timeEntries?.forEach(entry => {
-    const task = entry.clockify_task_name || 'Other'
+    const task = entry.task_category || 'Other'
     taskBreakdown[task] = (taskBreakdown[task] || 0) + (entry.hours || 0)
   })
   const taskBreakdownSorted = Object.entries(taskBreakdown)

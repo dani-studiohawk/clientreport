@@ -65,21 +65,18 @@ export default async function SprintsPage({
     console.error('Error fetching sprints:', error)
   }
 
-  // Get hours used per sprint from time_entries
+  // Get hours used per sprint using database function (much faster than fetching all entries)
   const sprintIds = sprints?.map(s => s.id) || []
   let hoursMap: Record<string, number> = {}
   
   if (sprintIds.length > 0) {
-    const { data: timeData } = await supabase
-      .from('time_entries')
-      .select('sprint_id, hours')
-      .in('sprint_id', sprintIds)
+    const { data: hoursData } = await supabase
+      .rpc('get_sprint_hours', { sprint_ids: sprintIds })
     
-    if (timeData) {
-      hoursMap = timeData.reduce((acc, entry) => {
-        acc[entry.sprint_id] = (acc[entry.sprint_id] || 0) + (entry.hours || 0)
-        return acc
-      }, {} as Record<string, number>)
+    if (hoursData) {
+      hoursData.forEach((row: { sprint_id: string; total_hours: number }) => {
+        hoursMap[row.sprint_id] = row.total_hours || 0
+      })
     }
   }
 
