@@ -41,7 +41,11 @@ export default async function SprintsPage({
         name,
         monthly_hours,
         report_status,
-        dpr_lead_id
+        dpr_lead_id,
+        dpr_lead:users!clients_dpr_lead_id_fkey (
+          id,
+          name
+        )
       )
     `)
 

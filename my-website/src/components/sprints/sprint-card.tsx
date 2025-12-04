@@ -25,6 +25,10 @@ export interface SprintWithCalculations {
     monthly_hours: number | null
     report_status?: string | null
     dpr_lead_id?: string | null
+    dpr_lead?: {
+      id: string
+      name: string
+    } | null
   } | null
   hours_used: number
 }
@@ -98,6 +102,9 @@ export function SprintCard({ sprint }: SprintCardProps) {
               </h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 Sprint #{sprint.sprint_number || '?'}
+                {sprint.clients?.dpr_lead?.name && (
+                  <span className="ml-2 text-gray-400">• {sprint.clients.dpr_lead.name}</span>
+                )}
               </p>
             </div>
             <Badge className={`${healthInfo.color} flex items-center gap-1`}>

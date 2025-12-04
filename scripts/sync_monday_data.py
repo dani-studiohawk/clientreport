@@ -138,6 +138,22 @@ def parse_numeric(value_json):
     except:
         return None
 
+def get_column_display_value(column_data):
+    """
+    Get the display value from a column, handling lookup/mirror columns.
+    Lookup columns use 'display_value', regular columns use 'text'.
+    """
+    if not column_data:
+        return None
+    
+    # For mirror/lookup columns, use display_value
+    display_value = column_data.get('display_value')
+    if display_value:
+        return display_value
+    
+    # Fall back to text for regular columns
+    return column_data.get('text')
+
 def fetch_monday_board_data(board_id):
     """Fetch complete board data from Monday.com including subitems with pagination"""
 
@@ -191,22 +207,36 @@ def fetch_monday_board_data(board_id):
                       name
                       column_values {
                         id
+                        type
                         column {
                           title
                         }
                         value
                         text
+                        ... on MirrorValue {
+                          display_value
+                        }
+                        ... on BoardRelationValue {
+                          display_value
+                        }
                       }
                       subitems {
                         id
                         name
                         column_values {
                           id
+                          type
                           column {
                             title
                           }
                           value
                           text
+                          ... on MirrorValue {
+                            display_value
+                          }
+                          ... on BoardRelationValue {
+                            display_value
+                          }
                         }
                       }
                     }
@@ -369,7 +399,7 @@ def parse_client_item(item, group_title=None, region=None):
         'dpr_lead_id': dpr_lead_id,
         'dpr_support_ids': dpr_support_ids if dpr_support_ids else None,
         'seo_lead_name': columns.get('SEO Lead', {}).get('text'),
-        'agency_value': parse_numeric(columns.get('Agency Value', {}).get('text')),
+        'agency_value': parse_numeric(get_column_display_value(columns.get('Agency Value', {}))),
         'client_priority': columns.get('Client Priority', {}).get('text'),
         'campaign_type': columns.get('Campaign Type', {}).get('text'),
         'campaign_start_date': parse_date(columns.get('Campaign Start Date', {}).get('value')),
