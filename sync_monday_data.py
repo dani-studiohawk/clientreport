@@ -21,7 +21,11 @@ load_dotenv()
 
 # Configuration
 MONDAY_API_KEY = os.getenv('MONDAY_API_KEY')
-MONDAY_BOARD_ID = os.getenv('MONDAY_AU_BOARD_ID')
+MONDAY_BOARD_IDS = {
+    'AU': os.getenv('MONDAY_AU_BOARD_ID'),
+    'US': os.getenv('MONDAY_US_BOARD_ID'),
+    'UK': os.getenv('MONDAY_UK_BOARD_ID')
+}
 SUPABASE_URL = os.getenv('SUPABASE_URL')
 SUPABASE_SERVICE_KEY = os.getenv('SUPABASE_SERVICE_ROLE_KEY')
 
@@ -133,7 +137,7 @@ def parse_numeric(value_json):
     except:
         return None
 
-def fetch_monday_board_data():
+def fetch_monday_board_data(board_id):
     """Fetch complete board data from Monday.com including subitems"""
     query = """
     {
@@ -171,7 +175,7 @@ def fetch_monday_board_data():
         }
       }
     }
-    """ % MONDAY_BOARD_ID
+    """ % board_id
 
     headers = {
         'Authorization': f'Bearer {MONDAY_API_KEY}',
@@ -194,64 +198,83 @@ def sync_clients_and_sprints():
     """Main sync function"""
     print("🔄 Starting Monday.com sync...")
 
+    total_clients_synced = 0
+    total_sprints_synced = 0
+
     try:
-        # Fetch data from Monday.com
-        print("📥 Fetching board data from Monday.com...")
-        board_data = fetch_monday_board_data()
+        # Sync each board (AU, US, UK)
+        for region, board_id in MONDAY_BOARD_IDS.items():
+            if not board_id:
+                print(f"⚠️ Skipping {region} board - no board ID configured")
+                continue
 
-        clients_synced = 0
-        sprints_synced = 0
+            print(f"\n🌍 Syncing {region} board (ID: {board_id})...")
 
-        # Process each group
-        for group in board_data['groups']:
-            group_title = group['title']
-            print(f"\n📂 Processing group: {group_title}")
+            try:
+                # Fetch data from Monday.com
+                board_data = fetch_monday_board_data(board_id)
 
-            # Process each item (client)
-            items = group['items_page']['items']
+                clients_synced = 0
+                sprints_synced = 0
 
-            for item in items:
-                try:
-                    # Parse client data
-                    client_data = parse_client_item(item)
+                # Process each group
+                for group in board_data['groups']:
+                    group_title = group['title']
+                    print(f"\n📂 Processing group: {group_title}")
 
-                    # Upsert client
-                    client_result = supabase.table('clients').upsert(
-                        client_data,
-                        on_conflict='monday_item_id'
-                    ).execute()
+                    # Process each item (client)
+                    items = group['items_page']['items']
 
-                    client_id = client_result.data[0]['id']
-                    clients_synced += 1
-                    print(f"  ✅ Client: {client_data['name']}")
+                    for item in items:
+                        try:
+                            # Parse client data
+                            client_data = parse_client_item(item)
 
-                    # Process subitems (sprints)
-                    if 'subitems' in item and item['subitems']:
-                        for subitem in item['subitems']:
-                            try:
-                                sprint_data = parse_sprint_subitem(subitem, client_id)
+                            # Upsert client
+                            client_result = supabase.table('clients').upsert(
+                                client_data,
+                                on_conflict='monday_item_id'
+                            ).execute()
 
-                                if sprint_data:
-                                    supabase.table('sprints').upsert(
-                                        sprint_data,
-                                        on_conflict='monday_subitem_id'
-                                    ).execute()
+                            client_id = client_result.data[0]['id']
+                            clients_synced += 1
+                            print(f"  ✅ Client: {client_data['name']}")
 
-                                    sprints_synced += 1
-                                    print(f"    ↳ Sprint: {sprint_data['name']} (#{sprint_data.get('sprint_number', '?')})")
+                            # Process subitems (sprints)
+                            if 'subitems' in item and item['subitems']:
+                                for subitem in item['subitems']:
+                                    try:
+                                        sprint_data = parse_sprint_subitem(subitem, client_id)
 
-                            except Exception as e:
-                                print(f"    ⚠️ Error syncing sprint {subitem['name']}: {e}")
+                                        if sprint_data:
+                                            supabase.table('sprints').upsert(
+                                                sprint_data,
+                                                on_conflict='monday_subitem_id'
+                                            ).execute()
 
-                except Exception as e:
-                    print(f"  ⚠️ Error syncing client {item['name']}: {e}")
+                                            sprints_synced += 1
+                                            print(f"    ↳ Sprint: {sprint_data['name']} (#{sprint_data.get('sprint_number', '?')})")
+
+                                    except Exception as e:
+                                        print(f"    ⚠️ Error syncing sprint {subitem['name']}: {e}")
+
+                        except Exception as e:
+                            print(f"  ⚠️ Error syncing client {item['name']}: {e}")
+
+                print(f"\n📊 {region} board complete: {clients_synced} clients, {sprints_synced} sprints")
+                total_clients_synced += clients_synced
+                total_sprints_synced += sprints_synced
+
+            except Exception as e:
+                print(f"❌ Error syncing {region} board: {e}")
+                continue
 
         # Log success
-        log_sync('monday', 'success', clients_synced + sprints_synced)
+        log_sync('monday', 'success', total_clients_synced + total_sprints_synced)
 
         print(f"\n✅ Sync complete!")
-        print(f"   Clients synced: {clients_synced}")
-        print(f"   Sprints synced: {sprints_synced}")
+        print(f"   Total clients synced: {total_clients_synced}")
+        print(f"   Total sprints synced: {total_sprints_synced}")
 
         return True
 
@@ -342,9 +365,10 @@ def parse_sprint_subitem(subitem, client_id):
 
 if __name__ == '__main__':
     # Check environment variables
-    if not all([MONDAY_API_KEY, MONDAY_BOARD_ID, SUPABASE_URL, SUPABASE_SERVICE_KEY]):
+    board_ids_available = [bid for bid in MONDAY_BOARD_IDS.values() if bid]
+    if not all([MONDAY_API_KEY, board_ids_available, SUPABASE_URL, SUPABASE_SERVICE_KEY]):
         print("❌ Error: Missing required environment variables")
-        print("Required: MONDAY_API_KEY, MONDAY_AU_BOARD_ID, SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY")
+        print("Required: MONDAY_API_KEY, at least one MONDAY_*_BOARD_ID, SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY")
         exit(1)
 
     # Run sync

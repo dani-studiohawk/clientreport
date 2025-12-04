@@ -131,6 +131,30 @@ def map_clockify_user_to_internal(clockify_email):
 
     return None
 
+def normalize_name(name):
+    """Normalize a name by converting to lowercase and removing spaces/punctuation"""
+    if not name:
+        return ""
+    import re
+    # Remove spaces, punctuation, and convert to lowercase
+    return re.sub(r'[^a-zA-Z0-9]', '', name.lower())
+
+# Manual mapping overrides for projects that don't map cleanly
+MANUAL_PROJECT_MAPPINGS = {
+    # Clockify project name -> Supabase client name
+    "Fat Burners Only": "Fat Burners Only",  # Map to the client name that exists
+    "Grace Love Lace": "Grace Loves Lace",
+    "IconByDesign": "Icon By Design",
+    "LuxoLiving": "Luxo Living",
+    "NutritionWarehouse": "Nutrition Warehouse",
+    "Moon Pig": "Moonpig",
+    "Italian Street Kitchen": "Italian Street Kitchen",
+    "Lifespan Fitness": "Lifespan Fitness",
+    "OSHC Australia Pty Ltd": "OSHC Australia Pty Ltd",
+    "Pack & Send": "Pack & Send",
+    # Add any other manual mappings here
+}
+
 def map_project_to_client(project_name):
     """
     Map Clockify project name to client ID
@@ -140,6 +164,13 @@ def map_project_to_client(project_name):
         return None
 
     try:
+        # Check manual mappings first
+        manual_client_name = MANUAL_PROJECT_MAPPINGS.get(project_name)
+        if manual_client_name:
+            response = supabase.table('clients').select('id').ilike('name', manual_client_name).execute()
+            if response.data and len(response.data) > 0:
+                return response.data[0]['id']
+
         # Try exact match first
         response = supabase.table('clients').select('id, name').ilike('name', project_name).execute()
         if response.data and len(response.data) > 0:
@@ -149,10 +180,18 @@ def map_project_to_client(project_name):
         response = supabase.table('clients').select('id, name').execute()
         if response.data:
             project_lower = project_name.lower()
+            project_normalized = normalize_name(project_name)
+            
             for client in response.data:
                 client_lower = client['name'].lower()
-                # Check if project name contains client name or vice versa
+                client_normalized = normalize_name(client['name'])
+                
+                # Check if project name contains client name or vice versa (original logic)
                 if project_lower in client_lower or client_lower in project_lower:
+                    return client['id']
+                
+                # Check normalized versions (removes spaces/punctuation)
+                if project_normalized in client_normalized or client_normalized in project_normalized:
                     return client['id']
 
     except Exception as e:
@@ -243,6 +282,8 @@ def sync_time_entries(days_back=90):
             if client_id:
                 project_client_map[project['id']] = client_id
                 print(f"   ✓ Mapped project '{project['name']}' to client")
+            else:
+                print(f"   ❌ Could not map project '{project['name']}' to any client")
 
         # Set date range
         end_date = datetime.utcnow()
