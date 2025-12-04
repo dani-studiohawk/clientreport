@@ -199,7 +199,7 @@ def map_project_to_client(project_name):
 
     return None
 
-def find_sprint_for_date(client_id, entry_date):
+def find_sprint_for_date(client_id, entry_date, debug=False):
     """Find the sprint that a time entry belongs to based on date"""
     if not client_id or not entry_date:
         return None
@@ -214,13 +214,26 @@ def find_sprint_for_date(client_id, entry_date):
         # Query sprints for this client where entry_date falls within sprint dates
         # Using PostgreSQL date comparison
         response = supabase.table('sprints') \
-            .select('id') \
+            .select('id, name, start_date, end_date') \
             .eq('client_id', client_id) \
             .lte('start_date', entry_date_str) \
             .gte('end_date', entry_date_str) \
             .execute()
 
+        if debug and not response.data:
+            # Debug: Check all sprints for this client
+            all_sprints = supabase.table('sprints') \
+                .select('name, start_date, end_date') \
+                .eq('client_id', client_id) \
+                .execute()
+            print(f"      DEBUG: Query for {entry_date_str} returned 0 results")
+            print(f"      All sprints for client_id {client_id}:")
+            for s in all_sprints.data:
+                print(f"        - {s['name']}: {s['start_date']} to {s['end_date']}")
+
         if response.data and len(response.data) > 0:
+            if debug:
+                print(f"      ✓ Found sprint: {response.data[0]['name']}")
             return response.data[0]['id']
 
     except Exception as e:
@@ -352,6 +365,13 @@ def sync_time_entries(days_back=90):
                         skip_reasons['no_hours'] += 1
                         continue
 
+                    # Get project name (MOVED UP - needed for debug logging)
+                    project_name = None
+                    for proj in clockify_projects:
+                        if proj['id'] == project_id:
+                            project_name = proj['name']
+                            break
+
                     # Map to client
                     client_id = project_client_map.get(project_id)
 
@@ -359,14 +379,15 @@ def sync_time_entries(days_back=90):
                     sprint_id = None
                     if client_id:
                         # Find sprint for client work
-                        sprint_id = find_sprint_for_date(client_id, entry_date)
+                        sprint_id = find_sprint_for_date(client_id, entry_date, debug=False)
 
                         if not sprint_id:
-                            # Client work but no sprint found - this shouldn't happen
+                            # Client work but no sprint found - enable debug and try again to see what's wrong
+                            print(f"   ⚠️ No sprint found for {project_name} on {entry_date}")
+                            find_sprint_for_date(client_id, entry_date, debug=True)
                             entries_skipped += 1
                             user_entries_skipped += 1
                             skip_reasons['no_sprint'] += 1
-                            print(f"   ⚠️ No sprint found for {project_name} on {entry_date}")
                             continue
                     else:
                         # Non-client work - still track it but without sprint
@@ -374,13 +395,6 @@ def sync_time_entries(days_back=90):
 
                     # Get task name
                     task_category = task.get('name') if task else None
-
-                    # Get project name
-                    project_name = None
-                    for proj in clockify_projects:
-                        if proj['id'] == project_id:
-                            project_name = proj['name']
-                            break
 
                     # Create time entry data
                     time_entry_data = {
