@@ -135,7 +135,7 @@ CREATE TABLE time_entries (
     clockify_id TEXT UNIQUE NOT NULL,
 
     -- Relationships
-    sprint_id UUID REFERENCES sprints(id) ON DELETE SET NULL,
+    sprint_id UUID REFERENCES sprints(id) ON DELETE SET NULL, -- NULL for non-client work (internal, training, etc.)
     user_id UUID NOT NULL REFERENCES users(id),
     project_id UUID REFERENCES clockify_projects(id),
 
@@ -515,6 +515,27 @@ GROUP BY
     te.sprint_id, s.client_id, c.name, s.name,
     te.user_id, u.name, total_sprint.hours
 ORDER BY te.sprint_id, total_hours DESC;
+
+-- Non-client work breakdown view: Hours for internal/non-client projects
+CREATE OR REPLACE VIEW non_client_work_breakdown AS
+SELECT
+    te.user_id,
+    u.name AS user_name,
+    te.project_name,
+    te.task_category,
+    DATE_TRUNC('month', te.entry_date) AS month,
+    COUNT(te.id) AS entry_count,
+    SUM(te.hours) AS total_hours,
+    ROUND(AVG(te.hours), 2) AS avg_hours_per_entry,
+    MIN(te.entry_date) AS first_entry_date,
+    MAX(te.entry_date) AS last_entry_date
+FROM time_entries te
+JOIN users u ON te.user_id = u.id
+WHERE te.sprint_id IS NULL  -- Only non-client work
+GROUP BY
+    te.user_id, u.name, te.project_name,
+    te.task_category, DATE_TRUNC('month', te.entry_date)
+ORDER BY month DESC, total_hours DESC;
 
 -- ============================================================================
 -- STATUS AUTO-CALCULATION

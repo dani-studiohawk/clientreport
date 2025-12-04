@@ -161,9 +161,11 @@ python sync_clockify_data.py
 
 **Why entries might be skipped:**
 - Entry has 0 hours (running timer not stopped)
-- Project not mapped to a client
-- Entry date doesn't fall within any sprint dates
+- Entry date doesn't fall within any sprint dates (for client work)
 - User not found in system
+
+**Non-client work tracking:**
+Time entries for internal projects (training, admin, internal meetings, etc.) that don't map to a Monday.com client are now tracked with `sprint_id = NULL`. These entries are still synced and can be viewed separately using the `non_client_work_breakdown` view.
 
 **Verify in Supabase:**
 ```sql
@@ -184,6 +186,19 @@ LIMIT 20;
 
 -- Check sync logs
 SELECT * FROM sync_logs ORDER BY created_at DESC LIMIT 10;
+
+-- Check non-client work
+SELECT
+  u.name as user_name,
+  te.project_name,
+  te.task_category,
+  te.entry_date,
+  te.hours
+FROM time_entries te
+JOIN users u ON te.user_id = u.id
+WHERE te.sprint_id IS NULL
+ORDER BY te.entry_date DESC
+LIMIT 20;
 ```
 
 ---
@@ -219,6 +234,17 @@ SELECT * FROM task_breakdown WHERE sprint_id = 'your-sprint-uuid';
 
 -- User breakdown for a sprint
 SELECT * FROM user_sprint_breakdown WHERE sprint_id = 'your-sprint-uuid';
+
+-- Non-client work breakdown
+SELECT
+  user_name,
+  project_name,
+  task_category,
+  month,
+  total_hours
+FROM non_client_work_breakdown
+ORDER BY month DESC, total_hours DESC
+LIMIT 20;
 ```
 
 ---

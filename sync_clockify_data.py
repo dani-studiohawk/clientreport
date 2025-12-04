@@ -205,29 +205,26 @@ def find_sprint_for_date(client_id, entry_date):
         return None
 
     try:
-        # Convert entry_date string to date if needed
-        if isinstance(entry_date, str):
-            entry_date = datetime.fromisoformat(entry_date.replace('Z', '+00:00')).date()
-        elif isinstance(entry_date, datetime):
+        # Convert entry_date to string format for comparison
+        if isinstance(entry_date, datetime):
             entry_date = entry_date.date()
 
-        # Find sprint where entry_date falls between start_date and end_date
-        response = supabase.table('sprints').select('id').eq('client_id', client_id).execute()
+        entry_date_str = entry_date.isoformat() if hasattr(entry_date, 'isoformat') else str(entry_date)
 
-        for sprint in response.data:
-            # Fetch full sprint details
-            sprint_detail = supabase.table('sprints').select('id, start_date, end_date').eq('id', sprint['id']).execute()
+        # Query sprints for this client where entry_date falls within sprint dates
+        # Using PostgreSQL date comparison
+        response = supabase.table('sprints') \
+            .select('id') \
+            .eq('client_id', client_id) \
+            .lte('start_date', entry_date_str) \
+            .gte('end_date', entry_date_str) \
+            .execute()
 
-            if sprint_detail.data:
-                sprint_data = sprint_detail.data[0]
-                start_date = datetime.fromisoformat(sprint_data['start_date']).date()
-                end_date = datetime.fromisoformat(sprint_data['end_date']).date()
-
-                if start_date <= entry_date <= end_date:
-                    return sprint_data['id']
+        if response.data and len(response.data) > 0:
+            return response.data[0]['id']
 
     except Exception as e:
-        print(f"Warning: Could not find sprint for date {entry_date}: {e}")
+        print(f"Warning: Could not find sprint for client {client_id} on date {entry_date}: {e}")
 
     return None
 
@@ -291,6 +288,12 @@ def sync_time_entries(days_back=90):
 
         entries_synced = 0
         entries_skipped = 0
+        skip_reasons = {
+            'no_hours': 0,
+            'no_client': 0,
+            'no_sprint': 0,
+            'non_client_work': 0
+        }
 
         # Fetch and process time entries for each user
         for clockify_user in clockify_users:
@@ -346,23 +349,28 @@ def sync_time_entries(days_back=90):
                     if hours == 0:
                         entries_skipped += 1
                         user_entries_skipped += 1
+                        skip_reasons['no_hours'] += 1
                         continue
 
                     # Map to client
                     client_id = project_client_map.get(project_id)
 
-                    if not client_id:
-                        entries_skipped += 1
-                        user_entries_skipped += 1
-                        continue
+                    # Handle non-client work (internal projects, training, etc.)
+                    sprint_id = None
+                    if client_id:
+                        # Find sprint for client work
+                        sprint_id = find_sprint_for_date(client_id, entry_date)
 
-                    # Find sprint
-                    sprint_id = find_sprint_for_date(client_id, entry_date)
-
-                    if not sprint_id:
-                        entries_skipped += 1
-                        user_entries_skipped += 1
-                        continue
+                        if not sprint_id:
+                            # Client work but no sprint found - this shouldn't happen
+                            entries_skipped += 1
+                            user_entries_skipped += 1
+                            skip_reasons['no_sprint'] += 1
+                            print(f"   ⚠️ No sprint found for {project_name} on {entry_date}")
+                            continue
+                    else:
+                        # Non-client work - still track it but without sprint
+                        skip_reasons['non_client_work'] += 1
 
                     # Get task name
                     task_category = task.get('name') if task else None
@@ -409,6 +417,10 @@ def sync_time_entries(days_back=90):
         print(f"\n✅ Sync complete!")
         print(f"   Time entries synced: {entries_synced}")
         print(f"   Entries skipped: {entries_skipped}")
+        print(f"\n📊 Skip breakdown:")
+        print(f"   - No hours (running timers): {skip_reasons['no_hours']}")
+        print(f"   - No sprint found: {skip_reasons['no_sprint']}")
+        print(f"   - Non-client work (tracked): {skip_reasons['non_client_work']}")
 
         return True
 
