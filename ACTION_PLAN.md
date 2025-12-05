@@ -5,19 +5,19 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 
 ---
 
-## Current Status Summary (Updated: December 4, 2025 - End of Day)
+## Current Status Summary (Updated: December 5, 2025 - End of Day)
 
 | Phase | Status | Progress |
 |-------|--------|----------|
 | **Phase 1: Database** | ✅ COMPLETE | 100% - Schema, functions, views, RLS all implemented |
-| **Phase 2: ETL/Sync** | ✅ COMPLETE | 100% - Python scripts + Edge Functions deployed |
-| **Phase 2.5: Automation** | ✅ COMPLETE | pg_cron configured, daily/weekly syncs scheduled |
+| **Phase 2: ETL/Sync** | ✅ COMPLETE | 100% - Python scripts + Edge Functions deployed with bug fixes |
+| **Phase 2.5: Automation** | ✅ COMPLETE | pg_cron tested and working, syncs verified |
 | **Phase 3: Auth** | 📋 DOCUMENTED | Setup documented in SUPABASE_SETUP.md |
 | **Phase 4: API** | ⚠️ PARTIAL | Server components use Supabase directly |
 | **Phase 5: Frontend Setup** | ✅ COMPLETE | Next.js 16, Tailwind, shadcn/ui configured |
 | **Phase 6: Sprints Feature** | ✅ COMPLETE | Sprint list + detail pages working |
-| **Phase 7: Clients Feature** | ✅ COMPLETE | Client list + detail pages working |
-| **Phase 8: Admin** | ❌ NOT STARTED | Settings/admin dashboard pending |
+| **Phase 7: Clients Feature** | ✅ COMPLETE | Client list + detail pages, grouped display by status |
+| **Phase 8: Admin** | ⚠️ SIMPLIFIED | Dashboard shows sync status only (full admin dashboard deferred) |
 | **Phase 9: Testing** | ⚠️ PARTIAL | Backend tests exist, frontend tests pending |
 | **Phase 10: Documentation** | ✅ COMPLETE | Full docs including handover log |
 | **Phase 11-12: Deployment** | ⚠️ PARTIAL | Edge Functions deployed, frontend pending |
@@ -27,6 +27,8 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 - **Task Categories**: Use Clockify dropdown values directly (see `database/CLOCKIFY_TASKS.md`)
 - **Multi-Region**: Supports AU/US/UK Monday.com boards with region tracking
 - **Enhanced Tracking**: Pre-sprint prep, post-sprint work tagging, non-client work views
+- **Dec 5 Fixes**: Edge Functions synced with Python scripts (pagination, hydration, niche field)
+- **Dec 5 UX Update**: Client list page now displays clients grouped by Monday.com status (Active Campaigns - AU/US, Future, Paused, Completed, Refunded) with DPR lead names
 
 ---
 
@@ -37,7 +39,7 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 
 - [x] Create users table (email, name, is_admin, clockify_user_id, monday_person_id)
 - [x] Create clients table (monday_item_id, name, dpr_lead, agency_value, monthly_rate, monthly_hours, etc.)
-  - *Extended with:* `region` (AU/US/UK), `group_name` (Monday.com group), `is_active`
+  - *Extended with:* `region` (AU/US/UK), `group_name` (Monday.com group), `is_active`, `niche` (Dec 5)
 - [x] Create sprints table (client_id, sprint_number, start_date, end_date, kpi_target, kpi_achieved)
   - *Extended with:* `monthly_rate` per-sprint (rates can vary), `status` (pending/active/completed)
 - [x] Create time_entries table (clockify_id, sprint_id, user_id, task_category, hours, entry_date)
@@ -92,12 +94,13 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 > **Reference:** `scripts/sync_monday_data.py`, `supabase/functions/sync-monday/index.ts`
 
 - [x] Set up sync script for Monday.com (Python + Edge Function)
+- [x] **Dec 5 Fix**: Added niche field extraction (column name: "Niches" not "Niche")
 - [x] Implement GraphQL query to fetch board data with pagination
 - [x] Multi-board support (AU/US/UK regions via environment variables)
 - [x] Parse client information from Monday items
 - [x] Extract DPR Lead assignments (map person IDs to users)
 - [x] Extract DPR Support (multiple team members)
-- [x] Extract campaign details (type, dates, priority, agency value)
+- [x] Extract campaign details (type, dates, priority, agency value, niche)
 - [x] Calculate monthly_hours from rate (`rate / 190`)
 - [x] Parse sprints from Monday subitems (Q1/Q2/Sprint #X labels)
 - [x] Track group_name for active/inactive detection
@@ -111,6 +114,8 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 
 - [x] Set up sync script (Python + Edge Function)
 - [x] Fetch time entries for date range (365 days back, paginated)
+- [x] **Dec 5 Fix**: Added `hydrated=true` parameter to Edge Function for task categories
+- [x] **Dec 5 Fix**: Added projects pagination to Edge Function (fixes Sovereign Interiors)
 - [x] Fetch workspace users and map to internal users (by email)
 - [x] Fetch projects and clients from Clockify
 - [x] Map Clockify projects to internal clients (fuzzy matching + `PROJECT_OVERRIDES` dict)
@@ -146,14 +151,16 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 > **Reference:** `database/migrations/schedule_sync_functions.sql`
 
 - [x] Python scripts ready for manual/cron execution
-- [x] Edge Functions deployed to Supabase (Dec 4, 2025)
+- [x] Edge Functions deployed to Supabase (Dec 4, 2025, updated Dec 5, 2025)
+- [x] **Dec 5**: Manual sync testing verified both functions work correctly
 - [x] pg_cron extension enabled
 - [x] pg_net extension enabled for HTTP requests
 - [x] Vault secrets configured (project_url, anon_key)
-- [x] **sync-clockify-daily**: Runs daily at 4 PM UTC (2 AM AEST)
-- [x] **sync-monday-weekly**: Runs weekly on Monday at 4 PM UTC
+- [x] **sync-clockify-daily**: Runs daily at 4 PM UTC (2 AM AEST) - tested ✅
+- [x] **sync-monday-weekly**: Runs weekly on Monday at 4 PM UTC - tested ✅
+- [x] **Dec 5**: Dashboard shows last sync time for both sources
 - [ ] Implement sync status notifications (future enhancement)
-- [ ] Create admin dashboard to monitor sync health (Phase 8)
+- [ ] Create full admin dashboard to monitor sync health (deferred)
 
 > **Monitor jobs:** `SELECT * FROM cron.job_run_details ORDER BY start_time DESC LIMIT 20;`
 
@@ -177,20 +184,25 @@ These helper scripts were created for debugging and data verification:
 
 ---
 
-## Phase 2.6: Edge Functions ✅ DEPLOYED
+## Phase 2.6: Edge Functions ✅ DEPLOYED & TESTED
 
 > **Location:** `supabase/functions/`
 > **Deployed:** December 4, 2025
+> **Updated & Tested:** December 5, 2025
 > **Project:** `ylnrkfpchrzvuhqrnwco`
 
 TypeScript implementations for Supabase deployment:
 
 - [x] `sync-clockify/index.ts` - Clockify sync Edge Function
+  - **Dec 5 Fix**: Added `hydrated=true` parameter (line 156)
+  - **Dec 5 Fix**: Added projects pagination (lines 114-156)
 - [x] `sync-monday/index.ts` - Monday.com sync Edge Function
+  - **Dec 5 Fix**: Added niche field extraction (line 294, column name: "Niches")
 - [x] Environment variable configuration (Supabase secrets set)
 - [x] Error handling and logging
 - [x] Deployed via `supabase functions deploy`
-- [x] Tested successfully via HTTP POST
+- [x] Tested successfully via HTTP POST (Dec 5, 2025)
+- [x] Verified via manual cron triggers (Dec 5, 2025)
 
 **Edge Function URLs:**
 - `https://ylnrkfpchrzvuhqrnwco.supabase.co/functions/v1/sync-clockify`
@@ -261,7 +273,7 @@ TypeScript implementations for Supabase deployment:
 
 ## Phase 5: Frontend Setup & Architecture
 
-> **Status:** ✅ COMPLETE (December 4, 2025)
+> **Status:** ✅ COMPLETE (December 4-5, 2025)
 
 ### 5.1 Project Initialization
 - [x] Initialize Next.js project with TypeScript (`my-website/`)
@@ -280,14 +292,17 @@ TypeScript implementations for Supabase deployment:
 ### 5.3 State Management
 - [x] Server components with direct Supabase queries
 - [x] URL-based state for filters (searchParams)
-- [x] Loading and error states implemented
+- [x] **Dec 5**: Loading states added (loading.tsx files for all major routes)
+- [x] **Dec 5**: Error boundaries added (error.tsx files for app and dashboard)
 
 ### 5.4 Routing & Navigation
 - [x] Next.js App Router configured
 - [x] Dashboard layout with sidebar
 - [x] Breadcrumb-style navigation
+- [x] **Dec 5**: Dashboard home page simplified to show sync status only
+- [x] **Dec 5**: Error pages added (root and dashboard level)
 - [ ] Protected route wrapper (needs auth)
-- [ ] Handle 404 and error pages
+- [ ] Handle 404 pages
 
 ---
 
@@ -330,10 +345,15 @@ TypeScript implementations for Supabase deployment:
 ## Phase 7: Frontend - Clients Feature
 
 > **Status:** ✅ COMPLETE (December 4, 2025)
+> **Updated:** December 5, 2025 - Grouped display by Monday.com status
 
 ### 7.1 Clients List Page (`/dashboard/clients`)
 - [x] Client table layout (`components/clients/clients-table.tsx`)
-- [x] Display client overview (name, region, status)
+- [x] **Dec 5**: Grouped display by `group_name` (`components/clients/clients-grouped.tsx`)
+- [x] **Dec 5**: Display clients organized by Monday.com groups (Active Campaigns - AU/US, Future, Paused, Completed, Refunded)
+- [x] **Dec 5**: Join with users table to display DPR lead names
+- [x] **Dec 5**: Table format within each group card for compact display
+- [x] Display client overview (name, region, status, DPR lead)
 - [x] Add search functionality
 - [x] Add filters (Region, Status) (`components/clients/client-filters.tsx`)
 - [x] Sort by name (A-Z)
@@ -423,7 +443,8 @@ TypeScript implementations for Supabase deployment:
 - [x] Task categories documentation (`database/CLOCKIFY_TASKS.md`)
 - [x] Supabase setup guide (`SUPABASE_SETUP.md`)
 - [x] Debug instructions (`DEBUG_INSTRUCTIONS.md`)
-- [x] **Handover log** (`HANDOVER_LOG_2025-12-04.md`) - Session summary with bugs fixed, features added
+- [x] **Handover log** (`HANDOVER_LOG_2025-12-04.md`) - Dec 4 session summary
+- [x] **Handover log** (`HANDOVER_LOG_2025-12-05.md`) - Dec 5 session summary (sync fixes)
 - [ ] API endpoint documentation (using Supabase direct queries)
 - [ ] Deployment guide
 - [ ] Environment variables reference
@@ -543,18 +564,18 @@ TypeScript implementations for Supabase deployment:
 
 ---
 
-## Timeline Estimate (Updated December 4, 2025 - End of Day)
+## Timeline Estimate (Updated December 5, 2025 - End of Day)
 
 ### Completed Work
 - **Phase 1 (Database):** ✅ COMPLETE
-- **Phase 2 (ETL/Sync):** ✅ COMPLETE
-- **Phase 2.5 (Scripts):** ✅ COMPLETE
-- **Phase 2.5 (Automation):** ✅ COMPLETE (pg_cron + Edge Functions deployed)
-- **Phase 2.6 (Edge Functions):** ✅ DEPLOYED
-- **Phase 5 (Frontend Setup):** ✅ COMPLETE (Next.js 16, shadcn/ui, Tailwind)
+- **Phase 2 (ETL/Sync):** ✅ COMPLETE + Bug Fixes (Dec 5)
+- **Phase 2.5 (Scripts):** ✅ COMPLETE + Updated (Dec 5)
+- **Phase 2.5 (Automation):** ✅ COMPLETE + Tested (Dec 5)
+- **Phase 2.6 (Edge Functions):** ✅ DEPLOYED + Bug Fixes (Dec 5)
+- **Phase 5 (Frontend Setup):** ✅ COMPLETE + UX Improvements (Dec 5)
 - **Phase 6 (Sprints Feature):** ✅ COMPLETE (List + Detail pages)
 - **Phase 7 (Clients Feature):** ✅ COMPLETE (List + Detail pages)
-- **Phase 10 (Documentation):** ✅ COMPLETE (Including handover log)
+- **Phase 10 (Documentation):** ✅ COMPLETE (Including handover logs)
 
 ### Remaining Work
 - **Phase 3 (Auth Frontend):** 1-2 days
@@ -589,7 +610,8 @@ TypeScript implementations for Supabase deployment:
 
 | Document | Purpose |
 |----------|---------|
-| `HANDOVER_LOG_2025-12-04.md` | **Latest session summary - bugs fixed, features added** |
+| `HANDOVER_LOG_2025-12-05.md` | **Latest session summary - sync system fixes & testing** |
+| `HANDOVER_LOG_2025-12-04.md` | Dec 4 session - frontend development & initial deployment |
 | `database/schema.sql` | Complete database schema |
 | `database/README.md` | Database overview |
 | `database/SCHEMA_CLARIFICATIONS.md` | Schema design decisions |

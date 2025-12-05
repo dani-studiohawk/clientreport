@@ -1,7 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
-import { ClientsTable } from '@/components/clients/clients-table'
+import { ClientsGrouped } from '@/components/clients/clients-grouped'
 import { ClientFilters } from '@/components/clients/client-filters'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 interface SearchParams {
   region?: string
@@ -17,10 +16,13 @@ export default async function ClientsPage({
   const params = await searchParams
   const supabase = await createClient()
   
-  // Build query
+  // Build query with user join for DPR lead name
   let query = supabase
     .from('clients')
-    .select('*')
+    .select(`
+      *,
+      dpr_lead:users!clients_dpr_lead_id_fkey(name)
+    `)
     .order('name', { ascending: true })
 
   // Apply filters
@@ -47,23 +49,17 @@ export default async function ClientsPage({
       <div>
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Clients</h2>
         <p className="text-gray-600 dark:text-gray-400">
-          Manage and view all client accounts
+          Manage and view all client accounts grouped by status
         </p>
       </div>
 
       <ClientFilters />
 
-      <Card>
-        <CardHeader>
-          <CardTitle>All Clients</CardTitle>
-          <CardDescription>
-            {clients?.length || 0} clients found
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ClientsTable clients={clients || []} />
-        </CardContent>
-      </Card>
+      <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+        {clients?.length || 0} clients found
+      </div>
+
+      <ClientsGrouped clients={clients || []} />
     </div>
   )
 }

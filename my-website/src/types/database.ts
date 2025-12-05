@@ -73,6 +73,10 @@ export interface User {
 }
 
 // Extended types with relations
+export interface ClientWithDprLead extends Client {
+  dpr_lead: { name: string } | null
+}
+
 export interface ClientWithSprints extends Client {
   sprints: Sprint[]
 }
