@@ -1,140 +1,54 @@
 import { createClient } from '@/lib/supabase/server'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Users, Clock, Calendar, TrendingUp } from 'lucide-react'
+import { formatDistanceToNow } from 'date-fns'
 
-async function getDashboardStats() {
+async function getLastSyncTimes() {
   const supabase = await createClient()
-  
-  // Get client count
-  const { count: clientCount } = await supabase
-    .from('clients')
-    .select('*', { count: 'exact', head: true })
-    .eq('is_active', true)
 
-  // Get time entries count for this month
-  const startOfMonth = new Date()
-  startOfMonth.setDate(1)
-  startOfMonth.setHours(0, 0, 0, 0)
-  
-  const { count: timeEntriesCount } = await supabase
-    .from('time_entries')
-    .select('*', { count: 'exact', head: true })
-    .gte('entry_date', startOfMonth.toISOString().split('T')[0])
+  const { data: syncLogs } = await supabase
+    .from('sync_logs')
+    .select('source, sync_end, status')
+    .in('source', ['monday', 'clockify'])
+    .order('sync_end', { ascending: false })
+    .limit(10) // Get last 10 to ensure we get both sources
 
-  // Get total hours this month
-  const { data: hoursData } = await supabase
-    .from('time_entries')
-    .select('hours')
-    .gte('entry_date', startOfMonth.toISOString().split('T')[0])
+  // Find latest successful sync for each source
+  const lastMonday = syncLogs?.find(s => s.source === 'monday' && s.status === 'success')
+  const lastClockify = syncLogs?.find(s => s.source === 'clockify' && s.status === 'success')
 
-  const totalHours = hoursData?.reduce((sum, entry) => sum + (entry.hours || 0), 0) || 0
-
-  // Get active sprints count
-  const { count: activeSprintsCount } = await supabase
-    .from('sprints')
-    .select('*', { count: 'exact', head: true })
-    .eq('status', 'active')
-
-  return {
-    clientCount: clientCount || 0,
-    timeEntriesCount: timeEntriesCount || 0,
-    totalHours: Math.round(totalHours * 10) / 10,
-    activeSprintsCount: activeSprintsCount || 0,
-  }
+  return { lastMonday, lastClockify }
 }
 
 export default async function DashboardPage() {
-  const stats = await getDashboardStats()
-
-  const cards = [
-    {
-      title: 'Total Clients',
-      value: stats.clientCount,
-      description: 'Active client accounts',
-      icon: Users,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-100 dark:bg-blue-900/20',
-    },
-    {
-      title: 'Time Entries',
-      value: stats.timeEntriesCount,
-      description: 'This month',
-      icon: Clock,
-      color: 'text-green-600',
-      bgColor: 'bg-green-100 dark:bg-green-900/20',
-    },
-    {
-      title: 'Hours Logged',
-      value: `${stats.totalHours}h`,
-      description: 'This month',
-      icon: TrendingUp,
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-100 dark:bg-purple-900/20',
-    },
-    {
-      title: 'Active Sprints',
-      value: stats.activeSprintsCount,
-      description: 'Currently running',
-      icon: Calendar,
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-100 dark:bg-orange-900/20',
-    },
-  ]
+  const { lastMonday, lastClockify } = await getLastSyncTimes()
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Overview</h2>
-        <p className="text-gray-600 dark:text-gray-400">
-          Welcome to your client monitoring dashboard
-        </p>
-      </div>
+    <div className="flex min-h-[calc(100vh-200px)] items-center justify-center">
+      <div className="text-center space-y-4">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          StudioHawk Client Dashboard
+        </h1>
 
-      {/* Stats Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {cards.map((card) => (
-          <Card key={card.title}>
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                {card.title}
-              </CardTitle>
-              <div className={`rounded-lg p-2 ${card.bgColor}`}>
-                <card.icon className={`h-4 w-4 ${card.color}`} />
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{card.value}</div>
-              <p className="text-xs text-muted-foreground">{card.description}</p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+        <div className="text-lg text-gray-600 dark:text-gray-400">
+          <p className="mb-2">Last synced:</p>
 
-      {/* Placeholder for charts and tables */}
-      <div className="grid gap-4 md:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Hours by Client</CardTitle>
-            <CardDescription>Top clients by hours logged this month</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex h-64 items-center justify-center text-gray-400">
-              Chart coming soon...
+          {lastMonday && (
+            <div className="flex items-center justify-center gap-2">
+              <span className="font-medium">Monday.com:</span>
+              <span>{formatDistanceToNow(new Date(lastMonday.sync_end), { addSuffix: true })}</span>
             </div>
-          </CardContent>
-        </Card>
+          )}
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-            <CardDescription>Latest time entries and updates</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex h-64 items-center justify-center text-gray-400">
-              Activity feed coming soon...
+          {lastClockify && (
+            <div className="flex items-center justify-center gap-2">
+              <span className="font-medium">Clockify:</span>
+              <span>{formatDistanceToNow(new Date(lastClockify.sync_end), { addSuffix: true })}</span>
             </div>
-          </CardContent>
-        </Card>
+          )}
+
+          {!lastMonday && !lastClockify && (
+            <p className="text-gray-400">No sync data available</p>
+          )}
+        </div>
       </div>
     </div>
   )

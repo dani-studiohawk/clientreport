@@ -427,6 +427,7 @@ def parse_client_item(item, group_title=None, region=None):
         'dpr_lead_id': dpr_lead_id,
         'dpr_support_ids': dpr_support_ids if dpr_support_ids else None,
         'seo_lead_name': columns.get('SEO Lead', {}).get('text'),
+        'niche': columns.get('Niches', {}).get('text'),
         'agency_value': parse_numeric(get_column_display_value(columns.get('Agency Value', {}))),
         'client_priority': columns.get('Client Priority', {}).get('text'),
         'campaign_type': columns.get('Campaign Type', {}).get('text'),

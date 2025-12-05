@@ -111,23 +111,48 @@ async function fetchClockifyUsers(
   return response.json();
 }
 
-// Fetch Clockify projects
+// Fetch Clockify projects with pagination
 async function fetchClockifyProjects(
   apiKey: string,
   workspaceId: string
 ): Promise<ClockifyProject[]> {
-  const response = await fetch(
-    `${CLOCKIFY_API_URL}/workspaces/${workspaceId}/projects`,
-    {
-      headers: { "X-Api-Key": apiKey },
-    }
-  );
+  const allProjects: ClockifyProject[] = [];
+  let page = 1;
+  const pageSize = 500; // Max page size for projects
 
-  if (!response.ok) {
-    throw new Error(`Clockify API error: ${response.status}`);
+  while (true) {
+    const url = new URL(
+      `${CLOCKIFY_API_URL}/workspaces/${workspaceId}/projects`
+    );
+    url.searchParams.set("page", page.toString());
+    url.searchParams.set("page-size", pageSize.toString());
+    url.searchParams.set("archived", "false"); // Only active projects
+
+    const response = await fetch(url.toString(), {
+      headers: { "X-Api-Key": apiKey },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Clockify API error: ${response.status}`);
+    }
+
+    const projects: ClockifyProject[] = await response.json();
+    if (projects.length === 0) break;
+
+    allProjects.push(...projects);
+
+    if (projects.length < pageSize) break;
+
+    page++;
+
+    // Safety limit
+    if (page > 20) {
+      console.warn("Warning: Reached page limit for projects");
+      break;
+    }
   }
 
-  return response.json();
+  return allProjects;
 }
 
 // Fetch time entries for a user
@@ -153,6 +178,7 @@ async function fetchClockifyTimeEntries(
     url.searchParams.set("end", endStr);
     url.searchParams.set("page", page.toString());
     url.searchParams.set("page-size", pageSize.toString());
+    url.searchParams.set("hydrated", "true"); // Include full task/project details
 
     const response = await fetch(url.toString(), {
       headers: { "X-Api-Key": apiKey },

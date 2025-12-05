@@ -291,6 +291,7 @@ async function parseClientItem(
     dpr_lead_id: dprLeadId,
     dpr_support_ids: dprSupportIds.length > 0 ? dprSupportIds : null,
     seo_lead_name: columns["SEO Lead"]?.text || null,
+    niche: columns["Niches"]?.text || null,
     agency_value: parseNumeric(columns["Agency Value"]?.text),
     client_priority: columns["Client Priority"]?.text || null,
     campaign_type: columns["Campaign Type"]?.text || null,
