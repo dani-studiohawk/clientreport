@@ -45,8 +45,17 @@ export default async function ClientDetailPage({ params }: PageProps) {
   // Fetch all time entries for this client to calculate total hours
   const { data: timeEntries } = await supabase
     .from('time_entries')
-    .select('hours, sprint_id')
+    .select(`
+      hours, 
+      sprint_id, 
+      entry_date, 
+      description, 
+      task_category, 
+      user_id,
+      users!time_entries_user_id_fkey(name)
+    `)
     .eq('client_id', id)
+    .order('entry_date', { ascending: false })
 
   // Calculate hours per sprint
   const hoursPerSprint: Record<string, number> = {}
@@ -98,6 +107,13 @@ export default async function ClientDetailPage({ params }: PageProps) {
   // Check if client has partial tracking (some sprints missing hours)
   const sprintsWithHours = sprints?.filter(s => hoursPerSprint[s.id] && hoursPerSprint[s.id] > 0).length || 0
   const hasPartialTracking = sprintsWithHours < totalSprints && sprintsWithHours > 0
+
+  // Calculate hours logged outside of sprint dates (post-sprint, gaps, etc.)
+  const hoursInSprints = Object.values(hoursPerSprint).reduce((sum, h) => sum + h, 0)
+  const hoursOutsideSprints = totalHoursUsed - hoursInSprints
+  
+  // Get time entries outside of sprint dates
+  const entriesOutsideSprints = timeEntries?.filter(entry => !entry.sprint_id) || []
 
   // Prepare sprint data for chart
   const sprintChartData = sprints?.map(s => ({
@@ -199,7 +215,12 @@ export default async function ClientDetailPage({ params }: PageProps) {
             <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
               {Math.round(hoursUtilization)}%
             </div>
-            <div className="text-sm text-gray-600">{totalHoursUsed.toFixed(0)} of {totalBudgetHours.toFixed(0)} hrs</div>
+            <div className="text-sm text-gray-600">
+              {totalHoursUsed.toFixed(0)} of {totalBudgetHours.toFixed(0)} hrs
+              {hoursOutsideSprints > 0 && (
+                <span className="text-xs text-orange-600 block mt-0.5">+{hoursOutsideSprints.toFixed(0)} hrs outside sprints</span>
+              )}
+            </div>
           </CardContent>
         </Card>
 
@@ -249,6 +270,15 @@ export default async function ClientDetailPage({ params }: PageProps) {
               <span className="text-xs font-medium text-gray-500 mb-0.5">Days Remaining</span>
               <span className="font-semibold text-gray-900">{daysRemaining} days</span>
             </div>
+            {hoursOutsideSprints > 0 && (
+              <>
+                <div className="h-8 w-px bg-gray-200"></div>
+                <div className="flex flex-col">
+                  <span className="text-xs font-medium text-gray-500 mb-0.5">Outside Sprint Dates</span>
+                  <span className="font-semibold text-orange-600">{hoursOutsideSprints.toFixed(1)} hrs</span>
+                </div>
+              </>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -289,7 +319,12 @@ export default async function ClientDetailPage({ params }: PageProps) {
                   value={Math.min(hoursProgress, 100)} 
                   className={`h-3 ${hoursUtilization > 100 ? '[&>div]:bg-red-500' : hoursUtilization > 80 ? '[&>div]:bg-amber-500' : '[&>div]:bg-blue-500'}`}
                 />
-                <div className="text-xs text-gray-500 mt-1">{totalHoursUsed.toFixed(0)} of {totalBudgetHours.toFixed(0)} hrs</div>
+                <div className="text-xs text-gray-500 mt-1">
+                  {totalHoursUsed.toFixed(0)} of {totalBudgetHours.toFixed(0)} hrs
+                  {hoursOutsideSprints > 0 && (
+                    <span className="text-orange-600"> ({hoursInSprints.toFixed(0)} in sprints + {hoursOutsideSprints.toFixed(0)} outside)</span>
+                  )}
+                </div>
               </div>
             </div>
           </CardContent>
@@ -381,6 +416,72 @@ export default async function ClientDetailPage({ params }: PageProps) {
           </div>
         </CardContent>
       </Card>
+
+      {/* Time Entries Outside Sprints - Only show if there are any */}
+      {entriesOutsideSprints.length > 0 && (
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+                Time Logged Outside Sprint Dates
+              </h2>
+              <span className="text-sm font-semibold text-orange-600">
+                {hoursOutsideSprints.toFixed(1)} hrs total
+              </span>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b-2 border-gray-200">
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Date</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">User</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Task Category</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Description</th>
+                    <th className="text-right py-3 px-4 text-sm font-semibold text-gray-700">Hours</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {entriesOutsideSprints.map((entry, idx) => (
+                    <tr key={idx} className="border-b border-gray-100 hover:bg-orange-50">
+                      <td className="py-3 px-4 text-sm text-gray-900">
+                        {format(new Date(entry.entry_date), 'dd MMM yyyy')}
+                      </td>
+                      <td className="py-3 px-4 text-sm text-gray-600">
+                        {(entry.users as any)?.name || 'Unknown'}
+                      </td>
+                      <td className="py-3 px-4 text-sm text-gray-600">
+                        {entry.task_category || '—'}
+                      </td>
+                      <td className="py-3 px-4 text-sm text-gray-600 max-w-md truncate">
+                        {entry.description || '—'}
+                      </td>
+                      <td className="py-3 px-4 text-sm font-semibold text-gray-900 text-right">
+                        {entry.hours.toFixed(1)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  <tr className="border-t-2 border-gray-200 bg-orange-50">
+                    <td colSpan={4} className="py-3 px-4 text-sm font-semibold text-gray-900 text-right">
+                      Total Hours Outside Sprints:
+                    </td>
+                    <td className="py-3 px-4 text-sm font-bold text-orange-600 text-right">
+                      {hoursOutsideSprints.toFixed(1)} hrs
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <div className="mt-4 p-3 bg-orange-50 border border-orange-200 rounded-md">
+              <p className="text-sm text-orange-800">
+                <strong>Note:</strong> These hours are logged to this client but fall outside of any sprint date ranges. 
+                This could include post-sprint work, pre-sprint preparation outside the 14-day window, or work during gaps between sprints.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   )
 }

@@ -185,8 +185,7 @@ MANUAL_PROJECT_MAPPINGS = {
     "Italian Street Kitchen": "Italian Street Kitchen",
     "Lifespan Fitness": "Lifespan Fitness",
     "OSHC Australia Pty Ltd": "OSHC Australia Pty Ltd",
-    "Pack & Send": "Pack & Send",
-    "LVLY": ""
+    "Pack & Send": "Pack & Send"
     # Add any other manual mappings here
 }
 
@@ -305,13 +304,22 @@ def find_sprint_for_date(client_id, entry_date, debug=False):
             .eq('client_id', client_id) \
             .lte('start_date', entry_date_str) \
             .gte('end_date', entry_date_str) \
+            .order('start_date') \
             .execute()
 
-        # Exact match found
+        # Exact match found (may be multiple if on boundary date)
         if response.data and len(response.data) > 0:
+            selected_sprint = response.data[0]
+            
+            # If multiple sprints match (boundary overlap), prefer the one ending on this date
+            if len(response.data) > 1:
+                ending_on_date = next((s for s in response.data if s['end_date'] == entry_date_str), None)
+                if ending_on_date:
+                    selected_sprint = ending_on_date
+            
             if debug:
-                print(f"      ✓ Found sprint: {response.data[0]['name']}")
-            return response.data[0]['id'], None
+                print(f"      ✓ Found sprint: {selected_sprint['name']}")
+            return selected_sprint['id'], None
         
         # No exact match - check for pre-sprint or post-sprint work
         client_data = get_client_sprint_data(client_id)
@@ -501,6 +509,16 @@ def sync_time_entries(days_back=365):
 
                     # Map to client
                     client_id = project_client_map.get(project_id)
+
+                    # If no project mapping, check if entry already exists with a client_id
+                    if not client_id:
+                        existing_entry = supabase.table('time_entries') \
+                            .select('client_id') \
+                            .eq('clockify_id', clockify_id) \
+                            .execute()
+                        
+                        if existing_entry.data and len(existing_entry.data) > 0:
+                            client_id = existing_entry.data[0].get('client_id')
 
                     # Handle non-client work (internal projects, training, etc.)
                     sprint_id = None

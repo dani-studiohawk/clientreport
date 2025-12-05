@@ -60,7 +60,6 @@ const MANUAL_PROJECT_MAPPINGS: Record<string, string> = {
   "Lifespan Fitness": "Lifespan Fitness",
   "OSHC Australia Pty Ltd": "OSHC Australia Pty Ltd",
   "Pack & Send": "Pack & Send",
-  "LVLY": "",
 };
 
 // Cache for client sprint data
@@ -316,17 +315,27 @@ async function findSprintForDate(
   clientId: string,
   entryDate: string
 ): Promise<{ sprintId: string | null; tag: string | null }> {
-  // Query for exact match
-  const { data: exactMatch } = await supabase
+  // Query for exact match - may return multiple if on boundary date
+  const { data: exactMatches } = await supabase
     .from("sprints")
-    .select("id, name")
+    .select("id, name, start_date, end_date")
     .eq("client_id", clientId)
     .lte("start_date", entryDate)
     .gte("end_date", entryDate)
-    .single();
+    .order("start_date", { ascending: true });
 
-  if (exactMatch) {
-    return { sprintId: exactMatch.id, tag: null };
+  if (exactMatches && exactMatches.length > 0) {
+    // If multiple sprints match (boundary overlap), prefer the one ending on this date
+    let selectedSprint = exactMatches[0];
+    
+    if (exactMatches.length > 1) {
+      const endingOnDate = exactMatches.find(s => s.end_date === entryDate);
+      if (endingOnDate) {
+        selectedSprint = endingOnDate;
+      }
+    }
+    
+    return { sprintId: selectedSprint.id, tag: null };
   }
 
   // No exact match - check for pre-sprint or post-sprint work
@@ -475,7 +484,20 @@ Deno.serve(async (req) => {
 
         const entryDate = getDateString(entry.timeInterval.start);
         const projectName = clockifyProjects.find((p) => p.id === entry.projectId)?.name || null;
-        const clientId = entry.projectId ? projectClientMap[entry.projectId] : null;
+        let clientId = entry.projectId ? projectClientMap[entry.projectId] : null;
+
+        // If no project in Clockify, check if entry already exists with a client_id
+        if (!clientId) {
+          const existingEntry = await supabase
+            .from("time_entries")
+            .select("client_id")
+            .eq("clockify_id", entry.id)
+            .single();
+          
+          if (existingEntry.data?.client_id) {
+            clientId = existingEntry.data.client_id;
+          }
+        }
 
         let sprintId: string | null = null;
         const tags: string[] = [];
