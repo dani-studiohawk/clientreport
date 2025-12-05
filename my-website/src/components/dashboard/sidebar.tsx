@@ -3,10 +3,9 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import { 
-  LayoutDashboard, 
-  Users, 
-  Clock, 
+import {
+  LayoutDashboard,
+  Users,
   Calendar,
   BarChart3,
   Settings,
@@ -20,7 +19,6 @@ import type { User } from '@supabase/supabase-js'
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Clients', href: '/dashboard/clients', icon: Users },
-  { name: 'Time Entries', href: '/dashboard/time-entries', icon: Clock },
   { name: 'Sprints', href: '/dashboard/sprints', icon: Calendar },
   { name: 'Reports', href: '/dashboard/reports', icon: BarChart3 },
 ]

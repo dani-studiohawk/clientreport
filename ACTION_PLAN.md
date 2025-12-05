@@ -5,14 +5,14 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 
 ---
 
-## Current Status Summary (Updated: December 5, 2025 - End of Day)
+## Current Status Summary (Updated: December 5, 2025 - Evening)
 
 | Phase | Status | Progress |
 |-------|--------|----------|
 | **Phase 1: Database** | ✅ COMPLETE | 100% - Schema, functions, views, RLS all implemented |
 | **Phase 2: ETL/Sync** | ✅ COMPLETE | 100% - Python scripts + Edge Functions deployed with bug fixes |
 | **Phase 2.5: Automation** | ✅ COMPLETE | pg_cron tested and working, syncs verified |
-| **Phase 3: Auth** | 📋 DOCUMENTED | Setup documented in SUPABASE_SETUP.md |
+| **Phase 3: Auth** | ✅ COMPLETE | Google OAuth configured and tested, sign in/out working |
 | **Phase 4: API** | ⚠️ PARTIAL | Server components use Supabase directly |
 | **Phase 5: Frontend Setup** | ✅ COMPLETE | Next.js 16, Tailwind, shadcn/ui configured |
 | **Phase 6: Sprints Feature** | ✅ COMPLETE | Sprint list + detail pages working |
@@ -29,6 +29,7 @@ Building a secure reporting dashboard for StudioHawk to track client sprints, te
 - **Enhanced Tracking**: Pre-sprint prep, post-sprint work tagging, non-client work views
 - **Dec 5 Fixes**: Edge Functions synced with Python scripts (pagination, hydration, niche field)
 - **Dec 5 UX Update**: Client list page now displays clients grouped by Monday.com status (Active Campaigns - AU/US, Future, Paused, Completed, Refunded) with DPR lead names
+- **Dec 5 Auth**: Google OAuth fully configured and tested - sign in/out working with @studiohawk.com.au domain restriction
 
 ---
 
@@ -212,28 +213,38 @@ TypeScript implementations for Supabase deployment:
 
 ## Phase 3: Authentication & Authorization
 
-> **Status:** 📋 DOCUMENTED - Setup instructions in `SUPABASE_SETUP.md`
+> **Status:** ✅ COMPLETE - Google OAuth configured and tested (Dec 5, 2025)
 
 ### 3.1 Supabase Auth Configuration
-- [x] Email domain validation SQL trigger documented
-- [ ] Configure email magic link authentication (needs frontend)
-- [ ] Set up email templates (needs frontend)
-- [ ] Configure session duration
-- [ ] Add password authentication as backup
+- [x] Google Cloud Console project created
+- [x] OAuth consent screen configured (Internal - StudioHawk only)
+- [x] OAuth 2.0 credentials created with correct redirect URIs
+- [x] Google provider enabled in Supabase
+- [x] Client ID and Client Secret configured in Supabase
+- [x] Site URL and redirect URLs configured
+- [x] Domain restriction to @studiohawk.com.au implemented
+- [x] Auth callback route with email validation (`/auth/callback`)
+- [x] Error handling and logging added to auth flow
+- [ ] Configure session duration (using Supabase defaults)
+- [ ] Email magic link authentication (deferred - OAuth sufficient)
 
 ### 3.2 User Management
 - [x] Admin user seeding implemented in schema
-- [ ] Create user registration flow (needs frontend)
-- [ ] Create user profile page (needs frontend)
-- [ ] Add user role management UI (needs frontend)
-- [ ] Implement user deactivation (needs frontend)
+- [x] Sign-in flow with Google OAuth
+- [x] Sign-out functionality in header dropdown
+- [x] Email domain validation (@studiohawk.com.au only)
+- [ ] Create user profile page (future enhancement)
+- [ ] Add user role management UI (future enhancement)
+- [ ] Implement user deactivation (future enhancement)
 
 ### 3.3 Authorization Middleware
-- [ ] Create auth context for frontend
-- [ ] Implement protected route guards
-- [ ] Add role-based component rendering
-- [ ] Create API route protection
-- [ ] Add session refresh logic
+- [x] Supabase SSR middleware configured (`src/middleware.ts`)
+- [x] Protected route guards for /dashboard
+- [x] Auth session refresh in middleware
+- [x] Dashboard layout auth check
+- [x] Redirect to login if unauthenticated
+- [x] RLS policies enforce data access control
+- [ ] Role-based component rendering (future - when user roles needed)
 
 ---
 

@@ -109,11 +109,15 @@ export function AllSprintsOverview({ sprints }: AllSprintsOverviewProps) {
                     <Badge className="bg-blue-500 text-white hover:bg-blue-600">
                       CURRENT
                     </Badge>
-                  ) : (
+                  ) : sprint.status === 'completed' ? (
                     <Badge className="bg-green-500 text-white hover:bg-green-600">
                       COMPLETED
                     </Badge>
-                  )}
+                  ) : sprint.status === 'pending' ? (
+                    <Badge className="bg-gray-500 text-white hover:bg-gray-600">
+                      PENDING
+                    </Badge>
+                  ) : null}
                 </div>
                 
                 {/* Dates */}

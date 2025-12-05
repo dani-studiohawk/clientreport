@@ -3,11 +3,27 @@
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    const errorParam = searchParams.get('error')
+    if (errorParam) {
+      const errorMessages: Record<string, string> = {
+        'unauthorized': 'Only @studiohawk.com.au accounts are allowed',
+        'auth_failed': 'Authentication failed. Please try again.',
+        'exchange_failed': 'Failed to exchange authentication code. Check Supabase logs.',
+        'user_failed': 'Failed to retrieve user information',
+        'server_error': 'An unexpected error occurred'
+      }
+      setError(errorMessages[errorParam] || 'Authentication error')
+    }
+  }, [searchParams])
 
   const handleGoogleLogin = async () => {
     setIsLoading(true)
