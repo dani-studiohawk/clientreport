@@ -1,4 +1,5 @@
-import { createClient } from '@/lib/supabase/server'
+'use client'
+
 import { notFound } from 'next/navigation'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -9,105 +10,143 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { SprintPerformanceChart } from '@/components/clients/sprint-performance-chart'
 import { AllSprintsOverview } from '@/components/clients/all-sprints-overview'
+import { useRouter, useSearchParams } from 'next/navigation'
 
-interface PageProps {
-  params: Promise<{ id: string }>
-}
+export default function MockClientPage() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
 
-export default async function ClientDetailPage({ params }: PageProps) {
-  const { id } = await params
-  const supabase = await createClient()
+  const theme = searchParams.get('theme') || 'default'
+  const layoutVariant = searchParams.get('layoutVariant') || 'default'
+  const uxDesign = searchParams.get('ux') === 'true'
 
-  // Fetch client details with DPR lead
-  const { data: client, error } = await supabase
-    .from('clients')
-    .select(`
-      *,
-      dpr_lead:users!clients_dpr_lead_id_fkey (
-        id,
-        name
-      )
-    `)
-    .eq('id', id)
-    .single()
-
-  if (error || !client) {
-    notFound()
+  // Mock data based on the provided example
+  const mockClient = {
+    id: 'mock-budget-pet-products',
+    name: 'Budget Pet Products',
+    is_active: true,
+    dpr_lead: { id: 'user-paige', name: 'Paige Claydon' },
+    campaign_type: 'SEO & DPR Campaign',
+    agency_value: 10260,
+    monthly_rate: 3060,
+    monthly_hours: 48.32, // Assuming 3 months per sprint
+    hasPartialTracking: false,
   }
 
-  // Fetch all sprints for this client
-  const { data: sprints } = await supabase
-    .from('sprints')
-    .select('*')
-    .eq('client_id', id)
-    .order('sprint_number', { ascending: true })
+  const mockSprints = [
+    {
+      id: 'sprint-1',
+      name: 'Sprint 1',
+      sprint_number: 1,
+      start_date: '2025-02-26',
+      end_date: '2025-05-26',
+      status: 'completed',
+      kpi_target: 8,
+      kpi_achieved: 0,
+      monthly_rate: 3060,
+    },
+    {
+      id: 'sprint-2',
+      name: 'Sprint 2',
+      sprint_number: 2,
+      start_date: '2025-05-26',
+      end_date: '2025-08-26',
+      status: 'completed',
+      kpi_target: 8,
+      kpi_achieved: 11,
+      monthly_rate: 3060,
+    },
+    {
+      id: 'sprint-3',
+      name: 'Sprint 3',
+      sprint_number: 3,
+      start_date: '2025-08-26',
+      end_date: '2025-11-26',
+      status: 'completed',
+      kpi_target: 8,
+      kpi_achieved: 47,
+      monthly_rate: 3060,
+    },
+    {
+      id: 'sprint-4',
+      name: 'Sprint 4',
+      sprint_number: 4,
+      start_date: '2025-11-26',
+      end_date: '2026-02-26',
+      status: 'active',
+      kpi_target: 8,
+      kpi_achieved: 0,
+      monthly_rate: 3060,
+    },
+  ]
 
-  // Fetch all time entries for this client to calculate total hours
-  const { data: timeEntries } = await supabase
-    .from('time_entries')
-    .select('hours, sprint_id')
-    .eq('client_id', id)
+  const mockTimeEntries = [
+    { hours: 100.8, sprint_id: 'sprint-1' },
+    { hours: 83.3, sprint_id: 'sprint-2' },
+    { hours: 69.2, sprint_id: 'sprint-3' },
+    { hours: 4.8, sprint_id: 'sprint-4' },
+  ]
 
   // Calculate hours per sprint
   const hoursPerSprint: Record<string, number> = {}
-  timeEntries?.forEach(entry => {
+  mockTimeEntries.forEach(entry => {
     if (entry.sprint_id) {
       hoursPerSprint[entry.sprint_id] = (hoursPerSprint[entry.sprint_id] || 0) + (entry.hours || 0)
     }
   })
 
   // Calculate contract-wide metrics
-  const totalSprints = sprints?.length || 0
-  const activeSprint = sprints?.find(s => s.status === 'active')
+  const totalSprints = mockSprints.length
+  const activeSprint = mockSprints.find(s => s.status === 'active')
   const currentSprintNumber = activeSprint?.sprint_number || totalSprints
-  
+
   // Contract period (first sprint start to last sprint end)
-  const firstSprint = sprints?.[0]
-  const lastSprint = sprints?.[sprints.length - 1]
-  const contractStart = firstSprint?.start_date
-  const contractEnd = lastSprint?.end_date
-  
+  const firstSprint = mockSprints[0]
+  const lastSprint = mockSprints[mockSprints.length - 1]
+  const contractStart = firstSprint.start_date
+  const contractEnd = lastSprint.end_date
+
   // Days remaining in current sprint
   const today = new Date()
-  const daysRemaining = activeSprint?.end_date 
+  const daysRemaining = activeSprint?.end_date
     ? Math.max(0, differenceInDays(new Date(activeSprint.end_date), today))
     : 0
-  
+
   // Total days across all sprints
   const totalContractDays = contractStart && contractEnd
     ? differenceInDays(new Date(contractEnd), new Date(contractStart))
     : 0
 
   // Contract KPI totals
-  const totalKpiTarget = sprints?.reduce((sum, s) => sum + (s.kpi_target || 0), 0) || 0
-  const totalKpiAchieved = sprints?.reduce((sum, s) => sum + (s.kpi_achieved || 0), 0) || 0
+  const totalKpiTarget = mockSprints.reduce((sum, s) => sum + (s.kpi_target || 0), 0)
+  const totalKpiAchieved = mockSprints.reduce((sum, s) => sum + (s.kpi_achieved || 0), 0)
   const kpiProgress = totalKpiTarget > 0 ? (totalKpiAchieved / totalKpiTarget) * 100 : 0
 
-  // Contract hours totals (monthly_hours * 3 per sprint for quarterly)
-  const monthlyHours = client.monthly_hours || 0
+  // Contract hours totals
+  const monthlyHours = mockClient.monthly_hours
   const totalBudgetHours = monthlyHours * 3 * totalSprints // 3 months per sprint
-  const totalHoursUsed = timeEntries?.reduce((sum, e) => sum + (e.hours || 0), 0) || 0
+  const totalHoursUsed = mockTimeEntries.reduce((sum, e) => sum + (e.hours || 0), 0)
   const hoursProgress = totalBudgetHours > 0 ? (totalHoursUsed / totalBudgetHours) * 100 : 0
   const hoursUtilization = totalBudgetHours > 0 ? (totalHoursUsed / totalBudgetHours) * 100 : 0
 
   // Average billable rate
-  const avgBillableRate = totalHoursUsed > 0 && client.agency_value
-    ? client.agency_value / totalHoursUsed
+  const avgBillableRate = totalHoursUsed > 0 && mockClient.agency_value
+    ? mockClient.agency_value / totalHoursUsed
     : null
 
-  // Check if client has partial tracking (some sprints missing hours)
-  const sprintsWithHours = sprints?.filter(s => hoursPerSprint[s.id] && hoursPerSprint[s.id] > 0).length || 0
+  // Check if client has partial tracking
+  const sprintsWithHours = mockSprints.filter(s => hoursPerSprint[s.id] && hoursPerSprint[s.id] > 0).length
   const hasPartialTracking = sprintsWithHours < totalSprints && sprintsWithHours > 0
 
   // Prepare sprint data for chart
-  const sprintChartData = sprints?.map(s => ({
-    name: `Sprint ${s.sprint_number || '?'}`,
+  const sprintChartData = mockSprints.map(s => ({
+    name: `Sprint ${s.sprint_number}`,
     kpiTarget: s.kpi_target || 0,
     kpiAchieved: s.kpi_achieved || 0,
-  })) || []
+  }))
 
   // Prepare sprint data for All Sprints overview
-  const sprintCardsData = sprints?.map(s => ({
+  const sprintCardsData = mockSprints.map(s => ({
     id: s.id,
     name: s.name,
     sprint_number: s.sprint_number,
@@ -117,19 +156,17 @@ export default async function ClientDetailPage({ params }: PageProps) {
     kpi_target: s.kpi_target || 0,
     kpi_achieved: s.kpi_achieved || 0,
     hours_used: hoursPerSprint[s.id] || 0,
-    budget_hours: monthlyHours * 3, // 3 months per sprint
-    monthly_rate: client.monthly_rate,
-  })) || []
+    budget_hours: monthlyHours * 3,
+    monthly_rate: mockClient.monthly_rate,
+  }))
 
   return (
     <div className="max-w-7xl mx-auto pb-12">
-      {/* Back Button */}
+      {/* Toggle Buttons */}
       <div className="flex gap-2 mb-6">
-        <Button asChild variant="outline" size="sm">
-          <Link href="/dashboard/clients">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Clients
-          </Link>
+        <Button onClick={() => router.push('/dashboard/clients')} variant="outline" size="sm">
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Back to Clients
         </Button>
       </div>
 
@@ -137,37 +174,18 @@ export default async function ClientDetailPage({ params }: PageProps) {
       <div className="mb-6">
         <div className="flex items-center gap-4 mb-2">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-            {client.name}
+            {mockClient.name}
           </h1>
-          {client.is_active ? (
-            <Badge className="bg-emerald-500 text-white hover:bg-emerald-600 text-sm px-3 py-1">
-              Active
-            </Badge>
-          ) : (
-            <Badge variant="secondary">
-              Inactive
-            </Badge>
-          )}
-          {hasPartialTracking && (
-            <Badge className="bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400">
-              Partial tracking
-            </Badge>
-          )}
+          <Badge className="bg-emerald-500 text-white hover:bg-emerald-600 text-sm px-3 py-1">
+            Active
+          </Badge>
         </div>
         <div className="flex items-center gap-6 text-base text-gray-600 dark:text-gray-400">
-          <span><strong>DPR Lead:</strong> {client.dpr_lead?.name || 'Not assigned'}</span>
-          {client.campaign_type && (
-            <>
-              <span>•</span>
-              <span>{client.campaign_type}</span>
-            </>
-          )}
-          {contractStart && contractEnd && (
-            <>
-              <span>•</span>
-              <span>{format(new Date(contractStart), 'MMM yyyy')} - {format(new Date(contractEnd), 'MMM yyyy')}</span>
-            </>
-          )}
+          <span><strong>DPR Lead:</strong> {mockClient.dpr_lead?.name}</span>
+          <span>•</span>
+          <span>{mockClient.campaign_type}</span>
+          <span>•</span>
+          <span>{format(new Date(contractStart), 'MMM yyyy')} - {format(new Date(contractEnd), 'MMM yyyy')}</span>
         </div>
       </div>
 
@@ -177,9 +195,9 @@ export default async function ClientDetailPage({ params }: PageProps) {
           <CardContent className="pt-6">
             <div className="text-sm font-medium text-gray-500 mb-2">Contract Value</div>
             <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
-              ${client.agency_value?.toLocaleString() || '—'}
+              ${mockClient.agency_value.toLocaleString()}
             </div>
-            <div className="text-sm text-gray-600">${client.monthly_rate?.toLocaleString() || '—'}/month</div>
+            <div className="text-sm text-gray-600">${mockClient.monthly_rate.toLocaleString()}/month</div>
           </CardContent>
         </Card>
 

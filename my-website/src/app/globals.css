@@ -120,3 +120,157 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Mock client styling variations */
+.readable-theme {
+  /* Improve readability: consistent typography, better contrast */
+}
+
+.readable-theme .uppercase {
+  text-transform: none !important;
+  font-weight: 500 !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+.readable-theme p, .readable-theme span, .readable-theme div {
+  font-weight: 400 !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+.readable-theme .text-gray-500, .readable-theme .text-gray-400, .readable-theme .text-muted-foreground {
+  color: hsl(var(--foreground)) !important;
+  opacity: 0.7 !important;
+}
+
+.readable-theme .text-2xl {
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
+}
+
+.readable-theme .text-xl {
+  font-size: 1.25rem !important;
+  line-height: 1.75rem !important;
+}
+
+.readable-theme .text-3xl {
+  font-size: 1.875rem !important;
+  line-height: 2.25rem !important;
+}
+
+.readable-theme .text-xs {
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+}
+
+.readable-theme .font-bold {
+  font-weight: 600 !important;
+}
+
+.readable-theme .grid.grid-cols-2 {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+}
+
+.readable-theme .grid.grid-cols-2 > div {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 0.5rem 0 !important;
+  border-bottom: 1px solid hsl(var(--border)) !important;
+}
+
+.readable-theme .grid.grid-cols-2 > div:last-child {
+  border-bottom: none !important;
+}
+
+.readable-theme .grid.grid-cols-3 {
+  display: flex !important;
+  justify-content: space-around !important;
+  gap: 1rem !important;
+}
+
+.readable-theme .grid.grid-cols-3 > div {
+  text-align: center !important;
+  flex: 1 !important;
+}
+
+.ux-design {
+  /* UX-optimized design: modern, clean, high contrast, better hierarchy */
+  --ux-primary: hsl(220 90% 50%);
+  --ux-secondary: hsl(210 40% 20%);
+  --ux-accent: hsl(160 60% 45%);
+}
+
+.ux-design .space-y-6 {
+  gap: 2rem !important;
+}
+
+.ux-design [class*="pt-6"] {
+  padding-top: 2rem !important;
+}
+
+.ux-design h1 {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  color: var(--ux-secondary) !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.ux-design h3 {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: var(--ux-secondary) !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.ux-design .text-2xl, .ux-design .text-3xl {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: var(--ux-primary) !important;
+}
+
+.ux-design .text-xl {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: var(--ux-secondary) !important;
+}
+
+.ux-design .text-gray-500, .ux-design .text-gray-400 {
+  color: hsl(210 20% 40%) !important;
+  font-weight: 500 !important;
+}
+
+.ux-design .badge {
+  background: var(--ux-accent) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  padding: 0.25rem 0.75rem !important;
+}
+
+.ux-design .progress {
+  height: 8px !important;
+  background: hsl(210 20% 90%) !important;
+}
+
+.ux-design .progress > div {
+  background: var(--ux-primary) !important;
+}
+
+.ux-design .grid {
+  gap: 1.5rem !important;
+}
+
+.ux-design .card {
+  border: 1px solid hsl(210 20% 85%) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+  border-radius: 12px !important;
+}
+
+.compact-layout {
+  gap: 0.5rem !important;
+}
+
+.compact-layout .space-y-6 > * + * {
+  margin-top: 0.5rem !important;
+}

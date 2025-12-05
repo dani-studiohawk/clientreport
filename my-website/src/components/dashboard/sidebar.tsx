@@ -10,7 +10,8 @@ import {
   BarChart3,
   Settings,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  TestTube
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
@@ -19,6 +20,7 @@ import type { User } from '@supabase/supabase-js'
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Clients', href: '/dashboard/clients', icon: Users },
+  { name: 'Mock Client', href: '/dashboard/clients/mock', icon: TestTube },
   { name: 'Sprints', href: '/dashboard/sprints', icon: Calendar },
   { name: 'Reports', href: '/dashboard/reports', icon: BarChart3 },
 ]
