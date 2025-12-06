@@ -145,8 +145,9 @@ export default async function SprintDetailPage({ params }: PageProps) {
   // Group by user
   const userBreakdown: Record<string, { name: string; hours: number }> = {}
   timeEntries?.forEach(entry => {
-    const userId = entry.users?.id || 'unknown'
-    const userName = entry.users?.name || 'Unknown'
+    const user = Array.isArray(entry.users) ? entry.users[0] : entry.users
+    const userId = user?.id || 'unknown'
+    const userName = user?.name || 'Unknown'
     if (!userBreakdown[userId]) {
       userBreakdown[userId] = { name: userName, hours: 0 }
     }
