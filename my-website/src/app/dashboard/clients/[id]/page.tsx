@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { SprintPerformanceChart } from '@/components/clients/sprint-performance-chart'
 import { AllSprintsOverview } from '@/components/clients/all-sprints-overview'
+import { SprintBreakdownTable } from '@/components/clients/sprint-breakdown-table'
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -99,14 +100,37 @@ export default async function ClientDetailPage({ params }: PageProps) {
   const hoursProgress = totalBudgetHours > 0 ? (totalHoursUsed / totalBudgetHours) * 100 : 0
   const hoursUtilization = totalBudgetHours > 0 ? (totalHoursUsed / totalBudgetHours) * 100 : 0
 
-  // Average billable rate
-  const avgBillableRate = totalHoursUsed > 0 && client.agency_value
-    ? client.agency_value / totalHoursUsed
+  // Total contract value (sum of all sprint revenues)
+  // Each sprint revenue = monthly_rate * 3 (for quarterly sprints)
+  // Falls back to client.monthly_rate if sprint.monthly_rate is not set
+  const totalContractValue = sprints?.reduce((sum, s) => {
+    const sprintMonthlyRate = s.monthly_rate || client.monthly_rate || 0
+    const sprintRevenue = sprintMonthlyRate * 3
+    return sum + sprintRevenue
+  }, 0) || 0
+
+  // Billable contract value (only completed + active sprints, excluding future)
+  const billableContractValue = sprints?.reduce((sum, s) => {
+    // Only include completed and active sprints, not pending/future ones
+    if (s.status === 'pending') return sum
+    
+    const sprintMonthlyRate = s.monthly_rate || client.monthly_rate || 0
+    const sprintRevenue = sprintMonthlyRate * 3
+    return sum + sprintRevenue
+  }, 0) || 0
+
+  // Average billable rate (billable contract value / total hours used)
+  // Only includes revenue from completed and active sprints
+  const avgBillableRate = totalHoursUsed > 0 && billableContractValue > 0
+    ? billableContractValue / totalHoursUsed
     : null
 
-  // Check if client has partial tracking (some sprints missing hours)
-  const sprintsWithHours = sprints?.filter(s => hoursPerSprint[s.id] && hoursPerSprint[s.id] > 0).length || 0
-  const hasPartialTracking = sprintsWithHours < totalSprints && sprintsWithHours > 0
+  // Check if client has partial tracking (sprints that started before Clockify tracking began on 2025-02-02)
+  // Only flag as partial if sprints started before tracking date have missing hours
+  const clockifyTrackingStartDate = new Date('2025-02-02')
+  const sprintsBeforeTracking = sprints?.filter(s => new Date(s.start_date) < clockifyTrackingStartDate) || []
+  const sprintsBeforeTrackingWithHours = sprintsBeforeTracking.filter(s => hoursPerSprint[s.id] && hoursPerSprint[s.id] > 0).length
+  const hasPartialTracking = sprintsBeforeTracking.length > 0 && sprintsBeforeTrackingWithHours < sprintsBeforeTracking.length && sprintsBeforeTrackingWithHours > 0
 
   // Calculate hours logged outside of sprint dates (post-sprint, gaps, etc.)
   const hoursInSprints = Object.values(hoursPerSprint).reduce((sum, h) => sum + h, 0)
@@ -114,6 +138,19 @@ export default async function ClientDetailPage({ params }: PageProps) {
   
   // Get time entries outside of sprint dates
   const entriesOutsideSprints = timeEntries?.filter(entry => !entry.sprint_id) || []
+
+  // Calculate task breakdown for all sprint work (entries within sprints)
+  const entriesInSprints = timeEntries?.filter(entry => entry.sprint_id) || []
+  const taskBreakdown: Record<string, number> = {}
+  entriesInSprints.forEach(entry => {
+    const category = entry.task_category || 'Uncategorized'
+    taskBreakdown[category] = (taskBreakdown[category] || 0) + (entry.hours || 0)
+  })
+  
+  // Sort task breakdown by hours (descending)
+  const taskBreakdownSorted = Object.entries(taskBreakdown)
+    .map(([category, hours]) => ({ category, hours }))
+    .sort((a, b) => b.hours - a.hours)
 
   // Prepare sprint data for chart
   const sprintChartData = sprints?.map(s => ({
@@ -187,108 +224,95 @@ export default async function ClientDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Key Metrics - Clean Grid */}
+      {/* Key Metrics - Clean Bubbles */}
       <div className="grid grid-cols-4 gap-6 mb-6">
+        {/* Total Agency Value */}
         <Card>
           <CardContent className="pt-6">
-            <div className="text-sm font-medium text-gray-500 mb-2">Contract Value</div>
+            <div className="text-sm font-medium text-gray-500 mb-2">Total Agency Value</div>
             <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
-              ${client.agency_value?.toLocaleString() || '—'}
+              ${totalContractValue?.toLocaleString() || '—'}
             </div>
-            <div className="text-sm text-gray-600">${client.monthly_rate?.toLocaleString() || '—'}/month</div>
+            <div className="text-sm text-gray-600">SEO + DPR</div>
           </CardContent>
         </Card>
 
+        {/* DPR Monthly Rate */}
         <Card>
           <CardContent className="pt-6">
-            <div className="text-sm font-medium text-gray-500 mb-2">KPI Progress</div>
+            <div className="text-sm font-medium text-gray-500 mb-2">DPR Monthly Rate</div>
             <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
-              {Math.round(kpiProgress)}%
+              ${client.monthly_rate?.toLocaleString() || '—'}
             </div>
-            <div className="text-sm text-gray-600">{totalKpiAchieved} of {totalKpiTarget} links</div>
+            <div className="text-sm text-gray-600">{monthlyHours.toFixed(1)} hrs/mo</div>
           </CardContent>
         </Card>
 
+        {/* Contract Type */}
         <Card>
           <CardContent className="pt-6">
-            <div className="text-sm font-medium text-gray-500 mb-2">Hours Usage</div>
+            <div className="text-sm font-medium text-gray-500 mb-2">Contract Type</div>
             <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
-              {Math.round(hoursUtilization)}%
+              {client.contract_length || 'N/A'}
             </div>
-            <div className="text-sm text-gray-600">
-              {totalHoursUsed.toFixed(0)} of {totalBudgetHours.toFixed(0)} hrs
-              {hoursOutsideSprints > 0 && (
-                <span className="text-xs text-orange-600 block mt-0.5">+{hoursOutsideSprints.toFixed(0)} hrs outside sprints</span>
-              )}
-            </div>
+            <div className="text-sm text-gray-600">{totalSprints} sprints total</div>
           </CardContent>
         </Card>
 
+        {/* Actual Billable Rate */}
         <Card>
           <CardContent className="pt-6">
-            <div className="text-sm font-medium text-gray-500 mb-2">Avg Billable Rate</div>
+            <div className="text-sm font-medium text-gray-500 mb-2">Actual Billable Rate</div>
             <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
-              ${avgBillableRate ? Math.round(avgBillableRate) : '—'}
+              ${avgBillableRate ? Math.round(avgBillableRate) : '—'}/hr
             </div>
-            <div className="text-sm text-gray-600">per hour billed</div>
+            <div className={`text-sm font-semibold ${avgBillableRate && avgBillableRate >= 190 ? 'text-green-600' : 'text-orange-600'}`}>
+              Target: $190/hr
+            </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Contract Details - Horizontal Info Bar */}
+      {/* Current Sprint Bar */}
       <Card className="mb-8">
         <CardContent className="py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex flex-col">
-              <span className="text-xs font-medium text-gray-500 mb-0.5">Contract Period</span>
-              <span className="font-semibold text-gray-900">{totalSprints} sprints</span>
+          <div className="flex items-center gap-8">
+            <div className="flex-1">
+              <div className="text-xs text-gray-500 mb-1">Current Sprint</div>
+              <div className="text-lg font-bold text-gray-900">Sprint {currentSprintNumber} of {totalSprints}</div>
             </div>
-            <div className="h-8 w-px bg-gray-200"></div>
-            <div className="flex flex-col">
-              <span className="text-xs font-medium text-gray-500 mb-0.5">Current Sprint</span>
-              <span className="font-semibold text-gray-900">Sprint {currentSprintNumber} of {totalSprints}</span>
-            </div>
-            <div className="h-8 w-px bg-gray-200"></div>
-            <div className="flex flex-col">
-              <span className="text-xs font-medium text-gray-500 mb-0.5">Sprint Dates</span>
-              <span className="font-semibold text-gray-900">
+            <div className="h-10 w-px bg-gray-200"></div>
+            <div className="flex-1">
+              <div className="text-xs text-gray-500 mb-1">Period</div>
+              <div className="text-sm font-semibold text-gray-900">
                 {activeSprint ? format(new Date(activeSprint.start_date), 'dd MMM') : '—'} - {activeSprint ? format(new Date(activeSprint.end_date), 'dd MMM yy') : '—'}
-              </span>
+              </div>
             </div>
-            <div className="h-8 w-px bg-gray-200"></div>
-            <div className="flex flex-col">
-              <span className="text-xs font-medium text-gray-500 mb-0.5">Ideal Rate</span>
-              <span className="font-semibold text-gray-900">$190/hr</span>
+            <div className="h-10 w-px bg-gray-200"></div>
+            <div className="flex-1">
+              <div className="text-xs text-gray-500 mb-1">Days Remaining</div>
+              <div className="text-lg font-bold text-gray-900">{daysRemaining} days</div>
             </div>
-            <div className="h-8 w-px bg-gray-200"></div>
-            <div className="flex flex-col">
-              <span className="text-xs font-medium text-gray-500 mb-0.5">Monthly Budget</span>
-              <span className="font-semibold text-gray-900">{monthlyHours.toFixed(1)} hrs</span>
+            <div className="h-10 w-px bg-gray-200"></div>
+            <div className="flex-1">
+              <div className="text-xs text-gray-500 mb-1">KPI Target</div>
+              <div className="text-lg font-bold text-gray-900">{activeSprint?.kpi_target || 0} links</div>
             </div>
-            <div className="h-8 w-px bg-gray-200"></div>
-            <div className="flex flex-col">
-              <span className="text-xs font-medium text-gray-500 mb-0.5">Days Remaining</span>
-              <span className="font-semibold text-gray-900">{daysRemaining} days</span>
+            <div className="h-10 w-px bg-gray-200"></div>
+            <div className="flex-1">
+              <div className="text-xs text-gray-500 mb-1">Hours Budget</div>
+              <div className="text-lg font-bold text-gray-900">{(monthlyHours * 3).toFixed(0)} hrs</div>
             </div>
-            {hoursOutsideSprints > 0 && (
-              <>
-                <div className="h-8 w-px bg-gray-200"></div>
-                <div className="flex flex-col">
-                  <span className="text-xs font-medium text-gray-500 mb-0.5">Outside Sprint Dates</span>
-                  <span className="font-semibold text-orange-600">{hoursOutsideSprints.toFixed(1)} hrs</span>
-                </div>
-              </>
-            )}
           </div>
         </CardContent>
       </Card>
 
-      {/* Two Column Layout - Timeline + Chart */}
+      {/* Two Column Layout - Sprints to Date + Chart */}
       <div className="grid grid-cols-2 gap-6 mb-8">
-        {/* Contract Timeline */}
+        {/* Sprints to Date */}
         <Card>
           <CardContent className="pt-6">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Contract Timeline</h2>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Sprints to Date</h2>
             <div className="flex items-center justify-between mb-6">
               <span className="text-sm text-gray-600">Sprint {currentSprintNumber} of {totalSprints}</span>
               <span className="text-sm font-semibold text-gray-900">{daysRemaining} days remaining</span>
@@ -343,77 +367,7 @@ export default async function ClientDetailPage({ params }: PageProps) {
       <Card>
         <CardContent className="pt-6">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Sprint Breakdown</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b-2 border-gray-200">
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Sprint</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Period</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Status</th>
-                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-700">KPI Target</th>
-                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-700">KPI Achieved</th>
-                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-700">Efficiency</th>
-                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-700">Hours Used</th>
-                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-700">Utilization</th>
-                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-700">Rate</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sprintCardsData.map((sprint, idx) => {
-                  const efficiency = sprint.kpi_target > 0 ? (sprint.kpi_achieved / sprint.kpi_target) * 100 : 0
-                  const utilization = sprint.budget_hours > 0 ? (sprint.hours_used / sprint.budget_hours) * 100 : 0
-                  const rate = sprint.hours_used > 0 && sprint.monthly_rate ? (sprint.monthly_rate * 3) / sprint.hours_used : 0
-                  const isActive = sprint.status === 'active'
-
-                  return (
-                    <tr key={sprint.id} className={`border-b border-gray-100 hover:bg-gray-50 ${isActive ? 'bg-blue-50' : ''}`}>
-                      <td className="py-4 px-4">
-                        <div className="font-semibold text-gray-900">Sprint {sprint.sprint_number}</div>
-                      </td>
-                      <td className="py-4 px-4 text-sm text-gray-600">
-                        {format(new Date(sprint.start_date), 'dd MMM')} - {format(new Date(sprint.end_date), 'dd MMM yy')}
-                      </td>
-                      <td className="py-4 px-4">
-                        <Badge variant={
-                          sprint.status === 'completed' ? 'secondary' :
-                          sprint.status === 'active' ? 'default' :
-                          'outline'
-                        } className="text-xs">
-                          {sprint.status.toUpperCase()}
-                        </Badge>
-                      </td>
-                      <td className="py-4 px-4 text-right text-gray-900">{sprint.kpi_target}</td>
-                      <td className="py-4 px-4 text-right font-semibold text-gray-900">{sprint.kpi_achieved}</td>
-                      <td className="py-4 px-4 text-right">
-                        <span className={`font-semibold ${
-                          efficiency >= 100 ? 'text-green-600' :
-                          efficiency >= 50 ? 'text-amber-600' :
-                          'text-red-600'
-                        }`}>
-                          {efficiency.toFixed(0)}%
-                        </span>
-                      </td>
-                      <td className="py-4 px-4 text-right text-gray-900">
-                        {sprint.hours_used.toFixed(1)} <span className="text-gray-400">/ {sprint.budget_hours.toFixed(0)}</span>
-                      </td>
-                      <td className="py-4 px-4 text-right">
-                        <span className={`font-semibold ${
-                          utilization > 100 ? 'text-red-600' :
-                          utilization > 80 ? 'text-amber-600' :
-                          'text-green-600'
-                        }`}>
-                          {utilization.toFixed(0)}%
-                        </span>
-                      </td>
-                      <td className="py-4 px-4 text-right text-gray-900">
-                        ${rate > 0 ? Math.round(rate) : '—'}/hr
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
+          <SprintBreakdownTable sprints={sprintCardsData} />
         </CardContent>
       </Card>
 
@@ -482,6 +436,69 @@ export default async function ClientDetailPage({ params }: PageProps) {
           </CardContent>
         </Card>
       )}
+
+      {/* Task Breakdown for Sprint Work */}
+      <Card>
+        <CardContent className="pt-6">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+              Task Breakdown (All Sprint Work)
+            </h2>
+            <span className="text-sm font-semibold text-gray-600">
+              {hoursInSprints.toFixed(1)} hrs total
+            </span>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b-2 border-gray-200">
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Task Category</th>
+                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-700">Hours</th>
+                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-700">% of Total</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Distribution</th>
+                </tr>
+              </thead>
+              <tbody>
+                {taskBreakdownSorted.map((task, idx) => {
+                  const percentage = hoursInSprints > 0 ? (task.hours / hoursInSprints) * 100 : 0
+                  return (
+                    <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50">
+                      <td className="py-3 px-4 text-sm font-medium text-gray-900">
+                        {task.category}
+                      </td>
+                      <td className="py-3 px-4 text-sm font-semibold text-gray-900 text-right">
+                        {task.hours.toFixed(1)} hrs
+                      </td>
+                      <td className="py-3 px-4 text-sm text-gray-600 text-right">
+                        {percentage.toFixed(1)}%
+                      </td>
+                      <td className="py-3 px-4">
+                        <div className="flex items-center gap-2">
+                          <Progress value={percentage} className="h-2 flex-1" />
+                        </div>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+              <tfoot>
+                <tr className="border-t-2 border-gray-200 bg-gray-50">
+                  <td className="py-3 px-4 text-sm font-semibold text-gray-900">
+                    Total Sprint Hours:
+                  </td>
+                  <td className="py-3 px-4 text-sm font-bold text-gray-900 text-right">
+                    {hoursInSprints.toFixed(1)} hrs
+                  </td>
+                  <td className="py-3 px-4 text-sm font-semibold text-gray-600 text-right">
+                    100%
+                  </td>
+                  <td className="py-3 px-4"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }

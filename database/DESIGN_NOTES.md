@@ -1,4 +1,4 @@
-# Database Design Notes
+*   # Database Design Notes
 
 **Last Updated:** December 5, 2025
 

@@ -432,6 +432,7 @@ def parse_client_item(item, group_title=None, region=None):
         'client_priority': columns.get('Client Priority', {}).get('text'),
         'campaign_type': columns.get('Campaign Type', {}).get('text'),
         'campaign_start_date': parse_date(columns.get('Campaign Start Date', {}).get('value')),
+        'contract_length': columns.get('Contract Length', {}).get('text'),
         'monthly_rate': monthly_rate,
         'monthly_hours': monthly_hours,
         'report_status': columns.get('Report Status', {}).get('text'),

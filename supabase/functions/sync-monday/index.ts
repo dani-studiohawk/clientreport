@@ -296,6 +296,7 @@ async function parseClientItem(
     client_priority: columns["Client Priority"]?.text || null,
     campaign_type: columns["Campaign Type"]?.text || null,
     campaign_start_date: parseDate(columns["Campaign Start Date"]?.value),
+    contract_length: columns["Contract Length"]?.text || null,
     monthly_rate: monthlyRate,
     monthly_hours: monthlyHours,
     report_status: columns["Report Status"]?.text || null,

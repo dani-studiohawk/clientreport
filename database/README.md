@@ -91,6 +91,7 @@ CREATE TABLE public.clients (
 - `client_priority` ← "Client Priority" formula field
 - `campaign_type` ← "Campaign Type" status field
 - `campaign_start_date` ← "Campaign Start Date" date field
+- `contract_length` ← "Contract Length" status field (e.g., "Ongoing", "6 months", "12 months")
 - `total_link_kpi` ← "Total Link KPI" lookup field
 - `total_links_achieved` ← "Total Links Achieved" field
 - `monthly_rate` ← Contract monthly rate

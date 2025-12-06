@@ -12,6 +12,7 @@ export interface Client {
   client_priority: string | null
   campaign_type: string | null
   campaign_start_date: string | null
+  contract_length: string | null
   total_link_kpi: number | null
   total_links_achieved: number | null
   monthly_rate: number | null

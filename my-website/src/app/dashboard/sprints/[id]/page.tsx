@@ -168,8 +168,11 @@ export default async function SprintDetailPage({ params }: PageProps) {
   const startDate = new Date(sprint.start_date)
   const endDate = new Date(sprint.end_date)
   const totalDays = differenceInDays(endDate, startDate)
-  const daysElapsed = Math.max(0, differenceInDays(today, startDate))
-  const daysRemaining = Math.max(0, differenceInDays(endDate, today))
+  // For completed sprints, cap daysElapsed at totalDays
+  const daysElapsed = sprint.status === 'completed' 
+    ? totalDays 
+    : Math.max(0, Math.min(differenceInDays(today, startDate), totalDays))
+  const daysRemaining = sprint.status === 'completed' ? 0 : Math.max(0, differenceInDays(endDate, today))
   
   const kpiProgress = sprint.kpi_target > 0 
     ? (sprint.kpi_achieved / sprint.kpi_target) * 100 
@@ -197,9 +200,14 @@ export default async function SprintDetailPage({ params }: PageProps) {
 
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-            {sprint.clients?.name || 'Unknown Client'}
-          </h1>
+          <div className="flex items-center gap-3">
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+              {sprint.clients?.name || 'Unknown Client'}
+            </h1>
+            <Badge variant="outline" className="text-base px-3 py-1">
+              Sprint {sprint.sprint_number}
+            </Badge>
+          </div>
           <div className="flex items-center gap-4 mt-1 text-gray-600 dark:text-gray-400">
             <span className="flex items-center gap-1">
               <User className="h-4 w-4" />
@@ -287,11 +295,20 @@ export default async function SprintDetailPage({ params }: PageProps) {
                   <Target className="h-4 w-4" />
                   KPI Target
                 </span>
-                <span className="font-medium">
+                <span className={`font-medium ${kpiProgress >= 150 ? 'text-green-600 font-bold' : ''}`}>
                   {sprint.kpi_achieved}/{sprint.kpi_target} ({Math.round(kpiProgress)}%)
                 </span>
               </div>
-              <Progress value={Math.min(kpiProgress, 100)} className="h-3" />
+              <Progress 
+                value={Math.min(kpiProgress, 100)} 
+                className={`h-3 ${
+                  kpiProgress >= 150 ? '[&>div]:bg-gradient-to-r [&>div]:from-green-400 [&>div]:via-green-500 [&>div]:to-green-400' :
+                  kpiProgress >= 100 ? '[&>div]:bg-green-500' :
+                  kpiProgress >= 75 ? '[&>div]:bg-blue-500' :
+                  kpiProgress >= 50 ? '[&>div]:bg-amber-500' :
+                  '[&>div]:bg-red-500'
+                }`}
+              />
             </div>
             <div className="space-y-2">
               <div className="flex justify-between text-sm">

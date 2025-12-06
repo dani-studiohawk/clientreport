@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import { format, differenceInDays } from 'date-fns'
+import Link from 'next/link'
 
 interface SprintCardData {
   id: string
@@ -98,8 +99,9 @@ export function AllSprintsOverview({ sprints }: AllSprintsOverviewProps) {
             : null
 
           return (
-            <Card key={sprint.id} className="border-l-4 border-l-green-500">
-              <CardContent className="pt-4 space-y-4">
+            <Link key={sprint.id} href={`/dashboard/sprints/${sprint.id}`} className="block">
+              <Card className="border-l-4 border-l-green-500 hover:shadow-lg transition-shadow cursor-pointer">
+                <CardContent className="pt-4 space-y-4">
                 {/* Header */}
                 <div className="flex items-center justify-between">
                   <h4 className="font-semibold text-lg">
@@ -229,6 +231,7 @@ export function AllSprintsOverview({ sprints }: AllSprintsOverviewProps) {
                 )}
               </CardContent>
             </Card>
+            </Link>
           )
         })}
       </div>
